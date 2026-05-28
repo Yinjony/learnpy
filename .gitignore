@@ -1,0 +1,6 @@
+.vscode/
+.idea/
+train/
+*.zip
+VideoX-Fun/
+Flower/FL/data/
