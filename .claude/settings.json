@@ -1,0 +1,8 @@
+{
+  "env": {
+    "ANTHROPIC_AUTH_TOKEN": "sk-38f19ca92b944eea83de4f24980c514e",
+    "ANTHROPIC_MODEL": "qwen3-coder-plus",
+    "ANTHROPIC_SMALL_FAST_MODEL": "qwen-flash"
+  },
+  "bypassPermissions": true
+}
