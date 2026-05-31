@@ -1,0 +1,902 @@
+[
+    {
+        "prompt_en": "A person is riding a bike",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is riding a bike-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is marching",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is marching-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is roller skating",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is roller skating-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is tasting beer",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is tasting beer-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is clapping",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is clapping-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is drawing",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is drawing-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is petting animal (not cat)",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is petting animal (not cat)-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is eating watermelon",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is eating watermelon-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is playing harp",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is playing harp-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is wrestling",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is wrestling-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is riding scooter",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is riding scooter-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is sweeping floor",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is sweeping floor-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is skateboarding",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is skateboarding-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is dunking basketball",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is dunking basketball-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is playing flute",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is playing flute-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is stretching leg",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is stretching leg-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is tying tie",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is tying tie-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is skydiving",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is skydiving-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is shooting goal (soccer)",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is shooting goal (soccer)-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is playing piano",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is playing piano-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is finger snapping",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is finger snapping-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is canoeing or kayaking",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is canoeing or kayaking-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is laughing",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is laughing-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is digging",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is digging-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is clay pottery making",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is clay pottery making-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is shooting basketball",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is shooting basketball-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is bending back",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is bending back-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is shaking hands",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is shaking hands-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is bandaging",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is bandaging-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is push up",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is push up-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is catching or throwing frisbee",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is catching or throwing frisbee-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is playing trumpet",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is playing trumpet-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is flying kite",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is flying kite-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is filling eyebrows",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is filling eyebrows-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is shuffling cards",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is shuffling cards-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is folding clothes",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is folding clothes-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is smoking",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is smoking-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is tai chi",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is tai chi-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is squat",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is squat-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is playing controller",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is playing controller-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is throwing axe",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is throwing axe-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is giving or receiving award",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is giving or receiving award-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is air drumming",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is air drumming-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is taking a shower",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is taking a shower-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is planting trees",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is planting trees-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is sharpening knives",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is sharpening knives-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is robot dancing",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is robot dancing-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is rock climbing",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is rock climbing-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is hula hooping",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is hula hooping-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is writing",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is writing-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is bungee jumping",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is bungee jumping-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is pushing cart",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is pushing cart-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is cleaning windows",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is cleaning windows-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is cutting watermelon",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is cutting watermelon-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is cheerleading",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is cheerleading-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is washing hands",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is washing hands-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is ironing",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is ironing-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is cutting nails",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is cutting nails-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is hugging",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is hugging-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is trimming or shaving beard",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is trimming or shaving beard-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is jogging",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is jogging-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is making bed",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is making bed-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is washing dishes",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is washing dishes-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is grooming dog",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is grooming dog-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is doing laundry",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is doing laundry-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is knitting",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is knitting-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is reading book",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is reading book-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is baby waking up",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is baby waking up-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is massaging legs",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is massaging legs-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is brushing teeth",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is brushing teeth-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is crawling baby",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is crawling baby-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is motorcycling",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is motorcycling-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is driving car",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is driving car-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is sticking tongue out",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is sticking tongue out-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is shaking head",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is shaking head-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is sword fighting",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is sword fighting-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is doing aerobics",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is doing aerobics-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is strumming guitar",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is strumming guitar-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is riding or walking with horse",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is riding or walking with horse-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is archery",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is archery-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is catching or throwing baseball",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is catching or throwing baseball-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is playing chess",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is playing chess-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is rock scissors paper",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is rock scissors paper-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is using computer",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is using computer-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is arranging flowers",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is arranging flowers-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is bending metal",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is bending metal-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is ice skating",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is ice skating-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is climbing a rope",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is climbing a rope-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is crying",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is crying-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is dancing ballet",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is dancing ballet-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is getting a haircut",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is getting a haircut-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is running on treadmill",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is running on treadmill-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is kissing",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is kissing-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is counting money",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is counting money-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is barbequing",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is barbequing-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is peeling apples",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is peeling apples-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is milking cow",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is milking cow-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is shining shoes",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is shining shoes-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is making snowman",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is making snowman-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A person is sailing",
+        "dimension": [
+            "human_action"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A person is sailing-0.mp4"
+        ]
+    }
+]

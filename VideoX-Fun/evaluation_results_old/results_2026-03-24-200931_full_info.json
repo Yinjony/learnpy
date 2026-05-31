@@ -1,0 +1,1025 @@
+[
+    {
+        "prompt_en": "Close up of grapes on a rotating table.",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/Close up of grapes on a rotating table.-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Turtle swimming in ocean.",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/Turtle swimming in ocean.-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A storm trooper vacuuming the beach.",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A storm trooper vacuuming the beach.-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A panda standing on a surfboard in the ocean in sunset.",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A panda standing on a surfboard in the ocean in sunset.-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "An astronaut feeding ducks on a sunny afternoon, reflection from the water.",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/An astronaut feeding ducks on a sunny afternoon, reflection from the water.-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Two pandas discussing an academic paper.",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/Two pandas discussing an academic paper.-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Sunset time lapse at the beach with moving clouds and colors in the sky.",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/Sunset time lapse at the beach with moving clouds and colors in the sky.-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A fat rabbit wearing a purple robe walking through a fantasy landscape.",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A fat rabbit wearing a purple robe walking through a fantasy landscape.-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A koala bear playing piano in the forest.",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A koala bear playing piano in the forest.-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "An astronaut flying in space.",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/An astronaut flying in space.-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Fireworks.",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/Fireworks.-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "An animated painting of fluffy white clouds moving in sky.",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/An animated painting of fluffy white clouds moving in sky.-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Flying through fantasy landscapes.",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/Flying through fantasy landscapes.-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A bigfoot walking in the snowstorm.",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A bigfoot walking in the snowstorm.-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A squirrel eating a burger.",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A squirrel eating a burger.-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A cat wearing sunglasses and working as a lifeguard at a pool.",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A cat wearing sunglasses and working as a lifeguard at a pool.-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Snow rocky mountains peaks canyon. snow blanketed rocky mountains surround and shadow deep canyons. the canyons twist and bend through the high elevated mountain peaks.",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/Snow rocky mountains peaks canyon. snow blanketed rocky mountains surround and shadow deep canyons. the canyons twist and bend through the high elevated mountain peaks.-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Splash of turquoise water in extreme slow motion, alpha channel included.",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/Splash of turquoise water in extreme slow motion, alpha channel included.-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "an ice cream is melting on the table.",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/an ice cream is melting on the table.-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a drone flying over a snowy forest.",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a drone flying over a snowy forest.-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a shark is swimming in the ocean.",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a shark is swimming in the ocean.-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Aerial panoramic video from a drone of a fantasy land.",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/Aerial panoramic video from a drone of a fantasy land.-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a teddy bear is swimming in the ocean.",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a teddy bear is swimming in the ocean.-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "time lapse of sunrise on mars.",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/time lapse of sunrise on mars.-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "golden fish swimming in the ocean.",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/golden fish swimming in the ocean.-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "An artist brush painting on a canvas close up.",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/An artist brush painting on a canvas close up.-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A drone view of celebration with Christmas tree and fireworks, starry sky - background.",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A drone view of celebration with Christmas tree and fireworks, starry sky - background.-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "happy dog wearing a yellow turtleneck, studio, portrait, facing camera, dark background",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/happy dog wearing a yellow turtleneck, studio, portrait, facing camera, dark background-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Origami dancers in white paper, 3D render, on white background, studio shot, dancing modern dance.",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/Origami dancers in white paper, 3D render, on white background, studio shot, dancing modern dance.-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Campfire at night in a snowy forest with starry sky in the background.",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/Campfire at night in a snowy forest with starry sky in the background.-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a fantasy landscape",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a fantasy landscape-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A 3D model of a 1800s victorian house.",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A 3D model of a 1800s victorian house.-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "this is how I do makeup in the morning.",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/this is how I do makeup in the morning.-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A raccoon that looks like a turtle, digital art.",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A raccoon that looks like a turtle, digital art.-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Robot dancing in Times Square.",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/Robot dancing in Times Square.-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Busy freeway at night.",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/Busy freeway at night.-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Balloon full of water exploding in extreme slow motion.",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/Balloon full of water exploding in extreme slow motion.-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "An astronaut is riding a horse in the space in a photorealistic style.",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/An astronaut is riding a horse in the space in a photorealistic style.-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Macro slo-mo. Slow motion cropped closeup of roasted coffee beans falling into an empty bowl.",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/Macro slo-mo. Slow motion cropped closeup of roasted coffee beans falling into an empty bowl.-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Sewing machine, old sewing machine working.",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/Sewing machine, old sewing machine working.-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Motion colour drop in water, ink swirling in water, colourful ink in water, abstraction fancy dream cloud of ink.",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/Motion colour drop in water, ink swirling in water, colourful ink in water, abstraction fancy dream cloud of ink.-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Few big purple plums rotating on the turntable. water drops appear on the skin during rotation. isolated on the white background. close-up. macro.",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/Few big purple plums rotating on the turntable. water drops appear on the skin during rotation. isolated on the white background. close-up. macro.-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Vampire makeup face of beautiful girl, red contact lenses.",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/Vampire makeup face of beautiful girl, red contact lenses.-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Ashtray full of butts on table, smoke flowing on black background, close-up",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/Ashtray full of butts on table, smoke flowing on black background, close-up-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Pacific coast, carmel by the sea ocean and waves.",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/Pacific coast, carmel by the sea ocean and waves.-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A teddy bear is playing drum kit in NYC Times Square.",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A teddy bear is playing drum kit in NYC Times Square.-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A corgi is playing drum kit.",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A corgi is playing drum kit.-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "An Iron man is playing the electronic guitar, high electronic guitar.",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/An Iron man is playing the electronic guitar, high electronic guitar.-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A raccoon is playing the electronic guitar.",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A raccoon is playing the electronic guitar.-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A boat sailing leisurely along the Seine River with the Eiffel Tower in background by Vincent van Gogh",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A boat sailing leisurely along the Seine River with the Eiffel Tower in background by Vincent van Gogh-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A corgi's head depicted as an explosion of a nebula",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A corgi's head depicted as an explosion of a nebula-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A fantasy landscape",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A fantasy landscape-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A future where humans have achieved teleportation technology",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A future where humans have achieved teleportation technology-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A jellyfish floating through the ocean, with bioluminescent tentacles",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A jellyfish floating through the ocean, with bioluminescent tentacles-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A Mars rover moving on Mars",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A Mars rover moving on Mars-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A panda drinking coffee in a cafe in Paris",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A panda drinking coffee in a cafe in Paris-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A space shuttle launching into orbit, with flames and smoke billowing out from the engines",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A space shuttle launching into orbit, with flames and smoke billowing out from the engines-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A steam train moving on a mountainside",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A steam train moving on a mountainside-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A super cool giant robot in Cyberpunk Beijing",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A super cool giant robot in Cyberpunk Beijing-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tropical beach at sunrise, with palm trees and crystal-clear water in the foreground",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A tropical beach at sunrise, with palm trees and crystal-clear water in the foreground-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Cinematic shot of Van Gogh's selfie, Van Gogh style",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/Cinematic shot of Van Gogh's selfie, Van Gogh style-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Gwen Stacy reading a book",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/Gwen Stacy reading a book-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Iron Man flying in the sky",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/Iron Man flying in the sky-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "The bund Shanghai, oil painting",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/The bund Shanghai, oil painting-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Yoda playing guitar on the stage",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/Yoda playing guitar on the stage-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A beautiful coastal beach in spring, waves lapping on sand by Hokusai, in the style of Ukiyo",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A beautiful coastal beach in spring, waves lapping on sand by Hokusai, in the style of Ukiyo-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A beautiful coastal beach in spring, waves lapping on sand by Vincent van Gogh",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A beautiful coastal beach in spring, waves lapping on sand by Vincent van Gogh-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A boat sailing leisurely along the Seine River with the Eiffel Tower in background",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A boat sailing leisurely along the Seine River with the Eiffel Tower in background-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A car moving slowly on an empty street, rainy evening",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A car moving slowly on an empty street, rainy evening-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A cat eating food out of a bowl",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A cat eating food out of a bowl-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A cat wearing sunglasses at a pool",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A cat wearing sunglasses at a pool-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A confused panda in calculus class",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A confused panda in calculus class-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A cute fluffy panda eating Chinese food in a restaurant",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A cute fluffy panda eating Chinese food in a restaurant-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A cute happy Corgi playing in park, sunset",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A cute happy Corgi playing in park, sunset-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A cute raccoon playing guitar in a boat on the ocean",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A cute raccoon playing guitar in a boat on the ocean-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A happy fuzzy panda playing guitar nearby a campfire, snow mountain in the background",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A happy fuzzy panda playing guitar nearby a campfire, snow mountain in the background-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A lightning striking atop of eiffel tower, dark clouds in the sky",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A lightning striking atop of eiffel tower, dark clouds in the sky-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A modern art museum, with colorful paintings",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A modern art museum, with colorful paintings-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A panda cooking in the kitchen",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A panda cooking in the kitchen-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A panda playing on a swing set",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A panda playing on a swing set-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A polar bear is playing guitar",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A polar bear is playing guitar-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A raccoon dressed in suit playing the trumpet, stage background",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A raccoon dressed in suit playing the trumpet, stage background-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A robot DJ is playing the turntable, in heavy raining futuristic tokyo rooftop cyberpunk night, sci-fi, fantasy",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A robot DJ is playing the turntable, in heavy raining futuristic tokyo rooftop cyberpunk night, sci-fi, fantasy-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A shark swimming in clear Caribbean ocean",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A shark swimming in clear Caribbean ocean-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A super robot protecting city",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A super robot protecting city-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A teddy bear washing the dishes",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A teddy bear washing the dishes-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "An epic tornado attacking above a glowing city at night, the tornado is made of smoke",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/An epic tornado attacking above a glowing city at night, the tornado is made of smoke-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "An oil painting of a couple in formal evening wear going home get caught in a heavy downpour with umbrellas",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/An oil painting of a couple in formal evening wear going home get caught in a heavy downpour with umbrellas-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Clown fish swimming through the coral reef",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/Clown fish swimming through the coral reef-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Hyper-realistic spaceship landing on Mars",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/Hyper-realistic spaceship landing on Mars-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "The bund Shanghai, vibrant color",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/The bund Shanghai, vibrant color-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Vincent van Gogh is painting in the room",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/Vincent van Gogh is painting in the room-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Yellow flowers swing in the wind",
+        "dimension": [
+            "overall_consistency",
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/Yellow flowers swing in the wind-0.mp4"
+        ]
+    }
+]

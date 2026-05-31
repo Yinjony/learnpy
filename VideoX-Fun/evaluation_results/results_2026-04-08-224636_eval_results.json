@@ -1,0 +1,379 @@
+{
+    "aesthetic_quality": [
+        0.6000488599141439,
+        [
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/Close up of grapes on a rotating table.-0.mp4",
+                "video_results": 0.6310727000236511
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/Turtle swimming in ocean.-0.mp4",
+                "video_results": 0.6693042516708374
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A storm trooper vacuuming the beach.-0.mp4",
+                "video_results": 0.5270183086395264
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A panda standing on a surfboard in the ocean in sunset.-0.mp4",
+                "video_results": 0.6359261870384216
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/An astronaut feeding ducks on a sunny afternoon, reflection from the water.-0.mp4",
+                "video_results": 0.6644185185432434
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/Two pandas discussing an academic paper.-0.mp4",
+                "video_results": 0.48360976576805115
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/Sunset time lapse at the beach with moving clouds and colors in the sky.-0.mp4",
+                "video_results": 0.5808762311935425
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A fat rabbit wearing a purple robe walking through a fantasy landscape.-0.mp4",
+                "video_results": 0.6577848196029663
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A koala bear playing piano in the forest.-0.mp4",
+                "video_results": 0.631942629814148
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/An astronaut flying in space.-0.mp4",
+                "video_results": 0.6107646226882935
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/Fireworks.-0.mp4",
+                "video_results": 0.7199013829231262
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/An animated painting of fluffy white clouds moving in sky.-0.mp4",
+                "video_results": 0.5093757510185242
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/Flying through fantasy landscapes.-0.mp4",
+                "video_results": 0.6404752135276794
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A bigfoot walking in the snowstorm.-0.mp4",
+                "video_results": 0.5925609469413757
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A squirrel eating a burger.-0.mp4",
+                "video_results": 0.6887863874435425
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A cat wearing sunglasses and working as a lifeguard at a pool.-0.mp4",
+                "video_results": 0.6866516470909119
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/Snow rocky mountains peaks canyon. snow blanketed rocky mountains surround and shadow deep canyons. the canyons twist and bend through the high elevated mountain peaks.-0.mp4",
+                "video_results": 0.6805039644241333
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/Splash of turquoise water in extreme slow motion, alpha channel included.-0.mp4",
+                "video_results": 0.26176178455352783
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/an ice cream is melting on the table.-0.mp4",
+                "video_results": 0.6037814617156982
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a drone flying over a snowy forest.-0.mp4",
+                "video_results": 0.5283888578414917
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a shark is swimming in the ocean.-0.mp4",
+                "video_results": 0.6276242136955261
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/Aerial panoramic video from a drone of a fantasy land.-0.mp4",
+                "video_results": 0.6115437746047974
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a teddy bear is swimming in the ocean.-0.mp4",
+                "video_results": 0.7910367250442505
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/time lapse of sunrise on mars.-0.mp4",
+                "video_results": 0.5588127970695496
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/golden fish swimming in the ocean.-0.mp4",
+                "video_results": 0.6329966187477112
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/An artist brush painting on a canvas close up.-0.mp4",
+                "video_results": 0.32713934779167175
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A drone view of celebration with Christmas tree and fireworks, starry sky - background.-0.mp4",
+                "video_results": 0.4810446798801422
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/happy dog wearing a yellow turtleneck, studio, portrait, facing camera, dark background-0.mp4",
+                "video_results": 0.46926984190940857
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/Origami dancers in white paper, 3D render, on white background, studio shot, dancing modern dance.-0.mp4",
+                "video_results": 0.4848952293395996
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/Campfire at night in a snowy forest with starry sky in the background.-0.mp4",
+                "video_results": 0.6903859376907349
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a fantasy landscape-0.mp4",
+                "video_results": 0.7594859004020691
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A 3D model of a 1800s victorian house.-0.mp4",
+                "video_results": 0.5465987324714661
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/this is how I do makeup in the morning.-0.mp4",
+                "video_results": 0.4873822033405304
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A raccoon that looks like a turtle, digital art.-0.mp4",
+                "video_results": 0.5468930006027222
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/Robot dancing in Times Square.-0.mp4",
+                "video_results": 0.6195038557052612
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/Busy freeway at night.-0.mp4",
+                "video_results": 0.6273912191390991
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/Balloon full of water exploding in extreme slow motion.-0.mp4",
+                "video_results": 0.43765589594841003
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/An astronaut is riding a horse in the space in a photorealistic style.-0.mp4",
+                "video_results": 0.6646955013275146
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/Macro slo-mo. Slow motion cropped closeup of roasted coffee beans falling into an empty bowl.-0.mp4",
+                "video_results": 0.5406615734100342
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/Sewing machine, old sewing machine working.-0.mp4",
+                "video_results": 0.6057031750679016
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/Motion colour drop in water, ink swirling in water, colourful ink in water, abstraction fancy dream cloud of ink.-0.mp4",
+                "video_results": 0.5363614559173584
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/Few big purple plums rotating on the turntable. water drops appear on the skin during rotation. isolated on the white background. close-up. macro.-0.mp4",
+                "video_results": 0.6007668972015381
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/Vampire makeup face of beautiful girl, red contact lenses.-0.mp4",
+                "video_results": 0.5087414979934692
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/Ashtray full of butts on table, smoke flowing on black background, close-up-0.mp4",
+                "video_results": 0.5025489926338196
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/Pacific coast, carmel by the sea ocean and waves.-0.mp4",
+                "video_results": 0.620776355266571
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A teddy bear is playing drum kit in NYC Times Square.-0.mp4",
+                "video_results": 0.7731159925460815
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A corgi is playing drum kit.-0.mp4",
+                "video_results": 0.6094664335250854
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/An Iron man is playing the electronic guitar, high electronic guitar.-0.mp4",
+                "video_results": 0.5600650310516357
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A raccoon is playing the electronic guitar.-0.mp4",
+                "video_results": 0.5894213914871216
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A boat sailing leisurely along the Seine River with the Eiffel Tower in background by Vincent van Gogh-0.mp4",
+                "video_results": 0.7080886363983154
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A corgi's head depicted as an explosion of a nebula-0.mp4",
+                "video_results": 0.5549629926681519
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A fantasy landscape-0.mp4",
+                "video_results": 0.5732319951057434
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A future where humans have achieved teleportation technology-0.mp4",
+                "video_results": 0.48061856627464294
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A jellyfish floating through the ocean, with bioluminescent tentacles-0.mp4",
+                "video_results": 0.6473660469055176
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A Mars rover moving on Mars-0.mp4",
+                "video_results": 0.5211427807807922
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A panda drinking coffee in a cafe in Paris-0.mp4",
+                "video_results": 0.6617493629455566
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A space shuttle launching into orbit, with flames and smoke billowing out from the engines-0.mp4",
+                "video_results": 0.6578171253204346
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A steam train moving on a mountainside-0.mp4",
+                "video_results": 0.7017050981521606
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A super cool giant robot in Cyberpunk Beijing-0.mp4",
+                "video_results": 0.7466875314712524
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A tropical beach at sunrise, with palm trees and crystal-clear water in the foreground-0.mp4",
+                "video_results": 0.7731311321258545
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/Cinematic shot of Van Gogh's selfie, Van Gogh style-0.mp4",
+                "video_results": 0.7001729011535645
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/Gwen Stacy reading a book-0.mp4",
+                "video_results": 0.6064100861549377
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/Iron Man flying in the sky-0.mp4",
+                "video_results": 0.5956777334213257
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/The bund Shanghai, oil painting-0.mp4",
+                "video_results": 0.6384599804878235
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/Yoda playing guitar on the stage-0.mp4",
+                "video_results": 0.6206957101821899
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A beautiful coastal beach in spring, waves lapping on sand by Hokusai, in the style of Ukiyo-0.mp4",
+                "video_results": 0.6701749563217163
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A beautiful coastal beach in spring, waves lapping on sand by Vincent van Gogh-0.mp4",
+                "video_results": 0.6869979500770569
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A boat sailing leisurely along the Seine River with the Eiffel Tower in background-0.mp4",
+                "video_results": 0.6398346424102783
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A car moving slowly on an empty street, rainy evening-0.mp4",
+                "video_results": 0.5269907116889954
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A cat eating food out of a bowl-0.mp4",
+                "video_results": 0.4943053722381592
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A cat wearing sunglasses at a pool-0.mp4",
+                "video_results": 0.6587371230125427
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A confused panda in calculus class-0.mp4",
+                "video_results": 0.5136822462081909
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A cute fluffy panda eating Chinese food in a restaurant-0.mp4",
+                "video_results": 0.6461207866668701
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A cute happy Corgi playing in park, sunset-0.mp4",
+                "video_results": 0.627579391002655
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A cute raccoon playing guitar in a boat on the ocean-0.mp4",
+                "video_results": 0.5854421854019165
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A happy fuzzy panda playing guitar nearby a campfire, snow mountain in the background-0.mp4",
+                "video_results": 0.6837939620018005
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A lightning striking atop of eiffel tower, dark clouds in the sky-0.mp4",
+                "video_results": 0.6539885997772217
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A modern art museum, with colorful paintings-0.mp4",
+                "video_results": 0.44238582253456116
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A panda cooking in the kitchen-0.mp4",
+                "video_results": 0.6303315162658691
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A panda playing on a swing set-0.mp4",
+                "video_results": 0.5664835572242737
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A polar bear is playing guitar-0.mp4",
+                "video_results": 0.6356402635574341
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A raccoon dressed in suit playing the trumpet, stage background-0.mp4",
+                "video_results": 0.6568169593811035
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A robot DJ is playing the turntable, in heavy raining futuristic tokyo rooftop cyberpunk night, sci-fi, fantasy-0.mp4",
+                "video_results": 0.7483696937561035
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A shark swimming in clear Caribbean ocean-0.mp4",
+                "video_results": 0.6296441555023193
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A super robot protecting city-0.mp4",
+                "video_results": 0.6791796088218689
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/A teddy bear washing the dishes-0.mp4",
+                "video_results": 0.6856787800788879
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/An epic tornado attacking above a glowing city at night, the tornado is made of smoke-0.mp4",
+                "video_results": 0.47318923473358154
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/An oil painting of a couple in formal evening wear going home get caught in a heavy downpour with umbrellas-0.mp4",
+                "video_results": 0.5790469646453857
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/Clown fish swimming through the coral reef-0.mp4",
+                "video_results": 0.5987584590911865
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/Hyper-realistic spaceship landing on Mars-0.mp4",
+                "video_results": 0.5507774949073792
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/The bund Shanghai, vibrant color-0.mp4",
+                "video_results": 0.610364556312561
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/Vincent van Gogh is painting in the room-0.mp4",
+                "video_results": 0.4381564259529114
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/Yellow flowers swing in the wind-0.mp4",
+                "video_results": 0.4872651696205139
+            }
+        ]
+    ]
+}

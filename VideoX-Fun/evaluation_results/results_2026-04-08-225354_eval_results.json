@@ -1,0 +1,481 @@
+{
+    "object_class": [
+        0.6819620253164557,
+        [
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a person-0.mp4",
+                "video_results": 1.0,
+                "success_frame_count": 16,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a bicycle-0.mp4",
+                "video_results": 1.0,
+                "success_frame_count": 16,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a car-0.mp4",
+                "video_results": 0.0,
+                "success_frame_count": 0,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a motorcycle-0.mp4",
+                "video_results": 1.0,
+                "success_frame_count": 16,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/an airplane-0.mp4",
+                "video_results": 1.0,
+                "success_frame_count": 16,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a bus-0.mp4",
+                "video_results": 1.0,
+                "success_frame_count": 16,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a train-0.mp4",
+                "video_results": 1.0,
+                "success_frame_count": 16,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a truck-0.mp4",
+                "video_results": 0.875,
+                "success_frame_count": 14,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a boat-0.mp4",
+                "video_results": 1.0,
+                "success_frame_count": 16,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a traffic light-0.mp4",
+                "video_results": 1.0,
+                "success_frame_count": 16,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a fire hydrant-0.mp4",
+                "video_results": 0.0,
+                "success_frame_count": 0,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a stop sign-0.mp4",
+                "video_results": 1.0,
+                "success_frame_count": 16,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a parking meter-0.mp4",
+                "video_results": 0.0,
+                "success_frame_count": 0,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a bench-0.mp4",
+                "video_results": 0.0,
+                "success_frame_count": 0,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a bird-0.mp4",
+                "video_results": 1.0,
+                "success_frame_count": 16,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a cat-0.mp4",
+                "video_results": 1.0,
+                "success_frame_count": 16,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a dog-0.mp4",
+                "video_results": 1.0,
+                "success_frame_count": 16,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a horse-0.mp4",
+                "video_results": 1.0,
+                "success_frame_count": 16,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a sheep-0.mp4",
+                "video_results": 1.0,
+                "success_frame_count": 16,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a cow-0.mp4",
+                "video_results": 1.0,
+                "success_frame_count": 16,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/an elephant-0.mp4",
+                "video_results": 1.0,
+                "success_frame_count": 16,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a bear-0.mp4",
+                "video_results": 1.0,
+                "success_frame_count": 16,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a zebra-0.mp4",
+                "video_results": 1.0,
+                "success_frame_count": 16,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a giraffe-0.mp4",
+                "video_results": 1.0,
+                "success_frame_count": 16,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a backpack-0.mp4",
+                "video_results": 0.9375,
+                "success_frame_count": 15,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/an umbrella-0.mp4",
+                "video_results": 1.0,
+                "success_frame_count": 16,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a handbag-0.mp4",
+                "video_results": 0.25,
+                "success_frame_count": 4,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a tie-0.mp4",
+                "video_results": 0.0,
+                "success_frame_count": 0,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a suitcase-0.mp4",
+                "video_results": 1.0,
+                "success_frame_count": 16,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a frisbee-0.mp4",
+                "video_results": 0.0,
+                "success_frame_count": 0,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/skis-0.mp4",
+                "video_results": 0.0,
+                "success_frame_count": 0,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a snowboard-0.mp4",
+                "video_results": 0.0,
+                "success_frame_count": 0,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a sports ball-0.mp4",
+                "video_results": 1.0,
+                "success_frame_count": 16,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a kite-0.mp4",
+                "video_results": 0.0,
+                "success_frame_count": 0,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a baseball bat-0.mp4",
+                "video_results": 1.0,
+                "success_frame_count": 16,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a baseball glove-0.mp4",
+                "video_results": 1.0,
+                "success_frame_count": 16,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a skateboard-0.mp4",
+                "video_results": 0.0625,
+                "success_frame_count": 1,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a surfboard-0.mp4",
+                "video_results": 1.0,
+                "success_frame_count": 16,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a tennis racket-0.mp4",
+                "video_results": 1.0,
+                "success_frame_count": 16,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a bottle-0.mp4",
+                "video_results": 0.0,
+                "success_frame_count": 0,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a wine glass-0.mp4",
+                "video_results": 1.0,
+                "success_frame_count": 16,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a cup-0.mp4",
+                "video_results": 1.0,
+                "success_frame_count": 16,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a fork-0.mp4",
+                "video_results": 0.0,
+                "success_frame_count": 0,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a knife-0.mp4",
+                "video_results": 0.0,
+                "success_frame_count": 0,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a spoon-0.mp4",
+                "video_results": 1.0,
+                "success_frame_count": 16,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a bowl-0.mp4",
+                "video_results": 1.0,
+                "success_frame_count": 16,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a banana-0.mp4",
+                "video_results": 1.0,
+                "success_frame_count": 16,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/an apple-0.mp4",
+                "video_results": 1.0,
+                "success_frame_count": 16,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a sandwich-0.mp4",
+                "video_results": 1.0,
+                "success_frame_count": 16,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/an orange-0.mp4",
+                "video_results": 0.0,
+                "success_frame_count": 0,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/broccoli-0.mp4",
+                "video_results": 1.0,
+                "success_frame_count": 16,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a carrot-0.mp4",
+                "video_results": 0.0,
+                "success_frame_count": 0,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a hot dog-0.mp4",
+                "video_results": 1.0,
+                "success_frame_count": 16,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a pizza-0.mp4",
+                "video_results": 1.0,
+                "success_frame_count": 16,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a donut-0.mp4",
+                "video_results": 0.0,
+                "success_frame_count": 0,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a cake-0.mp4",
+                "video_results": 1.0,
+                "success_frame_count": 16,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a chair-0.mp4",
+                "video_results": 0.9375,
+                "success_frame_count": 15,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a couch-0.mp4",
+                "video_results": 1.0,
+                "success_frame_count": 16,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a potted plant-0.mp4",
+                "video_results": 1.0,
+                "success_frame_count": 16,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a bed-0.mp4",
+                "video_results": 1.0,
+                "success_frame_count": 16,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a dining table-0.mp4",
+                "video_results": 1.0,
+                "success_frame_count": 16,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a toilet-0.mp4",
+                "video_results": 1.0,
+                "success_frame_count": 16,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a tv-0.mp4",
+                "video_results": 0.0,
+                "success_frame_count": 0,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a laptop-0.mp4",
+                "video_results": 1.0,
+                "success_frame_count": 16,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a remote-0.mp4",
+                "video_results": 0.0,
+                "success_frame_count": 0,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a keyboard-0.mp4",
+                "video_results": 1.0,
+                "success_frame_count": 16,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a cell phone-0.mp4",
+                "video_results": 1.0,
+                "success_frame_count": 16,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a microwave-0.mp4",
+                "video_results": 1.0,
+                "success_frame_count": 16,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/an oven-0.mp4",
+                "video_results": 0.0,
+                "success_frame_count": 0,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a toaster-0.mp4",
+                "video_results": 0.0,
+                "success_frame_count": 0,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a sink-0.mp4",
+                "video_results": 0.0,
+                "success_frame_count": 0,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a refrigerator-0.mp4",
+                "video_results": 1.0,
+                "success_frame_count": 16,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a book-0.mp4",
+                "video_results": 1.0,
+                "success_frame_count": 16,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a clock-0.mp4",
+                "video_results": 0.0,
+                "success_frame_count": 0,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a vase-0.mp4",
+                "video_results": 0.0,
+                "success_frame_count": 0,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/scissors-0.mp4",
+                "video_results": 1.0,
+                "success_frame_count": 16,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a teddy bear-0.mp4",
+                "video_results": 1.0,
+                "success_frame_count": 16,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a hair drier-0.mp4",
+                "video_results": 0.4375,
+                "success_frame_count": 7,
+                "frame_count": 16
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a toothbrush-0.mp4",
+                "video_results": 0.375,
+                "success_frame_count": 6,
+                "frame_count": 16
+            }
+        ]
+    ]
+}

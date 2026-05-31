@@ -1,0 +1,523 @@
+{
+    "background_consistency": [
+        0.9609477553256722,
+        [
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/alley-0.mp4",
+                "video_results": 0.937896728515625,
+                "video_sim": 75.03173828125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/amusement park-0.mp4",
+                "video_results": 0.9542877197265625,
+                "video_sim": 76.343017578125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/aquarium-0.mp4",
+                "video_results": 0.9625244140625,
+                "video_sim": 77.001953125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/arch-0.mp4",
+                "video_results": 0.9340850830078125,
+                "video_sim": 74.726806640625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/art gallery-0.mp4",
+                "video_results": 0.9644989013671875,
+                "video_sim": 77.159912109375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/bathroom-0.mp4",
+                "video_results": 0.9743682861328125,
+                "video_sim": 77.949462890625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/bakery shop-0.mp4",
+                "video_results": 0.956549072265625,
+                "video_sim": 76.52392578125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/ballroom-0.mp4",
+                "video_results": 0.970965576171875,
+                "video_sim": 77.67724609375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/bar-0.mp4",
+                "video_results": 0.964666748046875,
+                "video_sim": 77.17333984375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/barn-0.mp4",
+                "video_results": 0.9434173583984375,
+                "video_sim": 75.473388671875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/basement-0.mp4",
+                "video_results": 0.99569091796875,
+                "video_sim": 79.6552734375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/beach-0.mp4",
+                "video_results": 0.968389892578125,
+                "video_sim": 77.47119140625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/bedroom-0.mp4",
+                "video_results": 0.926031494140625,
+                "video_sim": 74.08251953125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/bridge-0.mp4",
+                "video_results": 0.95382080078125,
+                "video_sim": 76.3056640625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/botanical garden-0.mp4",
+                "video_results": 0.992742919921875,
+                "video_sim": 79.41943359375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/cafeteria-0.mp4",
+                "video_results": 0.9904510498046875,
+                "video_sim": 79.236083984375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/campsite-0.mp4",
+                "video_results": 0.9598480224609375,
+                "video_sim": 76.787841796875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/campus-0.mp4",
+                "video_results": 0.983404541015625,
+                "video_sim": 78.67236328125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/carrousel-0.mp4",
+                "video_results": 0.934246826171875,
+                "video_sim": 74.73974609375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/castle-0.mp4",
+                "video_results": 0.9499420166015625,
+                "video_sim": 75.995361328125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/cemetery-0.mp4",
+                "video_results": 0.960186767578125,
+                "video_sim": 76.81494140625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/classroom-0.mp4",
+                "video_results": 0.9677825927734375,
+                "video_sim": 77.422607421875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/cliff-0.mp4",
+                "video_results": 0.9627838134765625,
+                "video_sim": 77.022705078125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/crosswalk-0.mp4",
+                "video_results": 0.942584228515625,
+                "video_sim": 75.40673828125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/construction site-0.mp4",
+                "video_results": 0.9355224609375,
+                "video_sim": 74.841796875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/corridor-0.mp4",
+                "video_results": 0.9713104248046875,
+                "video_sim": 77.704833984375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/courtyard-0.mp4",
+                "video_results": 0.926165771484375,
+                "video_sim": 74.09326171875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/desert-0.mp4",
+                "video_results": 0.96533203125,
+                "video_sim": 77.2265625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/downtown-0.mp4",
+                "video_results": 0.9602386474609375,
+                "video_sim": 76.819091796875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/driveway-0.mp4",
+                "video_results": 0.964630126953125,
+                "video_sim": 77.17041015625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/farm-0.mp4",
+                "video_results": 0.9693511962890625,
+                "video_sim": 77.548095703125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/food court-0.mp4",
+                "video_results": 0.8843902587890625,
+                "video_sim": 70.751220703125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/football field-0.mp4",
+                "video_results": 0.9422454833984375,
+                "video_sim": 75.379638671875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/forest road-0.mp4",
+                "video_results": 0.9795166015625,
+                "video_sim": 78.361328125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/fountain-0.mp4",
+                "video_results": 0.975531005859375,
+                "video_sim": 78.04248046875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/gas station-0.mp4",
+                "video_results": 0.9560882568359375,
+                "video_sim": 76.487060546875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/glacier-0.mp4",
+                "video_results": 0.9574737548828125,
+                "video_sim": 76.597900390625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/golf course-0.mp4",
+                "video_results": 0.9672027587890625,
+                "video_sim": 77.376220703125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/indoor gymnasium-0.mp4",
+                "video_results": 0.991748046875,
+                "video_sim": 79.33984375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/harbor-0.mp4",
+                "video_results": 0.964178466796875,
+                "video_sim": 77.13427734375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/highway-0.mp4",
+                "video_results": 0.9747711181640625,
+                "video_sim": 77.981689453125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/hospital-0.mp4",
+                "video_results": 0.9293731689453125,
+                "video_sim": 74.349853515625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/house-0.mp4",
+                "video_results": 0.9761444091796875,
+                "video_sim": 78.091552734375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/iceberg-0.mp4",
+                "video_results": 0.971429443359375,
+                "video_sim": 77.71435546875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/industrial area-0.mp4",
+                "video_results": 0.9474761962890625,
+                "video_sim": 75.798095703125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/jail cell-0.mp4",
+                "video_results": 0.9678436279296875,
+                "video_sim": 77.427490234375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/junkyard-0.mp4",
+                "video_results": 0.9594970703125,
+                "video_sim": 76.759765625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/kitchen-0.mp4",
+                "video_results": 0.971630859375,
+                "video_sim": 77.73046875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/indoor library-0.mp4",
+                "video_results": 0.9842376708984375,
+                "video_sim": 78.739013671875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/lighthouse-0.mp4",
+                "video_results": 0.9592498779296875,
+                "video_sim": 76.739990234375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/laboratory-0.mp4",
+                "video_results": 0.9697021484375,
+                "video_sim": 77.576171875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/mansion-0.mp4",
+                "video_results": 0.9731109619140625,
+                "video_sim": 77.848876953125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/marsh-0.mp4",
+                "video_results": 0.9837982177734375,
+                "video_sim": 78.703857421875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/mountain-0.mp4",
+                "video_results": 0.981341552734375,
+                "video_sim": 78.50732421875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/indoor movie theater-0.mp4",
+                "video_results": 0.9664337158203125,
+                "video_sim": 77.314697265625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/indoor museum-0.mp4",
+                "video_results": 0.95960693359375,
+                "video_sim": 76.7685546875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/music studio-0.mp4",
+                "video_results": 0.9624755859375,
+                "video_sim": 76.998046875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/nursery-0.mp4",
+                "video_results": 0.96053466796875,
+                "video_sim": 76.8427734375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/ocean-0.mp4",
+                "video_results": 0.9842620849609375,
+                "video_sim": 78.740966796875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/office-0.mp4",
+                "video_results": 0.9693695068359375,
+                "video_sim": 77.549560546875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/palace-0.mp4",
+                "video_results": 0.9848541259765625,
+                "video_sim": 78.788330078125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/parking lot-0.mp4",
+                "video_results": 0.975506591796875,
+                "video_sim": 78.04052734375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/pharmacy-0.mp4",
+                "video_results": 0.94832763671875,
+                "video_sim": 75.8662109375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/phone booth-0.mp4",
+                "video_results": 0.960772705078125,
+                "video_sim": 76.86181640625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/raceway-0.mp4",
+                "video_results": 0.95228271484375,
+                "video_sim": 76.1826171875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/restaurant-0.mp4",
+                "video_results": 0.957745361328125,
+                "video_sim": 76.61962890625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/river-0.mp4",
+                "video_results": 0.9444061279296875,
+                "video_sim": 75.552490234375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/science museum-0.mp4",
+                "video_results": 0.93057861328125,
+                "video_sim": 74.4462890625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/shower-0.mp4",
+                "video_results": 0.92877197265625,
+                "video_sim": 74.3017578125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/ski slope-0.mp4",
+                "video_results": 0.97855224609375,
+                "video_sim": 78.2841796875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/sky-0.mp4",
+                "video_results": 0.9790252685546875,
+                "video_sim": 78.322021484375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/skyscraper-0.mp4",
+                "video_results": 0.973553466796875,
+                "video_sim": 77.88427734375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/baseball stadium-0.mp4",
+                "video_results": 0.9757293701171875,
+                "video_sim": 78.058349609375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/staircase-0.mp4",
+                "video_results": 0.9721893310546875,
+                "video_sim": 77.775146484375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/street-0.mp4",
+                "video_results": 0.9655059814453125,
+                "video_sim": 77.240478515625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/supermarket-0.mp4",
+                "video_results": 0.9502593994140625,
+                "video_sim": 76.020751953125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/indoor swimming pool-0.mp4",
+                "video_results": 0.9317901611328125,
+                "video_sim": 74.543212890625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/tower-0.mp4",
+                "video_results": 0.967071533203125,
+                "video_sim": 77.36572265625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/outdoor track-0.mp4",
+                "video_results": 0.9347198486328125,
+                "video_sim": 74.777587890625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/train railway-0.mp4",
+                "video_results": 0.9603271484375,
+                "video_sim": 76.826171875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/train station platform-0.mp4",
+                "video_results": 0.9511199951171875,
+                "video_sim": 76.089599609375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/underwater coral reef-0.mp4",
+                "video_results": 0.9732452392578125,
+                "video_sim": 77.859619140625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/valley-0.mp4",
+                "video_results": 0.9542694091796875,
+                "video_sim": 76.341552734375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/volcano-0.mp4",
+                "video_results": 0.94229736328125,
+                "video_sim": 75.3837890625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/waterfall-0.mp4",
+                "video_results": 0.975347900390625,
+                "video_sim": 78.02783203125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/windmill-0.mp4",
+                "video_results": 0.9588775634765625,
+                "video_sim": 76.710205078125,
+                "cnt_per_video": 80
+            }
+        ]
+    ]
+}

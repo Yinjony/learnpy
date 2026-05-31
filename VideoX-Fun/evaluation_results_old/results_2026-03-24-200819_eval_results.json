@@ -1,0 +1,407 @@
+{
+    "temporal_style": [
+        0.22880150847136974,
+        [
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A beautiful coastal beach in spring, waves lapping on sand, in super slow motion-0.mp4",
+                "video_results": 0.2037891149520874
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A beautiful coastal beach in spring, waves lapping on sand, zoom in-0.mp4",
+                "video_results": 0.22860540449619293
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A beautiful coastal beach in spring, waves lapping on sand, zoom out-0.mp4",
+                "video_results": 0.22797071933746338
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A beautiful coastal beach in spring, waves lapping on sand, pan left-0.mp4",
+                "video_results": 0.25334757566452026
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A beautiful coastal beach in spring, waves lapping on sand, pan right-0.mp4",
+                "video_results": 0.23280112445354462
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A beautiful coastal beach in spring, waves lapping on sand, tilt up-0.mp4",
+                "video_results": 0.2598608136177063
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A beautiful coastal beach in spring, waves lapping on sand, tilt down-0.mp4",
+                "video_results": 0.25470539927482605
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A beautiful coastal beach in spring, waves lapping on sand, with an intense shaking effect-0.mp4",
+                "video_results": 0.23049406707286835
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A beautiful coastal beach in spring, waves lapping on sand, featuring a steady and smooth perspective-0.mp4",
+                "video_results": 0.24098312854766846
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A beautiful coastal beach in spring, waves lapping on sand, racking focus-0.mp4",
+                "video_results": 0.22476689517498016
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/The bund Shanghai, in super slow motion-0.mp4",
+                "video_results": 0.18739503622055054
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/The bund Shanghai, zoom in-0.mp4",
+                "video_results": 0.19941458106040955
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/The bund Shanghai, zoom out-0.mp4",
+                "video_results": 0.14026328921318054
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/The bund Shanghai, pan left-0.mp4",
+                "video_results": 0.19275903701782227
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/The bund Shanghai, pan right-0.mp4",
+                "video_results": 0.21019017696380615
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/The bund Shanghai, tilt up-0.mp4",
+                "video_results": 0.1469515711069107
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/The bund Shanghai, tilt down-0.mp4",
+                "video_results": 0.15488921105861664
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/The bund Shanghai, with an intense shaking effect-0.mp4",
+                "video_results": 0.1449013501405716
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/The bund Shanghai, featuring a steady and smooth perspective-0.mp4",
+                "video_results": 0.25194382667541504
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/The bund Shanghai, racking focus-0.mp4",
+                "video_results": 0.10845515877008438
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a shark is swimming in the ocean, in super slow motion-0.mp4",
+                "video_results": 0.2072790116071701
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a shark is swimming in the ocean, zoom in-0.mp4",
+                "video_results": 0.20561601221561432
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a shark is swimming in the ocean, zoom out-0.mp4",
+                "video_results": 0.18355892598628998
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a shark is swimming in the ocean, pan left-0.mp4",
+                "video_results": 0.1737857609987259
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a shark is swimming in the ocean, pan right-0.mp4",
+                "video_results": 0.18454907834529877
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a shark is swimming in the ocean, tilt up-0.mp4",
+                "video_results": 0.1706281304359436
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a shark is swimming in the ocean, tilt down-0.mp4",
+                "video_results": 0.15660542249679565
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a shark is swimming in the ocean, with an intense shaking effect-0.mp4",
+                "video_results": 0.21259137988090515
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a shark is swimming in the ocean, featuring a steady and smooth perspective-0.mp4",
+                "video_results": 0.209476500749588
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a shark is swimming in the ocean, racking focus-0.mp4",
+                "video_results": 0.19060131907463074
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A panda drinking coffee in a cafe in Paris, in super slow motion-0.mp4",
+                "video_results": 0.20017719268798828
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A panda drinking coffee in a cafe in Paris, zoom in-0.mp4",
+                "video_results": 0.23601223528385162
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A panda drinking coffee in a cafe in Paris, zoom out-0.mp4",
+                "video_results": 0.2496361881494522
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A panda drinking coffee in a cafe in Paris, pan left-0.mp4",
+                "video_results": 0.2437693476676941
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A panda drinking coffee in a cafe in Paris, pan right-0.mp4",
+                "video_results": 0.2845956087112427
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A panda drinking coffee in a cafe in Paris, tilt up-0.mp4",
+                "video_results": 0.27174440026283264
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A panda drinking coffee in a cafe in Paris, tilt down-0.mp4",
+                "video_results": 0.2625901401042938
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A panda drinking coffee in a cafe in Paris, with an intense shaking effect-0.mp4",
+                "video_results": 0.24377548694610596
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A panda drinking coffee in a cafe in Paris, featuring a steady and smooth perspective-0.mp4",
+                "video_results": 0.13114285469055176
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A panda drinking coffee in a cafe in Paris, racking focus-0.mp4",
+                "video_results": 0.2487001121044159
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A cute happy Corgi playing in park, sunset, in super slow motion-0.mp4",
+                "video_results": 0.2613610029220581
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A cute happy Corgi playing in park, sunset, zoom in-0.mp4",
+                "video_results": 0.25498804450035095
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A cute happy Corgi playing in park, sunset, zoom out-0.mp4",
+                "video_results": 0.2593991160392761
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A cute happy Corgi playing in park, sunset, pan left-0.mp4",
+                "video_results": 0.24896927177906036
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A cute happy Corgi playing in park, sunset, pan right-0.mp4",
+                "video_results": 0.2273520827293396
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A cute happy Corgi playing in park, sunset, tilt up-0.mp4",
+                "video_results": 0.2252214550971985
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A cute happy Corgi playing in park, sunset, tilt down-0.mp4",
+                "video_results": 0.3016882538795471
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A cute happy Corgi playing in park, sunset, with an intense shaking effect-0.mp4",
+                "video_results": 0.2552279829978943
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A cute happy Corgi playing in park, sunset, featuring a steady and smooth perspective-0.mp4",
+                "video_results": 0.25646013021469116
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A cute happy Corgi playing in park, sunset, racking focus-0.mp4",
+                "video_results": 0.2841894328594208
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/Gwen Stacy reading a book, in super slow motion-0.mp4",
+                "video_results": 0.214057058095932
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/Gwen Stacy reading a book, zoom in-0.mp4",
+                "video_results": 0.22002273797988892
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/Gwen Stacy reading a book, zoom out-0.mp4",
+                "video_results": 0.21545200049877167
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/Gwen Stacy reading a book, pan left-0.mp4",
+                "video_results": 0.2291756570339203
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/Gwen Stacy reading a book, pan right-0.mp4",
+                "video_results": 0.22256650030612946
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/Gwen Stacy reading a book, tilt up-0.mp4",
+                "video_results": 0.20843525230884552
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/Gwen Stacy reading a book, tilt down-0.mp4",
+                "video_results": 0.2153221219778061
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/Gwen Stacy reading a book, with an intense shaking effect-0.mp4",
+                "video_results": 0.15806441009044647
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/Gwen Stacy reading a book, featuring a steady and smooth perspective-0.mp4",
+                "video_results": 0.20501558482646942
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/Gwen Stacy reading a book, racking focus-0.mp4",
+                "video_results": 0.18370670080184937
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A boat sailing leisurely along the Seine River with the Eiffel Tower in background, in super slow motion-0.mp4",
+                "video_results": 0.2780057191848755
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A boat sailing leisurely along the Seine River with the Eiffel Tower in background, zoom in-0.mp4",
+                "video_results": 0.13286839425563812
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A boat sailing leisurely along the Seine River with the Eiffel Tower in background, zoom out-0.mp4",
+                "video_results": 0.2735968232154846
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A boat sailing leisurely along the Seine River with the Eiffel Tower in background, pan left-0.mp4",
+                "video_results": 0.25442206859588623
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A boat sailing leisurely along the Seine River with the Eiffel Tower in background, pan right-0.mp4",
+                "video_results": 0.29245883226394653
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A boat sailing leisurely along the Seine River with the Eiffel Tower in background, tilt up-0.mp4",
+                "video_results": 0.23882420361042023
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A boat sailing leisurely along the Seine River with the Eiffel Tower in background, tilt down-0.mp4",
+                "video_results": 0.3004796504974365
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A boat sailing leisurely along the Seine River with the Eiffel Tower in background, with an intense shaking effect-0.mp4",
+                "video_results": 0.27994146943092346
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A boat sailing leisurely along the Seine River with the Eiffel Tower in background, featuring a steady and smooth perspective-0.mp4",
+                "video_results": 0.3019102215766907
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A boat sailing leisurely along the Seine River with the Eiffel Tower in background, racking focus-0.mp4",
+                "video_results": 0.30397889018058777
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A couple in formal evening wear going home get caught in a heavy downpour with umbrellas, in super slow motion-0.mp4",
+                "video_results": 0.23259392380714417
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A couple in formal evening wear going home get caught in a heavy downpour with umbrellas, zoom in-0.mp4",
+                "video_results": 0.19448409974575043
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A couple in formal evening wear going home get caught in a heavy downpour with umbrellas, zoom out-0.mp4",
+                "video_results": 0.17572933435440063
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A couple in formal evening wear going home get caught in a heavy downpour with umbrellas, pan left-0.mp4",
+                "video_results": 0.24012649059295654
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A couple in formal evening wear going home get caught in a heavy downpour with umbrellas, pan right-0.mp4",
+                "video_results": 0.2303103655576706
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A couple in formal evening wear going home get caught in a heavy downpour with umbrellas, tilt up-0.mp4",
+                "video_results": 0.2570456266403198
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A couple in formal evening wear going home get caught in a heavy downpour with umbrellas, tilt down-0.mp4",
+                "video_results": 0.26329636573791504
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A couple in formal evening wear going home get caught in a heavy downpour with umbrellas, with an intense shaking effect-0.mp4",
+                "video_results": 0.20138496160507202
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A couple in formal evening wear going home get caught in a heavy downpour with umbrellas, featuring a steady and smooth perspective-0.mp4",
+                "video_results": 0.26894479990005493
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/A couple in formal evening wear going home get caught in a heavy downpour with umbrellas, racking focus-0.mp4",
+                "video_results": 0.24504879117012024
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/An astronaut flying in space, in super slow motion-0.mp4",
+                "video_results": 0.22839118540287018
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/An astronaut flying in space, zoom in-0.mp4",
+                "video_results": 0.21156664192676544
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/An astronaut flying in space, zoom out-0.mp4",
+                "video_results": 0.21895386278629303
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/An astronaut flying in space, pan left-0.mp4",
+                "video_results": 0.23589889705181122
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/An astronaut flying in space, pan right-0.mp4",
+                "video_results": 0.20703452825546265
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/An astronaut flying in space, tilt up-0.mp4",
+                "video_results": 0.2120768278837204
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/An astronaut flying in space, tilt down-0.mp4",
+                "video_results": 0.23511934280395508
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/An astronaut flying in space, with an intense shaking effect-0.mp4",
+                "video_results": 0.1652153879404068
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/An astronaut flying in space, featuring a steady and smooth perspective-0.mp4",
+                "video_results": 0.22037553787231445
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/An astronaut flying in space, racking focus-0.mp4",
+                "video_results": 0.22638051211833954
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/Snow rocky mountains peaks canyon. snow blanketed rocky mountains surround and shadow deep canyons. the canyons twist and bend through the high elevated mountain peaks, in super slow motion-0.mp4",
+                "video_results": 0.2750697135925293
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/Snow rocky mountains peaks canyon. snow blanketed rocky mountains surround and shadow deep canyons. the canyons twist and bend through the high elevated mountain peaks, zoom in-0.mp4",
+                "video_results": 0.2642195522785187
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/Snow rocky mountains peaks canyon. snow blanketed rocky mountains surround and shadow deep canyons. the canyons twist and bend through the high elevated mountain peaks, zoom out-0.mp4",
+                "video_results": 0.2734052836894989
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/Snow rocky mountains peaks canyon. snow blanketed rocky mountains surround and shadow deep canyons. the canyons twist and bend through the high elevated mountain peaks, pan left-0.mp4",
+                "video_results": 0.2907311022281647
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/Snow rocky mountains peaks canyon. snow blanketed rocky mountains surround and shadow deep canyons. the canyons twist and bend through the high elevated mountain peaks, pan right-0.mp4",
+                "video_results": 0.2485760897397995
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/Snow rocky mountains peaks canyon. snow blanketed rocky mountains surround and shadow deep canyons. the canyons twist and bend through the high elevated mountain peaks, tilt up-0.mp4",
+                "video_results": 0.2847241461277008
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/Snow rocky mountains peaks canyon. snow blanketed rocky mountains surround and shadow deep canyons. the canyons twist and bend through the high elevated mountain peaks, tilt down-0.mp4",
+                "video_results": 0.2784641981124878
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/Snow rocky mountains peaks canyon. snow blanketed rocky mountains surround and shadow deep canyons. the canyons twist and bend through the high elevated mountain peaks, with an intense shaking effect-0.mp4",
+                "video_results": 0.27282747626304626
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/Snow rocky mountains peaks canyon. snow blanketed rocky mountains surround and shadow deep canyons. the canyons twist and bend through the high elevated mountain peaks, featuring a steady and smooth perspective-0.mp4",
+                "video_results": 0.2693767547607422
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/Snow rocky mountains peaks canyon. snow blanketed rocky mountains surround and shadow deep canyons. the canyons twist and bend through the high elevated mountain peaks, racking focus-0.mp4",
+                "video_results": 0.2882953882217407
+            }
+        ]
+    ]
+}

@@ -1,0 +1,1192 @@
+[
+    {
+        "prompt_en": "a red bicycle",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "red"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a red bicycle-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a green bicycle",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "green"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a green bicycle-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a blue bicycle",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "blue"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a blue bicycle-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a yellow bicycle",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "yellow"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a yellow bicycle-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "an orange bicycle",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "orange"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/an orange bicycle-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a purple bicycle",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "purple"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a purple bicycle-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a pink bicycle",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "pink"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a pink bicycle-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a black bicycle",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "black"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a black bicycle-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a white bicycle",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "white"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a white bicycle-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a red car",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "red"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a red car-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a green car",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "green"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a green car-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a blue car",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "blue"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a blue car-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a yellow car",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "yellow"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a yellow car-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "an orange car",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "orange"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/an orange car-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a purple car",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "purple"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a purple car-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a pink car",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "pink"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a pink car-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a black car",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "black"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a black car-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a white car",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "white"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a white car-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a red bird",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "red"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a red bird-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a green bird",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "green"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a green bird-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a blue bird",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "blue"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a blue bird-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a yellow bird",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "yellow"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a yellow bird-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "an orange bird",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "orange"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/an orange bird-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a purple bird",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "purple"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a purple bird-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a pink bird",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "pink"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a pink bird-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a black bird",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "black"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a black bird-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a white bird",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "white"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a white bird-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a black cat",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "black"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a black cat-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a white cat",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "white"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a white cat-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "an orange cat",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "orange"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/an orange cat-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a yellow cat",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "yellow"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a yellow cat-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a red umbrella",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "red"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a red umbrella-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a green umbrella",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "green"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a green umbrella-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a blue umbrella",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "blue"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a blue umbrella-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a yellow umbrella",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "yellow"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a yellow umbrella-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "an orange umbrella",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "orange"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/an orange umbrella-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a purple umbrella",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "purple"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a purple umbrella-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a pink umbrella",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "pink"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a pink umbrella-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a black umbrella",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "black"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a black umbrella-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a white umbrella",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "white"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a white umbrella-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a red suitcase",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "red"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a red suitcase-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a green suitcase",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "green"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a green suitcase-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a blue suitcase",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "blue"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a blue suitcase-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a yellow suitcase",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "yellow"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a yellow suitcase-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "an orange suitcase",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "orange"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/an orange suitcase-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a purple suitcase",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "purple"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a purple suitcase-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a pink suitcase",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "pink"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a pink suitcase-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a black suitcase",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "black"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a black suitcase-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a white suitcase",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "white"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a white suitcase-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a red bowl",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "red"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a red bowl-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a green bowl",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "green"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a green bowl-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a blue bowl",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "blue"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a blue bowl-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a yellow bowl",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "yellow"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a yellow bowl-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "an orange bowl",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "orange"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/an orange bowl-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a purple bowl",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "purple"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a purple bowl-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a pink bowl",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "pink"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a pink bowl-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a black bowl",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "black"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a black bowl-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a white bowl",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "white"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a white bowl-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a red chair",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "red"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a red chair-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a green chair",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "green"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a green chair-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a blue chair",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "blue"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a blue chair-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a yellow chair",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "yellow"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a yellow chair-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "an orange chair",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "orange"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/an orange chair-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a purple chair",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "purple"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a purple chair-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a pink chair",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "pink"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a pink chair-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a black chair",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "black"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a black chair-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a white chair",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "white"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a white chair-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a red clock",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "red"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a red clock-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a green clock",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "green"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a green clock-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a blue clock",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "blue"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a blue clock-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a yellow clock",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "yellow"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a yellow clock-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "an orange clock",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "orange"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/an orange clock-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a purple clock",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "purple"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a purple clock-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a pink clock",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "pink"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a pink clock-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a black clock",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "black"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a black clock-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a white clock",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "white"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a white clock-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a red vase",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "red"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a red vase-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a green vase",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "green"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a green vase-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a blue vase",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "blue"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a blue vase-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a yellow vase",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "yellow"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a yellow vase-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "an orange vase",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "orange"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/an orange vase-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a purple vase",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "purple"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a purple vase-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a pink vase",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "pink"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a pink vase-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a black vase",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "black"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a black vase-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a white vase",
+        "dimension": [
+            "color"
+        ],
+        "auxiliary_info": {
+            "color": {
+                "color": "white"
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/cpo_stage2_final_final/a white vase-0.mp4"
+        ]
+    }
+]

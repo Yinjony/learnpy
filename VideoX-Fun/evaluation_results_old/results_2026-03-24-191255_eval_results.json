@@ -1,0 +1,295 @@
+{
+    "subject_consistency": [
+        0.9739501296025184,
+        [
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a person swimming in ocean-0.mp4",
+                "video_results": 0.9366405870765447
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a person giving a presentation to a room full of colleagues-0.mp4",
+                "video_results": 0.9819750919938087
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a person washing the dishes-0.mp4",
+                "video_results": 0.9627788163721561
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a person eating a burger-0.mp4",
+                "video_results": 0.9761453054845333
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a person walking in the snowstorm-0.mp4",
+                "video_results": 0.9555178586393595
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a person drinking coffee in a cafe-0.mp4",
+                "video_results": 0.9704173654317856
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a person playing guitar-0.mp4",
+                "video_results": 0.9867886435240507
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a bicycle leaning against a tree-0.mp4",
+                "video_results": 0.9879570998251438
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a bicycle gliding through a snowy field-0.mp4",
+                "video_results": 0.9796659369021654
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a bicycle slowing down to stop-0.mp4",
+                "video_results": 0.9982121489942074
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a bicycle accelerating to gain speed-0.mp4",
+                "video_results": 0.9911713991314173
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a car stuck in traffic during rush hour-0.mp4",
+                "video_results": 0.9745014440268278
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a car turning a corner-0.mp4",
+                "video_results": 0.9053324267268181
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a car slowing down to stop-0.mp4",
+                "video_results": 0.968078288808465
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a car accelerating to gain speed-0.mp4",
+                "video_results": 0.9800228536128998
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a motorcycle cruising along a coastal highway-0.mp4",
+                "video_results": 0.9905108038336039
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a motorcycle turning a corner-0.mp4",
+                "video_results": 0.9909916665405035
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a motorcycle slowing down to stop-0.mp4",
+                "video_results": 0.9864566534757614
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a motorcycle gliding through a snowy field-0.mp4",
+                "video_results": 0.9874620597809554
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a motorcycle accelerating to gain speed-0.mp4",
+                "video_results": 0.9969838913530111
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/an airplane soaring through a clear blue sky-0.mp4",
+                "video_results": 0.9504563167691231
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/an airplane taking off-0.mp4",
+                "video_results": 0.9896359395235776
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/an airplane landing smoothly on a runway-0.mp4",
+                "video_results": 0.9843675069510937
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/an airplane accelerating to gain speed-0.mp4",
+                "video_results": 0.993841826915741
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a bus turning a corner-0.mp4",
+                "video_results": 0.9478652063757181
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a bus stuck in traffic during rush hour-0.mp4",
+                "video_results": 0.9836781691759825
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a bus accelerating to gain speed-0.mp4",
+                "video_results": 0.9164182402193546
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a train speeding down the tracks-0.mp4",
+                "video_results": 0.912541002035141
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a train crossing over a tall bridge-0.mp4",
+                "video_results": 0.9806071668863297
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a train accelerating to gain speed-0.mp4",
+                "video_results": 0.9629601538181305
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a truck turning a corner-0.mp4",
+                "video_results": 0.9496589742600918
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a truck anchored in a tranquil bay-0.mp4",
+                "video_results": 0.9927929643541574
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a truck stuck in traffic during rush hour-0.mp4",
+                "video_results": 0.9748506836593152
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a truck slowing down to stop-0.mp4",
+                "video_results": 0.9918141946196556
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a truck accelerating to gain speed-0.mp4",
+                "video_results": 0.9876453809440136
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a boat sailing smoothly on a calm lake-0.mp4",
+                "video_results": 0.9745080459862947
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a boat slowing down to stop-0.mp4",
+                "video_results": 0.9877093899995089
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a boat accelerating to gain speed-0.mp4",
+                "video_results": 0.9806566558778286
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a bird soaring gracefully in the sky-0.mp4",
+                "video_results": 0.9468554642051459
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a bird building a nest from twigs and leaves-0.mp4",
+                "video_results": 0.9463127236813307
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a bird flying over a snowy forest-0.mp4",
+                "video_results": 0.9678843736648559
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a cat grooming itself meticulously with its tongue-0.mp4",
+                "video_results": 0.9940860837697982
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a cat playing in park-0.mp4",
+                "video_results": 0.9777880039066076
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a cat drinking water-0.mp4",
+                "video_results": 0.9952623929828406
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a cat running happily-0.mp4",
+                "video_results": 0.9825953487306833
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a dog enjoying a peaceful walk-0.mp4",
+                "video_results": 0.9696503128856421
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a dog playing in park-0.mp4",
+                "video_results": 0.9841835409402847
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a dog drinking water-0.mp4",
+                "video_results": 0.9905234634876251
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a dog running happily-0.mp4",
+                "video_results": 0.9699038293212652
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a horse bending down to drink water from a river-0.mp4",
+                "video_results": 0.9918593902140855
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a horse galloping across an open field-0.mp4",
+                "video_results": 0.9843445912003517
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a horse taking a peaceful walk-0.mp4",
+                "video_results": 0.9775872219353914
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a horse running to join a herd of its kind-0.mp4",
+                "video_results": 0.9707335475832224
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a sheep bending down to drink water from a river-0.mp4",
+                "video_results": 0.9727243904024363
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a sheep taking a peaceful walk-0.mp4",
+                "video_results": 0.9487999096512795
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a sheep running to join a herd of its kind-0.mp4",
+                "video_results": 0.9511053055524826
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a cow bending down to drink water from a river-0.mp4",
+                "video_results": 0.9585333097726106
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a cow chewing cud while resting in a tranquil barn-0.mp4",
+                "video_results": 0.991662685573101
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a cow running to join a herd of its kind-0.mp4",
+                "video_results": 0.8816333457827568
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/an elephant spraying itself with water using its trunk to cool down-0.mp4",
+                "video_results": 0.9854968033730984
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/an elephant taking a peaceful walk-0.mp4",
+                "video_results": 0.9850858744233847
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/an elephant running to join a herd of its kind-0.mp4",
+                "video_results": 0.9891894292086363
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a bear catching a salmon in its powerful jaws-0.mp4",
+                "video_results": 0.988349910825491
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a bear sniffing the air for scents of food-0.mp4",
+                "video_results": 0.988078298419714
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a bear climbing a tree-0.mp4",
+                "video_results": 0.9616882309317589
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a bear hunting for prey-0.mp4",
+                "video_results": 0.9882006295025348
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a zebra bending down to drink water from a river-0.mp4",
+                "video_results": 0.9925050999969244
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a zebra running to join a herd of its kind-0.mp4",
+                "video_results": 0.9814647644758224
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a zebra taking a peaceful walk-0.mp4",
+                "video_results": 0.9944035712629556
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a giraffe bending down to drink water from a river-0.mp4",
+                "video_results": 0.97868089415133
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a giraffe taking a peaceful walk-0.mp4",
+                "video_results": 0.9913578402251005
+            },
+            {
+                "video_path": "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/a giraffe running to join a herd of its kind-0.mp4",
+                "video_results": 0.9762605894356966
+            }
+        ]
+    ]
+}

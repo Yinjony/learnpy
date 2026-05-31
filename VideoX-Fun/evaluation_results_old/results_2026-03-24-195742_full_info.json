@@ -1,0 +1,1464 @@
+[
+    {
+        "prompt_en": "alley",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "alley"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/alley-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "amusement park",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "amusement park"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/amusement park-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "aquarium",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "aquarium"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/aquarium-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "arch",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "arch"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/arch-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "art gallery",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "art gallery"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/art gallery-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "bathroom",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "bathroom"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/bathroom-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "bakery shop",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "bakery shop"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/bakery shop-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "ballroom",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "ballroom"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/ballroom-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "bar",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "bar"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/bar-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "barn",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "barn"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/barn-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "basement",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "basement"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/basement-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "beach",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "beach"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/beach-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "bedroom",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "bedroom"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/bedroom-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "bridge",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "bridge"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/bridge-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "botanical garden",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "botanical garden"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/botanical garden-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "cafeteria",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "cafeteria"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/cafeteria-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "campsite",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "campsite"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/campsite-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "campus",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "campus"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/campus-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "carrousel",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "carrousel"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/carrousel-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "castle",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "castle"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/castle-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "cemetery",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "cemetery"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/cemetery-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "classroom",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "classroom"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/classroom-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "cliff",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "cliff"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/cliff-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "crosswalk",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "crosswalk"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/crosswalk-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "construction site",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "construction site"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/construction site-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "corridor",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "corridor"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/corridor-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "courtyard",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "courtyard"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/courtyard-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "desert",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "desert"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/desert-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "downtown",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "downtown"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/downtown-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "driveway",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "driveway"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/driveway-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "farm",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "farm"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/farm-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "food court",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "food court"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/food court-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "football field",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "football field"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/football field-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "forest road",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "forest road"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/forest road-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "fountain",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "fountain"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/fountain-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "gas station",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "gas station"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/gas station-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "glacier",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "glacier"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/glacier-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "golf course",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "golf course"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/golf course-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "indoor gymnasium",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "indoor gymnasium"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/indoor gymnasium-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "harbor",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "harbor"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/harbor-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "highway",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "highway"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/highway-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "hospital",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "hospital"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/hospital-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "house",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "house"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/house-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "iceberg",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "iceberg"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/iceberg-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "industrial area",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "industrial area"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/industrial area-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "jail cell",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "jail cell"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/jail cell-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "junkyard",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "junkyard"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/junkyard-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "kitchen",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "kitchen"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/kitchen-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "indoor library",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "indoor library"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/indoor library-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "lighthouse",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "lighthouse"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/lighthouse-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "laboratory",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "laboratory"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/laboratory-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "mansion",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "mansion"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/mansion-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "marsh",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "marsh"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/marsh-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "mountain",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "mountain"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/mountain-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "indoor movie theater",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "indoor movie theater"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/indoor movie theater-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "indoor museum",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "indoor museum"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/indoor museum-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "music studio",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "music studio"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/music studio-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "nursery",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "nursery"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/nursery-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "ocean",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "ocean"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/ocean-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "office",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "office"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/office-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "palace",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "palace"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/palace-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "parking lot",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "parking lot"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/parking lot-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "pharmacy",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "pharmacy"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/pharmacy-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "phone booth",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "phone booth"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/phone booth-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "raceway",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "raceway"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/raceway-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "restaurant",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "restaurant"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/restaurant-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "river",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "river"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/river-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "science museum",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "science museum"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/science museum-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "shower",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "shower"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/shower-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "ski slope",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "ski slope"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/ski slope-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "sky",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "sky"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/sky-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "skyscraper",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "skyscraper"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/skyscraper-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "baseball stadium",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "baseball stadium"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/baseball stadium-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "staircase",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "staircase"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/staircase-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "street",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "street"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/street-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "supermarket",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "supermarket"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/supermarket-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "indoor swimming pool",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "indoor swimming pool"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/indoor swimming pool-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "tower",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "tower"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/tower-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "outdoor track",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "outdoor track"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/outdoor track-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "train railway",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "train railway"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/train railway-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "train station platform",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "train station platform"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/train station platform-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "underwater coral reef",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "underwater coral reef"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/underwater coral reef-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "valley",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "valley"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/valley-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "volcano",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "volcano"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/volcano-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "waterfall",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "waterfall"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/waterfall-0.mp4"
+        ]
+    },
+    {
+        "prompt_en": "windmill",
+        "dimension": [
+            "scene",
+            "background_consistency"
+        ],
+        "auxiliary_info": {
+            "scene": {
+                "scene": {
+                    "scene": "windmill"
+                }
+            }
+        },
+        "video_list": [
+            "/root/data1/yizeli/VideoX-Fun/examples/wan2.1/vbench_videos/gt_sft/windmill-0.mp4"
+        ]
+    }
+]
