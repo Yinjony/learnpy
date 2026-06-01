@@ -29,6 +29,8 @@ from .utils import (VIDEO_READER_TIMEOUT, Camera, VideoReader_contextmanager,
                     get_video_reader_batch, padding_image, process_pose_file,
                     process_pose_params, ray_condition, resize_frame,
                     resize_image_with_target_area)
+from .world_model_utils import (load_world_model_camera_matrices,
+                                resolve_pose_path)
 
 
 class ImageVideoSampler(BatchSampler):
@@ -94,6 +96,8 @@ class ImageVideoDataset(Dataset):
         return_file_name=False,
         quality_score_columns=None, #lyz: add new param
         motion_score_columns=None, #lyz: add new param
+        enable_world_model=False,
+        camera_pose_column="camera_pose_path",
     ):
         # Loading annotations from files
         print(f"loading annotations from {ann_path} ...")
@@ -127,6 +131,17 @@ class ImageVideoDataset(Dataset):
         self.text_drop_ratio = text_drop_ratio
         self.enable_inpaint = enable_inpaint
         self.return_file_name = return_file_name
+        self.enable_world_model = enable_world_model
+        self.camera_pose_column = camera_pose_column
+        if self.enable_world_model and any(data.get("type", "image") != "video" for data in self.dataset):
+            raise ValueError("World-model CPO training requires a video-only metadata file.")
+        if self.enable_world_model and any(not data.get(self.camera_pose_column) for data in self.dataset):
+            raise ValueError(f"World-model CPO metadata requires a '{self.camera_pose_column}' column for every sample.")
+        if self.enable_world_model:
+            pose_paths = [resolve_pose_path(data, self.data_root, self.camera_pose_column) for data in self.dataset]
+            missing_pose_paths = [pose_path for pose_path in pose_paths if not os.path.isfile(pose_path)]
+            if missing_pose_paths:
+                raise FileNotFoundError(f"Camera pose file does not exist: {missing_pose_paths[0]}")
 
         self.video_length_drop_start = video_length_drop_start
         self.video_length_drop_end = video_length_drop_end
@@ -181,6 +196,7 @@ class ImageVideoDataset(Dataset):
                 video_dir = os.path.join(self.data_root, video_id)
 
             with VideoReader_contextmanager(video_dir, num_threads=2) as video_reader:
+                source_video_length = len(video_reader)
                 min_sample_n_frames = min(
                     self.video_sample_n_frames, 
                     int(len(video_reader) * (self.video_length_drop_end - self.video_length_drop_start) // self.video_sample_stride)
@@ -218,11 +234,21 @@ class ImageVideoDataset(Dataset):
 
                 if not self.enable_bucket:
                     pixel_values = self.video_transforms(pixel_values)
+
+                viewmats = None
+                Ks = None
+                if self.enable_world_model:
+                    pose_path = resolve_pose_path(data_info, self.data_root, self.camera_pose_column)
+                    viewmats, Ks = load_world_model_camera_matrices(
+                        pose_path,
+                        frame_indices=batch_index,
+                        source_video_length=source_video_length,
+                    )
                 
                 # Random use no text generation
                 if random.random() < self.text_drop_ratio:
                     text = ''
-            return pixel_values, text, 'video', video_dir
+            return pixel_values, text, 'video', video_dir, viewmats, Ks
         else:
             image_path, text = data_info['file_path'], data_info['text']
             if self.data_root is not None:
@@ -234,7 +260,7 @@ class ImageVideoDataset(Dataset):
                 image = np.expand_dims(np.array(image), 0)
             if random.random() < self.text_drop_ratio:
                 text = ''
-            return image, text, 'image', image_path
+            return image, text, 'image', image_path, None, None
 
     def __len__(self):
         return self.length
@@ -250,11 +276,14 @@ class ImageVideoDataset(Dataset):
                 if data_type_local != data_type:
                     raise ValueError("data_type_local != data_type")
 
-                pixel_values, name, data_type, file_path = self.get_batch(idx)
+                pixel_values, name, data_type, file_path, viewmats, Ks = self.get_batch(idx)
                 sample["pixel_values"] = pixel_values
                 sample["text"] = name
                 sample["data_type"] = data_type
                 sample["idx"] = idx
+                if self.enable_world_model:
+                    sample["viewmats"] = viewmats
+                    sample["Ks"] = Ks
 
                 # === New: read scores, average over multiple columns ===
                 if len(self.quality_score_columns) > 0:

@@ -70,11 +70,15 @@ from videox_fun.data.bucket_sampler import (ASPECT_RATIO_512,
 from videox_fun.data.dataset_image_video_ours import (ImageVideoDataset,
                                                  ImageVideoSampler,
                                                  get_random_mask)
+from videox_fun.data.world_model_utils import (future_only_mean,
+                                               prepare_world_model_training_inputs,
+                                               repeat_batch_to_size)
 #from videox_fun.models import (AutoencoderKLWan, CLIPModel, WanT5EncoderModel,
 #                               WanTransformer3DModel)
 
 from videox_fun.models import (AutoencoderKLWan, CLIPModel, WanT5EncoderModel)
 from videox_fun.models.wan_transformer3d_ours import WanTransformer3DModel  #lyz: we need to reimport our transformer
+from videox_fun.models.wan_prope import add_prope_parameters
 
 from videox_fun.pipeline import WanI2VPipeline, WanPipeline
 from videox_fun.utils.discrete_sampler import DiscreteSampling
@@ -762,6 +766,11 @@ def parse_args():
         default=None,
         help=("The module is trained in loras. "),
     )
+    parser.add_argument("--enable_world_model", action="store_true")
+    parser.add_argument("--camera_pose_column", type=str, default="camera_pose_path")
+    parser.add_argument("--world_model_history_frames", type=int, default=1)
+    parser.add_argument("--world_model_future_frames", type=int, default=4)
+    parser.add_argument("--world_model_modules_path", type=str, default=None)
 
     args = parser.parse_args()
     env_local_rank = int(os.environ.get("LOCAL_RANK", -1))
@@ -777,6 +786,10 @@ def parse_args():
 
 def main():
     args = parse_args()
+    if args.enable_world_model and args.train_mode != "normal":
+        raise ValueError("World-model CPO training currently supports --train_mode normal only.")
+    if args.enable_world_model and args.world_model_history_frames < 1:
+        raise ValueError("--world_model_history_frames must be at least 1.")
 
     if args.report_to == "wandb" and args.hub_token is not None:
         raise ValueError(
@@ -947,6 +960,12 @@ def main():
                      config['transformer_additional_kwargs'].get('transformer_subpath', 'transformer')),
         transformer_additional_kwargs=OmegaConf.to_container(config['transformer_additional_kwargs']),
     ).to(weight_dtype)
+    if args.enable_world_model:
+        add_prope_parameters(transformer3d)
+        if args.world_model_modules_path is not None:
+            from safetensors.torch import load_file
+            m, u = transformer3d.load_state_dict(load_file(args.world_model_modules_path), strict=False)
+            print(f"world-model modules loaded - missing: {len(m)}, unexpected: {len(u)}")
 
     # Freeze vae and text_encoder and set transformer3d to trainable
     vae.requires_grad_(False)
@@ -994,6 +1013,9 @@ def main():
     if hasattr(transformer3d, 'motion_projection'):
         print("find motion_projection")
         transformer3d.motion_projection.requires_grad_(True)
+    if args.enable_world_model:
+        for block in transformer3d.blocks:
+            block.self_attn.prope_o.requires_grad_(True)
 
 
     if args.transformer_path is not None:
@@ -1181,6 +1203,8 @@ def main():
         enable_inpaint=True if args.train_mode != "normal" else False,
         quality_score_columns=["VQ_norm", "MQ_norm"], #lyz: not fancy way to do this
         motion_score_columns="generated_motion_score_norm", #lyz: not fancy way to do this
+        enable_world_model=args.enable_world_model,
+        camera_pose_column=args.camera_pose_column,
     )
 
     if args.enable_bucket:
@@ -1224,6 +1248,9 @@ def main():
             #lyz: to collect score data
             new_examples["quality_score"] = []
             new_examples["motion_score"] = []
+            if args.enable_world_model:
+                new_examples["viewmats"] = []
+                new_examples["Ks"] = []
             # Used in Inpaint mode
             if args.train_mode != "normal":
                 new_examples["mask_pixel_values"] = []
@@ -1365,6 +1392,9 @@ def main():
                 # lyz: to collect score data
                 new_examples["quality_score"].append(example["quality_score"])
                 new_examples["motion_score"].append(example["motion_score"])
+                if args.enable_world_model:
+                    new_examples["viewmats"].append(example["viewmats"][:batch_video_length])
+                    new_examples["Ks"].append(example["Ks"][:batch_video_length])
 
                 if args.train_mode != "normal":
                     mask = get_random_mask(new_examples["pixel_values"][-1].size(), image_start_only=True)
@@ -1384,6 +1414,9 @@ def main():
             # lyz: to collect score data
             new_examples["quality_score"] = torch.tensor(new_examples["quality_score"], dtype=torch.float32)
             new_examples["motion_score"] = torch.tensor(new_examples["motion_score"], dtype=torch.float32)
+            if args.enable_world_model:
+                new_examples["viewmats"] = torch.stack(new_examples["viewmats"])
+                new_examples["Ks"] = torch.stack(new_examples["Ks"])
 
             # lyz: we have CFG dropout for scores because we need to CFG in stage 2
             bsz = new_examples["quality_score"].size(0)
@@ -1869,6 +1902,8 @@ def main():
                     torch.cuda.empty_cache()
 
                 bsz, channel, num_frames, height, width = latents.size()
+                quality_scores = repeat_batch_to_size(batch["quality_score"], bsz).to(latents.device)
+                motion_scores = repeat_batch_to_size(batch["motion_score"], bsz).to(latents.device)
                 noise = torch.randn(latents.size(), device=latents.device, generator=torch_rng, dtype=weight_dtype)
 
                 if not args.uniform_sampling:
@@ -1902,10 +1937,33 @@ def main():
                 # Add noise according to flow matching.
                 # zt = (1 - texp) * x + texp * z1
                 sigmas = get_sigmas(timesteps, n_dim=latents.ndim, dtype=latents.dtype)
-                noisy_latents = (1.0 - sigmas) * latents + sigmas * noise
-
-                # Add noise
-                target = noise - latents
+                world_viewmats = None
+                world_Ks = None
+                future_mask = None
+                history_frames = 0
+                if args.enable_world_model:
+                    world_batch = prepare_world_model_training_inputs(
+                        latents=latents,
+                        noise=noise,
+                        sigmas=sigmas,
+                        timesteps=timesteps,
+                        viewmats=batch["viewmats"],
+                        Ks=batch["Ks"],
+                        patch_size=accelerator.unwrap_model(transformer3d).config.patch_size,
+                        history_frames=args.world_model_history_frames,
+                        future_frames=args.world_model_future_frames,
+                    )
+                    noisy_latents = world_batch["noisy_latents"]
+                    target = world_batch["target"]
+                    timesteps = world_batch["timesteps"]
+                    world_viewmats = world_batch["viewmats"]
+                    world_Ks = world_batch["Ks"]
+                    future_mask = world_batch["future_mask"]
+                    history_frames = world_batch["history_frames"]
+                    bsz, channel, num_frames, height, width = target.size()
+                else:
+                    noisy_latents = (1.0 - sigmas) * latents + sigmas * noise
+                    target = noise - latents
 
                 target_shape = (vae.latent_channels, num_frames, width, height)
                 seq_len = math.ceil(
@@ -1923,13 +1981,15 @@ def main():
                         seq_len=seq_len,
                         y=inpaint_latents if args.train_mode != "normal" else None,
                         clip_fea=clip_context if args.train_mode != "normal" else None,
-                        quality_score=batch["quality_score"].to(latents.device), #lyz: finally we can use this
-                        motion_score=batch["motion_score"].to(latents.device),
+                        quality_score=quality_scores, #lyz: finally we can use this
+                        motion_score=motion_scores,
+                        viewmats=world_viewmats,
+                        Ks=world_Ks,
                     )
                     #lyz: check if usable
                     #print("find score:", batch["quality_score"].to(latents.device), batch["motion_score"].to(latents.device))
 
-                def custom_mse_loss(noise_pred, target, weighting=None, threshold=50):
+                def custom_mse_loss(noise_pred, target, weighting=None, threshold=50, future_mask=None):
                     noise_pred = noise_pred.float()
                     target = target.float()
                     diff = noise_pred - target
@@ -1938,11 +1998,11 @@ def main():
                     masked_loss = mse_loss * mask
                     if weighting is not None:
                         masked_loss = masked_loss * weighting
-                    final_loss = masked_loss.mean()
+                    final_loss = masked_loss.mean() if future_mask is None else future_only_mean(masked_loss, future_mask)
                     return final_loss
 
                 weighting = compute_loss_weighting_for_sd3(weighting_scheme=args.weighting_scheme, sigmas=sigmas)
-                loss = custom_mse_loss(noise_pred.float(), target.float(), weighting.float())
+                loss = custom_mse_loss(noise_pred.float(), target.float(), weighting.float(), future_mask=future_mask)
                 loss = loss.mean()
 
 
@@ -1953,8 +2013,10 @@ def main():
                 loss = loss + 0.01 * ortho_loss
 
                 if args.motion_sub_loss and noise_pred.size()[2] > 2:
-                    gt_sub_noise = noise_pred[:, :, 1:].float() - noise_pred[:, :, :-1].float()
-                    pre_sub_noise = target[:, :, 1:].float() - target[:, :, :-1].float()
+                    noise_pred_future = noise_pred[:, :, history_frames:]
+                    target_future = target[:, :, history_frames:]
+                    gt_sub_noise = noise_pred_future[:, :, 1:].float() - noise_pred_future[:, :, :-1].float()
+                    pre_sub_noise = target_future[:, :, 1:].float() - target_future[:, :, :-1].float()
                     sub_loss = F.mse_loss(gt_sub_noise, pre_sub_noise, reduction="mean")
                     loss = loss * (1 - args.motion_sub_loss_ratio) + sub_loss * args.motion_sub_loss_ratio
 
@@ -2047,7 +2109,7 @@ def main():
                         score_state_dict = {}
                         for name, param in accelerator.unwrap_model(transformer3d).named_parameters():
                             if any(k in name for k in ['quality_embedding', 'quality_projection',
-                                                    'motion_embedding', 'motion_projection']):
+                                                    'motion_embedding', 'motion_projection', 'prope_o']):
                                 score_state_dict[name] = param.data.cpu()
                         if len(score_state_dict) > 0:
                             from safetensors.torch import save_file
@@ -2121,7 +2183,7 @@ def main():
         score_state_dict = {}
         for name, param in accelerator.unwrap_model(transformer3d).named_parameters():
             if any(k in name for k in ['quality_embedding', 'quality_projection',
-                                       'motion_embedding', 'motion_projection']):
+                                       'motion_embedding', 'motion_projection', 'prope_o']):
                 score_state_dict[name] = param.data.cpu()
         if len(score_state_dict) > 0:
             from safetensors.torch import save_file

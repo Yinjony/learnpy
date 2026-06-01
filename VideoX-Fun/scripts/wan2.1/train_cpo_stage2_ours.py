@@ -70,6 +70,9 @@ from videox_fun.data.bucket_sampler import (ASPECT_RATIO_512,
 from videox_fun.data.dataset_image_video_ours import (ImageVideoDataset,
                                                  ImageVideoSampler,
                                                  get_random_mask)
+from videox_fun.data.world_model_utils import (future_only_per_sample_mean,
+                                               prepare_world_model_training_inputs,
+                                               repeat_batch_to_size)
 #from videox_fun.models import (AutoencoderKLWan, CLIPModel, WanT5EncoderModel,
 #                               WanTransformer3DModel)
 
@@ -77,6 +80,7 @@ from videox_fun.models import (AutoencoderKLWan, CLIPModel, WanT5EncoderModel)
 from videox_fun.models.wan_transformer3d_ours import WanTransformer3DModel as WanTransformer3DModelOUR  #lyz: we need to reimport our transformer
 
 from videox_fun.models import WanTransformer3DModel
+from videox_fun.models.wan_prope import add_prope_parameters
 
 from videox_fun.pipeline import WanI2VPipeline, WanPipeline
 from videox_fun.utils.discrete_sampler import DiscreteSampling
@@ -771,6 +775,11 @@ def parse_args():
     parser.add_argument("--cpo_beta", type=float, default=5000)
     parser.add_argument("--lambda_q", type=float, default=2.0)
     parser.add_argument("--lambda_m", type=float, default=2.0)
+    parser.add_argument("--enable_world_model", action="store_true")
+    parser.add_argument("--camera_pose_column", type=str, default="camera_pose_path")
+    parser.add_argument("--world_model_history_frames", type=int, default=1)
+    parser.add_argument("--world_model_future_frames", type=int, default=4)
+    parser.add_argument("--world_model_modules_path", type=str, default=None)
 
     args = parser.parse_args()
     env_local_rank = int(os.environ.get("LOCAL_RANK", -1))
@@ -786,6 +795,12 @@ def parse_args():
 
 def main():
     args = parse_args()
+    if args.enable_world_model and args.train_mode != "normal":
+        raise ValueError("World-model CPO training currently supports --train_mode normal only.")
+    if args.enable_world_model and args.world_model_history_frames < 1:
+        raise ValueError("--world_model_history_frames must be at least 1.")
+    if args.stage1_lora_path is None or args.stage1_score_path is None:
+        raise ValueError("Stage2 CPO requires --stage1_lora_path and --stage1_score_path.")
 
     if args.report_to == "wandb" and args.hub_token is not None:
         raise ValueError(
@@ -956,6 +971,8 @@ def main():
                      config['transformer_additional_kwargs'].get('transformer_subpath', 'transformer')),
         transformer_additional_kwargs=OmegaConf.to_container(config['transformer_additional_kwargs']),
     ).to(weight_dtype)
+    if args.enable_world_model:
+        add_prope_parameters(transformer_theta1)
 
     # 用merge_lora合并Stage1 LoRA（构造一个假pipeline）
     class FakePipeline:
@@ -989,6 +1006,15 @@ def main():
                     config['transformer_additional_kwargs'].get('transformer_subpath', 'transformer')),
         transformer_additional_kwargs=OmegaConf.to_container(config['transformer_additional_kwargs']),
     ).to(weight_dtype)
+    if args.enable_world_model:
+        add_prope_parameters(transformer3d)
+        add_prope_parameters(transformer_ref)
+        world_model_modules_path = args.world_model_modules_path or args.stage1_score_path
+        world_state_dict = load_file(world_model_modules_path)
+        m, u = transformer3d.load_state_dict(world_state_dict, strict=False)
+        print(f"theta world-model modules loaded - missing: {len(m)}, unexpected: {len(u)}")
+        m, u = transformer_ref.load_state_dict(world_state_dict, strict=False)
+        print(f"theta_ref world-model modules loaded - missing: {len(m)}, unexpected: {len(u)}")
 
 
     # Freeze vae and text_encoder and set transformer3d to trainable
@@ -1214,6 +1240,8 @@ def main():
         enable_inpaint=True if args.train_mode != "normal" else False,
         quality_score_columns=["VQ_norm", "MQ_norm"], #lyz: not fancy way to do this
         motion_score_columns="generated_motion_score_norm", #lyz: not fancy way to do this
+        enable_world_model=args.enable_world_model,
+        camera_pose_column=args.camera_pose_column,
     )
 
     if args.enable_bucket:
@@ -1257,6 +1285,9 @@ def main():
             #lyz: to collect score data
             new_examples["quality_score"] = []
             new_examples["motion_score"] = []
+            if args.enable_world_model:
+                new_examples["viewmats"] = []
+                new_examples["Ks"] = []
             # Used in Inpaint mode
             if args.train_mode != "normal":
                 new_examples["mask_pixel_values"] = []
@@ -1398,6 +1429,9 @@ def main():
                 # lyz: to collect score data
                 new_examples["quality_score"].append(example["quality_score"])
                 new_examples["motion_score"].append(example["motion_score"])
+                if args.enable_world_model:
+                    new_examples["viewmats"].append(example["viewmats"][:batch_video_length])
+                    new_examples["Ks"].append(example["Ks"][:batch_video_length])
 
                 if args.train_mode != "normal":
                     mask = get_random_mask(new_examples["pixel_values"][-1].size(), image_start_only=True)
@@ -1417,6 +1451,9 @@ def main():
             # lyz: to collect score data
             new_examples["quality_score"] = torch.tensor(new_examples["quality_score"], dtype=torch.float32)
             new_examples["motion_score"] = torch.tensor(new_examples["motion_score"], dtype=torch.float32)
+            if args.enable_world_model:
+                new_examples["viewmats"] = torch.stack(new_examples["viewmats"])
+                new_examples["Ks"] = torch.stack(new_examples["Ks"])
 
             # lyz: we have CFG dropout for scores because we need to CFG in stage 2
             bsz = new_examples["quality_score"].size(0)
@@ -1939,10 +1976,31 @@ def main():
                 # Add noise according to flow matching.
                 # zt = (1 - texp) * x + texp * z1
                 sigmas = get_sigmas(timesteps, n_dim=latents.ndim, dtype=latents.dtype)
-                noisy_latents = (1.0 - sigmas) * latents + sigmas * noise
-
-                # Add noise
-                target = noise - latents
+                world_viewmats = None
+                world_Ks = None
+                future_mask = None
+                if args.enable_world_model:
+                    world_batch = prepare_world_model_training_inputs(
+                        latents=latents,
+                        noise=noise,
+                        sigmas=sigmas,
+                        timesteps=timesteps,
+                        viewmats=batch["viewmats"],
+                        Ks=batch["Ks"],
+                        patch_size=accelerator.unwrap_model(transformer3d).config.patch_size,
+                        history_frames=args.world_model_history_frames,
+                        future_frames=args.world_model_future_frames,
+                    )
+                    noisy_latents = world_batch["noisy_latents"]
+                    target = world_batch["target"]
+                    timesteps = world_batch["timesteps"]
+                    world_viewmats = world_batch["viewmats"]
+                    world_Ks = world_batch["Ks"]
+                    future_mask = world_batch["future_mask"]
+                    bsz, channel, num_frames, height, width = target.size()
+                else:
+                    noisy_latents = (1.0 - sigmas) * latents + sigmas * noise
+                    target = noise - latents
 
                 target_shape = (vae.latent_channels, num_frames, width, height)
                 seq_len = math.ceil(
@@ -1989,8 +2047,8 @@ def main():
                 #    loss = loss * (1 - args.motion_sub_loss_ratio) + sub_loss * args.motion_sub_loss_ratio
 
                 #lyz: now we caculate cpo loss
-                quality_scores = batch["quality_score"].to(latents.device)
-                motion_scores = batch["motion_score"].to(latents.device)
+                quality_scores = repeat_batch_to_size(batch["quality_score"], bsz).to(latents.device)
+                motion_scores = repeat_batch_to_size(batch["motion_score"], bsz).to(latents.device)
                 zeros = torch.zeros(bsz, device=latents.device, dtype=weight_dtype)
 
                 # --- Step 1: θ₁ CFG式提取维度方向 ---
@@ -1998,17 +2056,20 @@ def main():
                     # null: 无条件基线 (q=0, m=0)
                     pred_null = transformer_theta1(
                         x=noisy_latents, context=prompt_embeds, t=timesteps,
-                        seq_len=seq_len, quality_score=zeros, motion_score=zeros)
+                        seq_len=seq_len, quality_score=zeros, motion_score=zeros,
+                        viewmats=world_viewmats, Ks=world_Ks)
 
                     # cond_q: 只有quality条件 (q=q_real, m=0)
                     pred_cond_q = transformer_theta1(
                         x=noisy_latents, context=prompt_embeds, t=timesteps,
-                        seq_len=seq_len, quality_score=quality_scores, motion_score=zeros)
+                        seq_len=seq_len, quality_score=quality_scores, motion_score=zeros,
+                        viewmats=world_viewmats, Ks=world_Ks)
 
                     # cond_m: 只有motion条件 (q=0, m=m_real)
                     pred_cond_m = transformer_theta1(
                         x=noisy_latents, context=prompt_embeds, t=timesteps,
-                        seq_len=seq_len, quality_score=zeros, motion_score=motion_scores)
+                        seq_len=seq_len, quality_score=zeros, motion_score=motion_scores,
+                        viewmats=world_viewmats, Ks=world_Ks)
 
                     ## base: 样本真实分数 (q=q_real, m=m_real)
                     #base = transformer_theta1(
@@ -2018,6 +2079,9 @@ def main():
                     # CFG式方向提取
                     delta_q = pred_cond_q - pred_null
                     delta_m = pred_cond_m - pred_null
+                    if future_mask is not None:
+                        delta_q = delta_q * future_mask
+                        delta_m = delta_m * future_mask
 
                     # 逐样本归一化
                     delta_q_flat = delta_q.flatten(1)
@@ -2034,14 +2098,16 @@ def main():
                     noise_pred_theta = transformer3d(
                         x=noisy_latents, context=prompt_embeds, t=timesteps,
                         seq_len=seq_len,
-                        y=None, clip_fea=None)
+                        y=None, clip_fea=None,
+                        viewmats=world_viewmats, Ks=world_Ks)
 
                 # --- Step 3: θ_ref的预测 ---
                 with torch.no_grad(), torch.cuda.amp.autocast(dtype=weight_dtype):
                     noise_pred_ref = transformer_ref(
                         x=noisy_latents, context=prompt_embeds, t=timesteps,
                         seq_len=seq_len,
-                        y=None, clip_fea=None)
+                        y=None, clip_fea=None,
+                        viewmats=world_viewmats, Ks=world_Ks)
 
                 # --- Step 4: CPO Loss with Stabilization ---
                 noise_pred_theta_f = noise_pred_theta.float()
@@ -2050,20 +2116,31 @@ def main():
                 z_l_f = z_l.float()
 
                 # win项
-                win_theta = (z_w_f - noise_pred_theta_f).pow(2).flatten(1).mean(dim=1)
-                win_ref = (z_w_f - noise_pred_ref_f).pow(2).flatten(1).mean(dim=1)
+                if future_mask is None:
+                    win_theta = (z_w_f - noise_pred_theta_f).pow(2).flatten(1).mean(dim=1)
+                    win_ref = (z_w_f - noise_pred_ref_f).pow(2).flatten(1).mean(dim=1)
+                else:
+                    win_theta = future_only_per_sample_mean((z_w_f - noise_pred_theta_f).pow(2), future_mask)
+                    win_ref = future_only_per_sample_mean((z_w_f - noise_pred_ref_f).pow(2), future_mask)
 
                 # Stabilization: 构造z_l_tgt使lose梯度norm与win对齐
                 with torch.no_grad():
                     direction = noise_pred_theta_f.detach() - z_l_f
+                    win_direction = noise_pred_theta_f.detach() - z_w_f
+                    if future_mask is not None:
+                        direction = direction * future_mask
+                        win_direction = win_direction * future_mask
                     dir_norm = direction.flatten(1).norm(dim=1, keepdim=True).view(-1, 1, 1, 1, 1)
-                    win_norm = (noise_pred_theta_f.detach() - z_w_f).flatten(1).norm(dim=1, keepdim=True).view(-1, 1, 1,
-                                                                                                               1, 1)
+                    win_norm = win_direction.flatten(1).norm(dim=1, keepdim=True).view(-1, 1, 1, 1, 1)
                     z_l_tgt = noise_pred_theta_f.detach() + direction / (dir_norm + 1e-8) * win_norm
 
                 # lose项（用stabilized target）
-                lose_theta = (z_l_tgt - noise_pred_theta_f).pow(2).flatten(1).mean(dim=1)
-                lose_ref = (z_l_tgt - noise_pred_ref_f).pow(2).flatten(1).mean(dim=1)
+                if future_mask is None:
+                    lose_theta = (z_l_tgt - noise_pred_theta_f).pow(2).flatten(1).mean(dim=1)
+                    lose_ref = (z_l_tgt - noise_pred_ref_f).pow(2).flatten(1).mean(dim=1)
+                else:
+                    lose_theta = future_only_per_sample_mean((z_l_tgt - noise_pred_theta_f).pow(2), future_mask)
+                    lose_ref = future_only_per_sample_mean((z_l_tgt - noise_pred_ref_f).pow(2), future_mask)
 
                 # DPO logits
                 logits = -args.cpo_beta * ((win_theta - win_ref) - (lose_theta - lose_ref))

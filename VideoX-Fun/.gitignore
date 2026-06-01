@@ -1,5 +1,10 @@
 # Byte-compiled / optimized / DLL files
 models*
+!videox_fun/models/
+videox_fun/models/*
+!videox_fun/models/wan_transformer3d.py
+!videox_fun/models/wan_transformer3d_ours.py
+!videox_fun/models/wan_prope.py
 output*
 logs*
 taming*
