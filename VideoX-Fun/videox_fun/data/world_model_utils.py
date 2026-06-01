@@ -57,10 +57,15 @@ def prepare_world_model_training_inputs(
     patch_size: Sequence[int],
     history_frames: int,
     future_frames: int,
+    history_latents: Optional[torch.Tensor] = None,
 ) -> Dict[str, torch.Tensor]:
     """Build a teacher-forcing window with clean history and noisy future latent frames."""
     viewmats = repeat_batch_to_size(viewmats, latents.shape[0])
     Ks = repeat_batch_to_size(Ks, latents.shape[0])
+    if history_latents is not None:
+        history_latents = repeat_batch_to_size(history_latents, latents.shape[0])
+        if history_latents.shape != latents.shape:
+            raise ValueError("history_latents must match candidate latents after batch expansion.")
     latent_frames = latents.shape[2]
     if latent_frames < 2:
         raise ValueError("World-model training requires at least two latent frames.")
@@ -75,12 +80,15 @@ def prepare_world_model_training_inputs(
 
     latents = latents[:, :, start:end]
     noise = noise[:, :, start:end]
+    if history_latents is not None:
+        history_latents = history_latents[:, :, start:end]
     latent_viewmats, latent_Ks = _sample_camera_matrices_to_latents(viewmats, Ks, latent_frames)
     latent_viewmats = latent_viewmats[:, start:end].to(device=latents.device, dtype=torch.float32)
     latent_Ks = latent_Ks[:, start:end].to(device=latents.device, dtype=torch.float32)
 
     noisy_latents = (1.0 - sigmas) * latents + sigmas * noise
-    noisy_latents[:, :, :history_frames] = latents[:, :, :history_frames]
+    clean_history = latents if history_latents is None else history_latents
+    noisy_latents[:, :, :history_frames] = clean_history[:, :, :history_frames]
     target = noise - latents
 
     future_mask = torch.zeros_like(latents, dtype=torch.float32)
