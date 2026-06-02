@@ -18,56 +18,31 @@ import os
 os.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'
 
 import argparse
-import csv
 import gc
+import importlib.util
 import logging
 import math
 import pickle
 import shutil
 import sys
+from contextlib import contextmanager
+from pathlib import Path
 
-from wan_utils.dataset import cycle, CameraLatentLMDBDataset
-from wan_utils.misc import set_seed
-import torch.distributed as dist
-from omegaconf import OmegaConf
-import torch
-import wandb
-import time
-import os
-from wan_utils.distributed import EMA_FSDP, barrier, fsdp_wrap, fsdp_state_dict, launch_distributed_job, get_fsdp_process_group, get_sp_data_sampler, get_sp_seed_offset
-from wan_trainer.bidirectional_diffusion import Trainer as _Base
-
-import decord
-
-import accelerate
 import diffusers
 import numpy as np
 import torch
 import torch.nn.functional as F
 import torch.utils.checkpoint
-import torchvision.transforms.functional as TF
 import transformers
 from accelerate import Accelerator
 from accelerate.logging import get_logger
-from accelerate.state import AcceleratorState
 from accelerate.utils import ProjectConfiguration, set_seed
-from diffusers import DDIMScheduler, FlowMatchEulerDiscreteScheduler
 from diffusers.optimization import get_scheduler
-from diffusers.training_utils import (EMAModel,
-                                      compute_density_for_timestep_sampling,
-                                      compute_loss_weighting_for_sd3)
-from diffusers.utils import check_min_version, deprecate, is_wandb_available
+from diffusers.utils import check_min_version, deprecate
 from diffusers.utils.torch_utils import is_compiled_module
-from einops import rearrange
 from omegaconf import OmegaConf
-from packaging import version
-from PIL import Image
-from torch.utils.data import RandomSampler
 from torch.utils.tensorboard import SummaryWriter
-from torchvision import transforms
 from tqdm.auto import tqdm
-from transformers import AutoTokenizer
-from transformers.utils import ContextManagers
 
 import datasets
 
@@ -76,117 +51,100 @@ project_roots = [os.path.dirname(current_file_path), os.path.dirname(os.path.dir
                  os.path.dirname(os.path.dirname(os.path.dirname(current_file_path)))]
 for project_root in project_roots:
     sys.path.insert(0, project_root) if project_root not in sys.path else None
-from videox_fun.data.bucket_sampler import (ASPECT_RATIO_512,
-                                            ASPECT_RATIO_RANDOM_CROP_512,
-                                            ASPECT_RATIO_RANDOM_CROP_PROB,
-                                            AspectRatioBatchImageVideoSampler,
-                                            RandomSampler, get_closest_ratio)
-from videox_fun.data.dataset_image_video_ours import (ImageVideoDataset,
-                                                      ImageVideoSampler,
-                                                      get_random_mask)
-#from videox_fun.models import (AutoencoderKLWan, CLIPModel, WanT5EncoderModel,
-#                               WanTransformer3DModel)
 
-from videox_fun.models import (AutoencoderKLWan, CLIPModel, WanT5EncoderModel)
-from videox_fun.models.wan_transformer3d_ours import WanTransformer3DModel as WanTransformer3DModelOUR  #lyz: we need to reimport our transformer
+# minWM keeps its Wan2.1 implementation and shared flow-matching algorithms in
+# sibling directories.  Reuse that complete dependency graph while retaining
+# this script's Accelerate training shell.
+VIDEOX_FUN_ROOT = Path(__file__).resolve().parents[2]
+MINWM_ROOT = Path(
+    os.environ.get("MINWM_ROOT", VIDEOX_FUN_ROOT.parent / "minWM")
+).expanduser().resolve()
+MINWM_WAN21_ROOT = MINWM_ROOT / "Wan21"
+for dependency_root in [MINWM_WAN21_ROOT, MINWM_ROOT / "shared"]:
+    dependency_root = str(dependency_root)
+    sys.path.insert(0, dependency_root) if dependency_root not in sys.path else None
 
-from videox_fun.models import WanTransformer3DModel
-
-from videox_fun.pipeline import WanI2VPipeline, WanPipeline
-from videox_fun.utils.discrete_sampler import DiscreteSampling
-from videox_fun.utils.lora_utils import (convert_peft_lora_to_kohya_lora,
-                                         create_network, merge_lora,
-                                         unmerge_lora)
-from videox_fun.utils.utils import (calculate_dimensions, get_image_latent,
-                                    get_image_to_video_latent,
-                                    save_videos_grid)
-
-if is_wandb_available():
-    import wandb
-
-#lyz: our new dataset
+from model.camera_bidirectional_diffusion import CameraBidirectionalDiffusion
+from wan_utils.dataset import CameraLatentLMDBDataset
 
 
-class DPOPairDataset(torch.utils.data.Dataset):
-    """Loads win/lose video pairs based on reward scores (VQ + motion_score)."""
-    def __init__(self, csv_path, video_dir, video_sample_n_frames=17,
-                 video_sample_size=512, video_sample_stride=4):
-        self.video_dir = video_dir
-        self.video_sample_n_frames = video_sample_n_frames
-        self.video_sample_size = video_sample_size
-        self.video_sample_stride = video_sample_stride
+WAN_MODEL_DIR = MINWM_WAN21_ROOT / "wan_models" / "Wan2.1-T2V-1.3B"
 
-        # Parse CSV and group by original_video (pair key)
-        rows = {}
-        with open(csv_path, 'r') as f:
-            reader = csv.DictReader(f)
-            for row in reader:
-                key = row['original_video']
-                if key not in rows:
-                    rows[key] = []
-                rows[key].append(row)
 
-        # Compute global min/max for normalization
-        all_vq, all_ms = [], []
-        for key, group in rows.items():
-            for r in group:
-                all_vq.append(float(r['VQ']))
-                all_ms.append(float(r['generated_motion_score']))
-        self.vq_min, self.vq_max = min(all_vq), max(all_vq)
-        self.ms_min, self.ms_max = min(all_ms), max(all_ms)
+@contextmanager
+def minwm_working_directory():
+    """Resolve minWM's model paths without changing the outer training shell."""
+    original_cwd = os.getcwd()
+    os.chdir(MINWM_ROOT)
+    try:
+        yield
+    finally:
+        os.chdir(original_cwd)
 
-        self.pairs = []
-        for key, group in rows.items():
-            seed123 = [r for r in group if 'seed123' in r['video_filename']]
-            seed42 = [r for r in group if 'seed42' in r['video_filename']]
-            if len(seed123) == 0 or len(seed42) == 0:
-                continue
-            r1, r2 = seed123[0], seed42[0]
 
-            def _score(r):
-                vq_norm = (float(r['VQ']) - self.vq_min) / (self.vq_max - self.vq_min + 1e-8)
-                ms_norm = (float(r['generated_motion_score']) - self.ms_min) / (self.ms_max - self.ms_min + 1e-8)
-                return (vq_norm + ms_norm) / 2.0
+def validate_world_model_paths(data_path):
+    """Fail early with the concrete minWM files required by this trainer."""
+    required_paths = [
+        MINWM_WAN21_ROOT / "wan_utils",
+        MINWM_ROOT / "shared" / "algorithms" / "flow_matching.py",
+        WAN_MODEL_DIR / "config.json",
+        WAN_MODEL_DIR / "diffusion_pytorch_model.safetensors",
+        WAN_MODEL_DIR / "Wan2.1_VAE.pth",
+        WAN_MODEL_DIR / "models_t5_umt5-xxl-enc-bf16.pth",
+        WAN_MODEL_DIR / "google" / "umt5-xxl",
+    ]
+    missing_paths = [path for path in required_paths if not path.exists()]
+    if missing_paths:
+        missing_list = "\n".join(f"  - {path}" for path in missing_paths)
+        raise FileNotFoundError(
+            "Missing minWM Wan2.1 files:\n"
+            f"{missing_list}\n"
+            "Download Wan-AI/Wan2.1-T2V-1.3B under MINWM_ROOT/ckpts and "
+            "create the Wan21/wan_models/Wan2.1-T2V-1.3B symlink."
+        )
 
-            s1, s2 = _score(r1), _score(r2)
-            if s1 >= s2:
-                win_row, lose_row = r1, r2
-            else:
-                win_row, lose_row = r2, r1
+    data_path = Path(data_path).expanduser().resolve()
+    has_single_lmdb = (data_path / "data.mdb").is_file()
+    has_sharded_lmdb = data_path.is_dir() and any(
+        (child / "data.mdb").is_file() for child in data_path.iterdir()
+    )
+    if not has_single_lmdb and not has_sharded_lmdb:
+        raise FileNotFoundError(
+            f"Camera LMDB not found below {data_path}. Expected data.mdb in "
+            "that directory or one of its direct child directories."
+        )
+    if importlib.util.find_spec("flash_attn") is None:
+        raise ModuleNotFoundError(
+            "flash-attn is required by minWM Wan attention. Install it in the "
+            "CUDA training environment with: pip install flash-attn --no-build-isolation"
+        )
 
-            self.pairs.append({
-                'win_video': win_row['video_filename'],
-                'lose_video': lose_row['video_filename'],
-                'prompt': win_row['prompt'],
-            })
 
-        print(f"DPOPairDataset: {len(self.pairs)} pairs loaded. "
-              f"VQ range [{self.vq_min:.3f}, {self.vq_max:.3f}], "
-              f"MS range [{self.ms_min:.3f}, {self.ms_max:.3f}]")
+def shard_minwm_text_encoder(text_encoder, device, dtype):
+    """FSDP-wrap the inner UMT5 blocks while preserving WanTextEncoder."""
+    from functools import partial
+    from torch.distributed.fsdp import FullyShardedDataParallel as FSDP
+    from torch.distributed.fsdp import MixedPrecision, ShardingStrategy
+    from torch.distributed.fsdp.wrap import lambda_auto_wrap_policy
 
-    def __len__(self):
-        return len(self.pairs)
+    encoder = text_encoder.text_encoder
+    blocks = tuple(encoder.blocks)
+    text_encoder.text_encoder = FSDP(
+        module=encoder,
+        auto_wrap_policy=partial(
+            lambda_auto_wrap_policy, lambda_fn=lambda module: module in blocks
+        ),
+        mixed_precision=MixedPrecision(
+            param_dtype=dtype,
+            reduce_dtype=torch.float32,
+            buffer_dtype=torch.float32,
+        ),
+        sharding_strategy=ShardingStrategy.FULL_SHARD,
+        device_id=device,
+        sync_module_states=False,
+    )
+    return text_encoder
 
-    def _load_video(self, filename):
-        path = os.path.join(self.video_dir, filename)
-        vr = decord.VideoReader(path)
-        total = len(vr)
-        n_frames = min(self.video_sample_n_frames, total)
-        indices = list(range(0, min(total, n_frames * self.video_sample_stride), self.video_sample_stride))[:n_frames]
-        if len(indices) < n_frames:
-            indices = list(range(min(n_frames, total)))
-        frames = vr.get_batch(indices).asnumpy()  # (F, H, W, C)
-        return frames
-
-    def __getitem__(self, idx):
-        pair = self.pairs[idx]
-        win_frames = self._load_video(pair['win_video'])
-        lose_frames = self._load_video(pair['lose_video'])
-        return {
-            'win_pixel_values': win_frames,
-            'lose_pixel_values': lose_frames,
-            'text': pair['prompt'],
-        }
 
 def filter_kwargs(cls, kwargs):
     import inspect
@@ -274,118 +232,10 @@ logger = get_logger(__name__, log_level="INFO")
 
 def log_validation(vae, text_encoder, tokenizer, clip_image_encoder, transformer3d, network, args, config, accelerator,
                    weight_dtype, global_step):
-    try:
-        is_deepspeed = type(transformer3d).__name__ == 'DeepSpeedEngine'
-        if is_deepspeed:
-            origin_config = transformer3d.config
-            transformer3d.config = accelerator.unwrap_model(transformer3d).config
-        with torch.no_grad(), torch.cuda.amp.autocast(dtype=weight_dtype), torch.cuda.device(device=accelerator.device):
-            logger.info("Running validation... ")
-            scheduler = FlowMatchEulerDiscreteScheduler(
-                **filter_kwargs(FlowMatchEulerDiscreteScheduler, OmegaConf.to_container(config['scheduler_kwargs']))
-            )
-
-            if args.train_mode != "normal":
-                pipeline = WanI2VPipeline(
-                    vae=vae,
-                    text_encoder=text_encoder,
-                    tokenizer=tokenizer,
-                    transformer=accelerator.unwrap_model(transformer3d) if type(
-                        transformer3d).__name__ == 'DistributedDataParallel' else transformer3d,
-                    scheduler=scheduler,
-                    clip_image_encoder=clip_image_encoder,
-                )
-            else:
-                pipeline = WanPipeline(
-                    vae=vae,
-                    text_encoder=text_encoder,
-                    tokenizer=tokenizer,
-                    transformer=accelerator.unwrap_model(transformer3d) if type(
-                        transformer3d).__name__ == 'DistributedDataParallel' else transformer3d,
-                    scheduler=scheduler,
-                )
-            pipeline = pipeline.to(accelerator.device)
-
-            if args.seed is None:
-                generator = None
-            else:
-                rank_seed = args.seed + accelerator.process_index
-                generator = torch.Generator(device=accelerator.device).manual_seed(rank_seed)
-                logger.info(f"Rank {accelerator.process_index} using seed: {rank_seed}")
-
-            for i in range(len(args.validation_prompts)):
-                if args.train_mode != "normal":
-                    start_image = Image.open(args.validation_paths[i])
-                    width, height = start_image.width, start_image.height
-                    width, height = calculate_dimensions(args.image_sample_size * args.image_sample_size,
-                                                         width / height)
-
-                    video_length = int((
-                                               args.video_sample_n_frames - 1) // vae.config.temporal_compression_ratio * vae.config.temporal_compression_ratio) + 1 if args.video_sample_n_frames != 1 else 1
-                    input_video, input_video_mask, _ = get_image_to_video_latent(args.validation_paths[i], None,
-                                                                                 video_length=video_length,
-                                                                                 sample_size=[height, width])
-                    sample = pipeline(
-                        args.validation_prompts[i],
-                        num_frames=video_length,
-                        negative_prompt="bad detailed",
-                        height=height,
-                        width=width,
-                        generator=generator,
-
-                        video=input_video,
-                        mask_video=input_video_mask,
-                        num_inference_steps=25,
-                        guidance_scale=4.5,
-                    ).videos
-
-                    os.makedirs(os.path.join(args.output_dir, "sample"), exist_ok=True)
-                    save_videos_grid(
-                        sample,
-                        os.path.join(
-                            args.output_dir,
-                            f"sample/sample-{global_step}-rank{accelerator.process_index}-image-{i}.gif"
-                        )
-                    )
-                else:
-                    sample = pipeline(
-                        args.validation_prompts[i],
-                        num_frames=args.video_sample_n_frames,
-                        negative_prompt="bad detailed",
-                        height=args.video_sample_size,
-                        width=args.video_sample_size,
-                        generator=generator,
-                        num_inference_steps=25,
-                        guidance_scale=4.5,
-                    ).videos
-                    os.makedirs(os.path.join(args.output_dir, "sample"), exist_ok=True)
-                    save_videos_grid(
-                        sample,
-                        os.path.join(
-                            args.output_dir,
-                            f"sample/sample-{global_step}-rank{accelerator.process_index}-image-{i}.gif"
-                        )
-                    )
-
-            del pipeline
-            gc.collect()
-            torch.cuda.empty_cache()
-            torch.cuda.ipc_collect()
-            vae.to(accelerator.device if not args.low_vram else "cpu", dtype=weight_dtype)
-            transformer3d.to(accelerator.device, dtype=weight_dtype)
-            if not args.enable_text_encoder_in_dataloader:
-                text_encoder.to(accelerator.device if not args.low_vram else "cpu", dtype=weight_dtype)
-        if is_deepspeed:
-            transformer3d.config = origin_config
-    except Exception as e:
-        gc.collect()
-        torch.cuda.empty_cache()
-        torch.cuda.ipc_collect()
-        print(f"Eval error on rank {accelerator.process_index} with info {e}")
-        vae.to(accelerator.device if not args.low_vram else "cpu", dtype=weight_dtype)
-        transformer3d.to(accelerator.device, dtype=weight_dtype)
-        if not args.enable_text_encoder_in_dataloader:
-            text_encoder.to(accelerator.device if not args.low_vram else "cpu", dtype=weight_dtype)
+    raise RuntimeError(
+        "The VideoX-Fun validation pipeline is not camera-aware. "
+        "Use minWM camera inference for world-model validation."
+    )
 
 
 def linear_decay(initial_value, final_value, total_steps, current_step):
@@ -412,8 +262,8 @@ def parse_args():
         "--pretrained_model_name_or_path",
         type=str,
         default=None,
-        required=True,
-        help="Path to pretrained model or model identifier from huggingface.co/models.",
+        required=False,
+        help="Kept for CLI compatibility. minWM resolves Wan2.1 weights below MINWM_ROOT/Wan21/wan_models.",
     )
     parser.add_argument(
         "--revision",
@@ -496,7 +346,7 @@ def parse_args():
         help="whether to use cuda multi-stream",
     )
     parser.add_argument(
-        "--train_batch_size", type=int, default=16, help="Batch size (per device) for the training dataloader."
+        "--train_batch_size", type=int, default=1, help="Batch size (per device) for the training dataloader."
     )
     parser.add_argument(
         "--vae_mini_batch", type=int, default=32, help="mini batch size for vae."
@@ -522,8 +372,8 @@ def parse_args():
     parser.add_argument(
         "--learning_rate",
         type=float,
-        default=1e-4,
-        help="Initial learning rate (after the potential warmup period) to use.",
+        default=None,
+        help="Initial learning rate. Defaults to the minWM Stage0 config value.",
     )
     parser.add_argument(
         "--scale_lr",
@@ -573,11 +423,11 @@ def parse_args():
             "Number of subprocesses to use for data loading. 0 means that the data will be loaded in the main process."
         ),
     )
-    parser.add_argument("--adam_beta1", type=float, default=0.9, help="The beta1 parameter for the Adam optimizer.")
-    parser.add_argument("--adam_beta2", type=float, default=0.999, help="The beta2 parameter for the Adam optimizer.")
-    parser.add_argument("--adam_weight_decay", type=float, default=1e-2, help="Weight decay to use.")
+    parser.add_argument("--adam_beta1", type=float, default=None, help="Adam beta1. Defaults to the minWM config.")
+    parser.add_argument("--adam_beta2", type=float, default=None, help="Adam beta2. Defaults to the minWM config.")
+    parser.add_argument("--adam_weight_decay", type=float, default=None, help="Weight decay. Defaults to the minWM config.")
     parser.add_argument("--adam_epsilon", type=float, default=1e-08, help="Epsilon value for the Adam optimizer")
-    parser.add_argument("--max_grad_norm", default=1.0, type=float, help="Max gradient norm.")
+    parser.add_argument("--max_grad_norm", default=10.0, type=float, help="Max gradient norm.")
     parser.add_argument("--push_to_hub", action="store_true", help="Whether or not to push the model to the Hub.")
     parser.add_argument("--hub_token", type=str, default=None, help="The token to use to push to the Model Hub.")
     parser.add_argument(
@@ -784,9 +634,9 @@ def parse_args():
     parser.add_argument(
         "--config_path",
         type=str,
-        default=None,
+        default=str(VIDEOX_FUN_ROOT / "config" / "wan2.1" / "bidirectional_camera.yaml"),
         help=(
-            "The config of the model in training."
+            "The minWM camera bidirectional training config."
         ),
     )
     parser.add_argument(
@@ -814,6 +664,12 @@ def parse_args():
     )
     parser.add_argument(
         "--use_fsdp", action="store_true", help="Whether or not to use fsdp."
+    )
+    parser.add_argument(
+        "--shard_text_encoder",
+        action=argparse.BooleanOptionalAction,
+        default=True,
+        help="FSDP-shard the frozen minWM UMT5 encoder when running multiple processes.",
     )
     parser.add_argument(
         "--low_vram", action="store_true", help="Whether enable low_vram mode."
@@ -898,7 +754,40 @@ def main():
         )
     logging_dir = os.path.join(args.output_dir, args.logging_dir)
 
-    config = OmegaConf.load(args.config_path)
+    config = OmegaConf.merge(
+        OmegaConf.load(MINWM_WAN21_ROOT / "configs" / "default_config.yaml"),
+        OmegaConf.load(args.config_path),
+    )
+    config.data_path = args.train_data_dir or config.data_path
+    if not os.path.isabs(config.data_path):
+        config.data_path = str((MINWM_ROOT / config.data_path).resolve())
+    config.batch_size = args.train_batch_size
+    config.gradient_checkpointing = args.gradient_checkpointing or bool(config.gradient_checkpointing)
+    args.gradient_checkpointing = config.gradient_checkpointing
+    if args.seed is None:
+        args.seed = int(config.seed)
+    else:
+        config.seed = args.seed
+    if args.learning_rate is None:
+        args.learning_rate = float(config.lr)
+    if args.adam_beta1 is None:
+        args.adam_beta1 = float(config.beta1)
+    if args.adam_beta2 is None:
+        args.adam_beta2 = float(config.beta2)
+    if args.adam_weight_decay is None:
+        args.adam_weight_decay = float(config.weight_decay)
+    validate_world_model_paths(config.data_path)
+
+    if args.validation_prompts is not None:
+        raise ValueError(
+            "The integrated minWM world-model trainer does not use the VideoX-Fun "
+            "validation pipeline. Run camera-aware minWM inference separately."
+        )
+    if args.use_peft_lora:
+        raise ValueError(
+            "minWM Stage0 trains the PRoPE camera path together with the Wan generator. "
+            "Do not pass --use_peft_lora for this integrated trainer."
+        )
     accelerator_project_config = ProjectConfiguration(project_dir=args.output_dir, logging_dir=logging_dir)
 
     accelerator = Accelerator(
@@ -907,6 +796,8 @@ def main():
         log_with=args.report_to,
         project_config=accelerator_project_config,
     )
+    if not torch.cuda.is_available():
+        raise RuntimeError("minWM Wan2.1 world-model training requires a CUDA environment.")
     deepspeed_plugin = accelerator.state.deepspeed_plugin if hasattr(accelerator.state, "deepspeed_plugin") else None
     fsdp_plugin = accelerator.state.fsdp_plugin if hasattr(accelerator.state, "fsdp_plugin") else None
     if deepspeed_plugin is not None:
@@ -968,7 +859,8 @@ def main():
         rng = None
         torch_rng = None
     index_rng = np.random.default_rng(np.random.PCG64(43))
-    print(f"Init rng with seed {args.seed + accelerator.process_index}. Process_index is {accelerator.process_index}")
+    rank_seed = None if args.seed is None else args.seed + accelerator.process_index
+    print(f"Init rng with seed {rank_seed}. Process_index is {accelerator.process_index}")
 
     # Handle the repository creation
     if accelerator.is_main_process:
@@ -986,124 +878,45 @@ def main():
     elif accelerator.mixed_precision == "bf16":
         weight_dtype = torch.bfloat16
         args.mixed_precision = accelerator.mixed_precision
-
-    # Load scheduler, tokenizer and models.
-    noise_scheduler = FlowMatchEulerDiscreteScheduler(
-        **filter_kwargs(FlowMatchEulerDiscreteScheduler, OmegaConf.to_container(config['scheduler_kwargs']))
-    )
-
-    # Get Tokenizer
-    tokenizer = AutoTokenizer.from_pretrained(
-        os.path.join(args.pretrained_model_name_or_path,
-                     config['text_encoder_kwargs'].get('tokenizer_subpath', 'tokenizer')),
-    )
-
-    def deepspeed_zero_init_disabled_context_manager():
-        """
-        returns either a context list that includes one that will disable zero.Init or an empty context list
-        """
-        deepspeed_plugin = AcceleratorState().deepspeed_plugin if accelerate.state.is_initialized() else None
-        if deepspeed_plugin is None:
-            return []
-
-        return [deepspeed_plugin.zero3_init_context_manager(enable=False)]
-
-    # Currently Accelerate doesn't know how to handle multiple models under Deepspeed ZeRO stage 3.
-    # For this to work properly all models must be run through `accelerate.prepare`. But accelerate
-    # will try to assign the same optimizer with the same weights to all models during
-    # `deepspeed.initialize`, which of course doesn't work.
-    #
-    # For now the following workaround will partially support Deepspeed ZeRO-3, by excluding the 2
-    # frozen models from being partitioned during `zero.Init` which gets called during
-    # `from_pretrained` So CLIPTextModel and AutoencoderKL will not enjoy the parameter sharding
-    # across multiple gpus and only UNet2DConditionModel will get ZeRO sharded.
-    with ContextManagers(deepspeed_zero_init_disabled_context_manager()):
-        # Get Text encoder
-        text_encoder = WanT5EncoderModel.from_pretrained(
-            os.path.join(args.pretrained_model_name_or_path,
-                         config['text_encoder_kwargs'].get('text_encoder_subpath', 'text_encoder')),
-            additional_kwargs=OmegaConf.to_container(config['text_encoder_kwargs']),
-            low_cpu_mem_usage=True,
-            torch_dtype=weight_dtype,
+    if weight_dtype == torch.float32:
+        raise ValueError(
+            "minWM Wan2.1 training requires --mixed_precision fp16 or bf16 "
+            "because its FlashAttention path does not support fp32 training."
         )
-        text_encoder = text_encoder.eval()
-        # Get Vae
-        vae = AutoencoderKLWan.from_pretrained(
-            os.path.join(args.pretrained_model_name_or_path, config['vae_kwargs'].get('vae_subpath', 'vae')),
-            additional_kwargs=OmegaConf.to_container(config['vae_kwargs']),
-        )
-        vae.eval()
-        # Get Clip Image Encoder
-        if args.train_mode != "normal":
-            clip_image_encoder = CLIPModel.from_pretrained(
-                os.path.join(args.pretrained_model_name_or_path,
-                             config['image_encoder_kwargs'].get('image_encoder_subpath', 'image_encoder')),
-            )
-            clip_image_encoder = clip_image_encoder.eval()
-        else:
-            clip_image_encoder = None
 
-    # lyz: ====== θ: target model (new LoRA to train) ======
-    transformer3d = WanTransformer3DModel.from_pretrained(
-        os.path.join(args.pretrained_model_name_or_path,
-                     config['transformer_additional_kwargs'].get('transformer_subpath', 'transformer')),
-        transformer_additional_kwargs=OmegaConf.to_container(config['transformer_additional_kwargs']),
-    ).to(weight_dtype)
+    # minWM Stage0 model. CameraBidirectionalDiffusion creates the PRoPE-enabled
+    # WanDiffusionWrapper(use_camera=True), its text encoder and its VAE. The
+    # surrounding precision/device/optimizer lifecycle stays owned by this
+    # Accelerate script.
+    config.mixed_precision = weight_dtype != torch.float32
+    with minwm_working_directory():
+        world_model = CameraBidirectionalDiffusion(config, device=accelerator.device)
 
-    # ====== θ_ref: reference model (frozen, no LoRA, no score) ======
-    transformer_ref = WanTransformer3DModel.from_pretrained(
-        os.path.join(args.pretrained_model_name_or_path,
-                     config['transformer_additional_kwargs'].get('transformer_subpath', 'transformer')),
-        transformer_additional_kwargs=OmegaConf.to_container(config['transformer_additional_kwargs']),
-    ).to(weight_dtype)
+    transformer3d = world_model.generator.to(dtype=weight_dtype)
+    text_encoder = world_model.text_encoder.eval()
+    vae = world_model.vae.eval()
+    clip_image_encoder = None
+    tokenizer = None
+    network = None
 
-
-    # Freeze vae and text_encoder and set transformer3d to trainable
+    # Freeze the encoders while keeping the full PRoPE Wan generator trainable,
+    # matching minWM Stage0.
     vae.requires_grad_(False)
-
     text_encoder.requires_grad_(False)
-
-    transformer3d.requires_grad_(False)
-
-    transformer_ref.requires_grad_(False)
-    transformer_ref.eval()
-
-
-    if args.train_mode != "normal":
-        clip_image_encoder.requires_grad_(False)
-
-    # Lora will work with this...
-    if args.use_peft_lora:
-        from peft import (LoraConfig, get_peft_model_state_dict,
-                          inject_adapter_in_model)
-        lora_config = LoraConfig(r=args.rank, lora_alpha=args.network_alpha, target_modules=args.target_name.split(","))
-        transformer3d = inject_adapter_in_model(lora_config, transformer3d)
-
-        network = None
-    else:
-        network = create_network(
-            1.0,
-            args.rank,
-            args.network_alpha,
-            text_encoder,
-            transformer3d,
-            neuron_dropout=None,
-            target_name=args.target_name,
-            skip_name=args.lora_skip_name,
-        )
-        network = network.to(weight_dtype)
-        network.apply_to(text_encoder, transformer3d,
-                         args.train_text_encoder and not args.training_with_video_token_length, True)
+    transformer3d.requires_grad_(True)
 
 
     if args.transformer_path is not None:
         print(f"From checkpoint: {args.transformer_path}")
         if args.transformer_path.endswith("safetensors"):
-            from safetensors.torch import load_file, safe_open
+            from safetensors.torch import load_file
             state_dict = load_file(args.transformer_path)
         else:
             state_dict = torch.load(args.transformer_path, map_location="cpu")
-        state_dict = state_dict["state_dict"] if "state_dict" in state_dict else state_dict
+        if "generator" in state_dict:
+            state_dict = state_dict["generator"]
+        elif "state_dict" in state_dict:
+            state_dict = state_dict["state_dict"]
 
         m, u = transformer3d.load_state_dict(state_dict, strict=False)
         print(f"missing keys: {len(m)}, unexpected keys: {len(u)}")
@@ -1112,7 +925,7 @@ def main():
     if args.vae_path is not None:
         print(f"From checkpoint: {args.vae_path}")
         if args.vae_path.endswith("safetensors"):
-            from safetensors.torch import load_file, safe_open
+            from safetensors.torch import load_file
             state_dict = load_file(args.vae_path)
         else:
             state_dict = torch.load(args.vae_path, map_location="cpu")
@@ -1122,78 +935,7 @@ def main():
         print(f"missing keys: {len(m)}, unexpected keys: {len(u)}")
         assert len(u) == 0
 
-    # `accelerate` 0.16.0 will have better support for customized saving
-    if version.parse(accelerate.__version__) >= version.parse("0.16.0"):
-        # create custom saving & loading hooks so that `accelerator.save_state(...)` serializes in a nice format
-        if fsdp_stage != 0 or zero_stage == 3:
-            def save_model_hook(models, weights, output_dir):
-                accelerate_state_dict = accelerator.get_state_dict(models[-1], unwrap=True)
-                if accelerator.is_main_process:
-                    from safetensors.torch import save_file
-                    safetensor_save_path = os.path.join(output_dir, f"lora_diffusion_pytorch_model.safetensors")
-                    if args.use_peft_lora:
-                        network_state_dict = get_peft_model_state_dict(accelerator.unwrap_model(models[-1]),
-                                                                       accelerate_state_dict)
-                        network_state_dict_kohya = convert_peft_lora_to_kohya_lora(network_state_dict)
-                        safetensor_kohya_format_save_path = os.path.join(output_dir,
-                                                                         f"lora_diffusion_pytorch_model_compatible_with_comfyui.safetensors")
-                        save_model(safetensor_kohya_format_save_path, network_state_dict_kohya)
-                    else:
-                        network_state_dict = {}
-                        for key in accelerate_state_dict:
-                            if "network" in key:
-                                network_state_dict[key.replace("network.", "")] = accelerate_state_dict[key].to(
-                                    weight_dtype)
-                    save_file(network_state_dict, safetensor_save_path, metadata={"format": "pt"})
-
-                    with open(os.path.join(output_dir, "sampler_pos_start.pkl"), 'wb') as file:
-                        pickle.dump([0, first_epoch], file)
-
-            def load_model_hook(models, input_dir):
-                pkl_path = os.path.join(input_dir, "sampler_pos_start.pkl")
-                if os.path.exists(pkl_path):
-                    with open(pkl_path, 'rb') as file:
-                        loaded_number, _ = pickle.load(file)
-                    print(f"Load pkl from {pkl_path}. Get loaded_number = {loaded_number}.")
-
-        else:
-            # create custom saving & loading hooks so that `accelerator.save_state(...)` serializes in a nice format
-            def save_model_hook(models, weights, output_dir):
-                accelerate_state_dict = accelerator.get_state_dict(models[-1], unwrap=True)
-                if accelerator.is_main_process:
-                    from safetensors.torch import save_file
-                    safetensor_save_path = os.path.join(output_dir, f"lora_diffusion_pytorch_model.safetensors")
-                    if args.use_peft_lora:
-                        network_state_dict = get_peft_model_state_dict(accelerator.unwrap_model(models[-1]),
-                                                                       accelerate_state_dict)
-                        network_state_dict_kohya = convert_peft_lora_to_kohya_lora(network_state_dict)
-                        safetensor_kohya_format_save_path = os.path.join(output_dir,
-                                                                         f"lora_diffusion_pytorch_model_compatible_with_comfyui.safetensors")
-                        save_model(safetensor_kohya_format_save_path, network_state_dict_kohya)
-                    else:
-                        network_state_dict = {}
-                        for key in accelerate_state_dict:
-                            if "network" in key:
-                                network_state_dict[key.replace("network.", "")] = accelerate_state_dict[key].to(
-                                    weight_dtype)
-                    save_file(network_state_dict, safetensor_save_path, metadata={"format": "pt"})
-
-                    if not args.use_deepspeed:
-                        for _ in range(len(weights)):
-                            weights.pop()
-
-                    with open(os.path.join(output_dir, "sampler_pos_start.pkl"), 'wb') as file:
-                        pickle.dump([0, first_epoch], file)
-
-            def load_model_hook(models, input_dir):
-                pkl_path = os.path.join(input_dir, "sampler_pos_start.pkl")
-                if os.path.exists(pkl_path):
-                    with open(pkl_path, 'rb') as file:
-                        loaded_number, _ = pickle.load(file)
-                    print(f"Load pkl from {pkl_path}. Get loaded_number = {loaded_number}.")
-
-        accelerator.register_save_state_pre_hook(save_model_hook)
-        accelerator.register_load_state_pre_hook(load_model_hook)
+    # Stage0 checkpoints use Accelerate's native full-model state format.
 
     if args.gradient_checkpointing:
         transformer3d.enable_gradient_checkpointing()
@@ -1230,15 +972,9 @@ def main():
     else:
         optimizer_cls = torch.optim.AdamW
 
-    if args.use_peft_lora:
-        logging.info("Add peft parameters")
-        trainable_params = list(filter(lambda p: p.requires_grad, transformer3d.parameters()))
-        trainable_params_optim = list(filter(lambda p: p.requires_grad, transformer3d.parameters()))
-    else:
-        logging.info("Add network parameters")
-        trainable_params = list(filter(lambda p: p.requires_grad, network.parameters()))
-        trainable_params_optim = network.prepare_optimizer_params(args.learning_rate / 2, args.learning_rate,
-                                                                  args.learning_rate)
+    logging.info("Add minWM PRoPE Wan generator parameters")
+    trainable_params = list(filter(lambda p: p.requires_grad, transformer3d.parameters()))
+    trainable_params_optim = trainable_params
 
     if args.use_came:
         optimizer = optimizer_cls(
@@ -1257,73 +993,42 @@ def main():
             eps=args.adam_epsilon,
         )
 
-    # Get the dataset
-    train_dataset = DPOPairDataset(
-        csv_path=args.train_data_meta,
-        video_dir=args.train_data_dir,
-        video_sample_n_frames=args.video_sample_n_frames,
-        video_sample_size=args.video_sample_size,
-        video_sample_stride=args.video_sample_stride,
-    )
+    # minWM camera dataset: pre-encoded Wan latents plus camera intrinsics and
+    # poses. It builds normalized viewmats/Ks for PRoPE in __getitem__.
+    train_dataset = CameraLatentLMDBDataset(config.data_path, max_pair=int(1e8))
+    if args.max_train_samples is not None:
+        train_dataset = torch.utils.data.Subset(
+            train_dataset, range(min(len(train_dataset), args.max_train_samples))
+        )
+    if len(train_dataset) == 0:
+        raise ValueError(f"No training samples found in camera LMDB: {config.data_path}")
 
-    sample_n_frames_bucket_interval = vae.config.temporal_compression_ratio
+    def collate_fn_world_model(examples):
+        return {
+            "prompts": [example["prompts"] for example in examples],
+            "clean_latent": torch.stack(
+                [example["clean_latent"] for example in examples]
+            ),
+            "viewmats": torch.stack([example["viewmats"] for example in examples]),
+            "Ks": torch.stack([example["Ks"] for example in examples]),
+        }
 
-    def collate_fn_dpo(examples):
-        new_examples = {}
-        new_examples["text"] = [ex["text"] for ex in examples]
-
-        for key in ["win_pixel_values", "lose_pixel_values"]:
-            vals = []
-            for ex in examples:
-                pv = torch.from_numpy(ex[key]).permute(0, 3, 1, 2).contiguous().float() / 255.0
-                h, w = pv.shape[2], pv.shape[3]
-                size = args.video_sample_size
-                # Simple resize + center crop + normalize
-                if h / w > 1:
-                    resize_h = size
-                    resize_w = int(w * size / h)
-                else:
-                    resize_w = size
-                    resize_h = int(h * size / w)
-                resize_h = max(resize_h, size)
-                resize_w = max(resize_w, size)
-                transform = transforms.Compose([
-                    transforms.Resize([resize_h, resize_w], interpolation=transforms.InterpolationMode.BILINEAR),
-                    transforms.CenterCrop([size, size]),
-                    transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5], inplace=True),
-                ])
-                pv = transform(pv)[:args.video_sample_n_frames]
-                vals.append(pv)
-
-            # Pad to same frame count, align to temporal compression ratio
-            min_f = min(v.shape[0] for v in vals)
-            min_f = (min_f - 1) // sample_n_frames_bucket_interval * sample_n_frames_bucket_interval + 1
-            min_f = max(min_f, 1)
-            vals = [v[:min_f] for v in vals]
-            new_examples[key] = torch.stack(vals)
-
-        if args.enable_text_encoder_in_dataloader:
-            prompt_ids = tokenizer(
-                new_examples['text'], max_length=args.tokenizer_max_length,
-                padding="max_length", add_special_tokens=True,
-                truncation=True, return_tensors="pt"
-            )
-            new_examples['encoder_hidden_states'] = text_encoder(prompt_ids.input_ids)[0]
-            new_examples['encoder_attention_mask'] = prompt_ids.attention_mask
-
-        return new_examples
-
-    batch_sampler_generator = torch.Generator().manual_seed(args.seed)
+    batch_sampler_generator = torch.Generator().manual_seed(args.seed or 0)
     train_dataloader = torch.utils.data.DataLoader(
         train_dataset,
         batch_size=args.train_batch_size,
         shuffle=True,
-        collate_fn=collate_fn_dpo,
+        collate_fn=collate_fn_world_model,
         num_workers=args.dataloader_num_workers,
         persistent_workers=True if args.dataloader_num_workers != 0 else False,
         drop_last=True,
         generator=batch_sampler_generator,
     )
+    if len(train_dataloader) == 0:
+        raise ValueError(
+            "The training dataloader is empty. Reduce --train_batch_size or "
+            "provide more camera LMDB samples."
+        )
 
     # Scheduler and math around the number of training steps.
     overrode_max_train_steps = False
@@ -1340,34 +1045,27 @@ def main():
     )
 
     # Prepare everything with our `accelerator`.
-    if args.use_peft_lora:
-        transformer3d, optimizer, train_dataloader, lr_scheduler = accelerator.prepare(
-            transformer3d, optimizer, train_dataloader, lr_scheduler
+    transformer3d = transformer3d.to(dtype=weight_dtype)
+    transformer3d, optimizer, train_dataloader, lr_scheduler = accelerator.prepare(
+        transformer3d, optimizer, train_dataloader, lr_scheduler
+    )
+    world_model.generator = transformer3d
+    world_model.device = accelerator.device
+    world_model.dtype = weight_dtype
+
+    text_encoder_is_sharded = args.shard_text_encoder and accelerator.num_processes > 1
+    if text_encoder_is_sharded:
+        if args.low_vram:
+            raise ValueError("--low_vram cannot be combined with a sharded text encoder.")
+        text_encoder = shard_minwm_text_encoder(
+            text_encoder, device=accelerator.device, dtype=weight_dtype
         )
-    else:
-        transformer3d.network = network
-        transformer3d = transformer3d.to(dtype=weight_dtype)
 
-        transformer3d, optimizer, train_dataloader, lr_scheduler = accelerator.prepare(
-            transformer3d, optimizer, train_dataloader, lr_scheduler
-        )
-
-    if fsdp_stage != 0 or zero_stage != 0:
-        from functools import partial
-
-        from videox_fun.dist import set_multi_gpus_devices, shard_model
-        shard_fn = partial(shard_model, device_id=accelerator.device, param_dtype=weight_dtype)
-        text_encoder = shard_fn(text_encoder)
-
-    # Move text_encode and vae to gpu and cast to weight_dtype
-    vae.to(accelerator.device if not args.low_vram else "cpu", dtype=weight_dtype)
+    # The LMDB already contains VAE latents. Only the text encoder and generator
+    # need to be resident for the Stage0 training step.
     transformer3d.to(accelerator.device, dtype=weight_dtype)
-    transformer_ref.to(accelerator.device, dtype=weight_dtype)
-
-    if not args.enable_text_encoder_in_dataloader:
+    if not text_encoder_is_sharded:
         text_encoder.to(accelerator.device if not args.low_vram else "cpu", dtype=weight_dtype)
-    if args.train_mode != "normal":
-        clip_image_encoder.to(accelerator.device if not args.low_vram else "cpu", dtype=weight_dtype)
 
     # We need to recalculate our total training steps as the size of the training dataloader may have changed.
     num_update_steps_per_epoch = math.ceil(len(train_dataloader) / args.gradient_accumulation_steps)
@@ -1436,76 +1134,11 @@ def main():
                 first_epoch = global_step // num_update_steps_per_epoch
             print(f"Load pkl from {pkl_path}. Get first_epoch = {first_epoch}.")
 
-            if zero_stage != 3 and not args.use_fsdp:
-                from safetensors.torch import load_file
-                state_dict = load_file(os.path.join(checkpoint_folder_path, "lora_diffusion_pytorch_model.safetensors"),
-                                       device=str(accelerator.device))
-                m, u = accelerator.unwrap_model(network).load_state_dict(state_dict, strict=False)
-                print(f"missing keys: {len(m)}, unexpected keys: {len(u)}")
-
-                optimizer_file_pt = os.path.join(checkpoint_folder_path, "optimizer.pt")
-                optimizer_file_bin = os.path.join(checkpoint_folder_path, "optimizer.bin")
-                optimizer_file_to_load = None
-
-                if os.path.exists(optimizer_file_pt):
-                    optimizer_file_to_load = optimizer_file_pt
-                elif os.path.exists(optimizer_file_bin):
-                    optimizer_file_to_load = optimizer_file_bin
-
-                if optimizer_file_to_load:
-                    try:
-                        accelerator.print(f"Loading optimizer state from {optimizer_file_to_load}")
-                        optimizer_state = torch.load(optimizer_file_to_load, map_location=accelerator.device)
-                        optimizer.load_state_dict(optimizer_state)
-                        accelerator.print("Optimizer state loaded successfully.")
-                    except Exception as e:
-                        accelerator.print(f"Failed to load optimizer state from {optimizer_file_to_load}: {e}")
-
-                scheduler_file_pt = os.path.join(checkpoint_folder_path, "scheduler.pt")
-                scheduler_file_bin = os.path.join(checkpoint_folder_path, "scheduler.bin")
-                scheduler_file_to_load = None
-
-                if os.path.exists(scheduler_file_pt):
-                    scheduler_file_to_load = scheduler_file_pt
-                elif os.path.exists(scheduler_file_bin):
-                    scheduler_file_to_load = scheduler_file_bin
-
-                if scheduler_file_to_load:
-                    try:
-                        accelerator.print(f"Loading scheduler state from {scheduler_file_to_load}")
-                        scheduler_state = torch.load(scheduler_file_to_load, map_location=accelerator.device)
-                        lr_scheduler.load_state_dict(scheduler_state)
-                        accelerator.print("Scheduler state loaded successfully.")
-                    except Exception as e:
-                        accelerator.print(f"Failed to load scheduler state from {scheduler_file_to_load}: {e}")
-
-                if hasattr(accelerator, 'scaler') and accelerator.scaler is not None:
-                    scaler_file = os.path.join(checkpoint_folder_path, "scaler.pt")
-                    if os.path.exists(scaler_file):
-                        try:
-                            accelerator.print(f"Loading GradScaler state from {scaler_file}")
-                            scaler_state = torch.load(scaler_file, map_location=accelerator.device)
-                            accelerator.scaler.load_state_dict(scaler_state)
-                            accelerator.print("GradScaler state loaded successfully.")
-                        except Exception as e:
-                            accelerator.print(f"Failed to load GradScaler state: {e}")
-
-            else:
-                accelerator.load_state(checkpoint_folder_path)
-                accelerator.print("accelerator.load_state() completed for zero_stage 3.")
+            accelerator.load_state(checkpoint_folder_path)
+            accelerator.print("accelerator.load_state() completed for minWM world model.")
 
     else:
         initial_global_step = 0
-
-    # function for saving/removing
-    def save_model(ckpt_file, unwrapped_nw):
-        os.makedirs(args.output_dir, exist_ok=True)
-        accelerator.print(f"\nsaving checkpoint: {ckpt_file}")
-        if isinstance(unwrapped_nw, dict):
-            from safetensors.torch import save_file
-            save_file(unwrapped_nw, ckpt_file, metadata={"format": "pt"})
-            return ckpt_file
-        unwrapped_nw.save_weights(ckpt_file, weight_dtype, None)
 
     progress_bar = tqdm(
         range(0, args.max_train_steps),
@@ -1523,150 +1156,39 @@ def main():
         vae_stream_1 = None
         vae_stream_2 = None
 
-    idx_sampling = DiscreteSampling(args.train_sampling_steps, uniform_sampling=args.uniform_sampling)
-
     for epoch in range(first_epoch, args.num_train_epochs):
         train_loss = 0.0
         for step, batch in enumerate(train_dataloader):
-            if epoch == first_epoch and step == 0:
-                # Sanity check: save win videos
-                win_pv = batch['win_pixel_values'].cpu()
-                win_pv = rearrange(win_pv, "b f c h w -> b c f h w")
-                os.makedirs(os.path.join(args.output_dir, "sanity_check"), exist_ok=True)
-                texts = batch['text']
-                for idx, (pv, text) in enumerate(zip(win_pv, texts)):
-                    pv = pv[None, ...]
-                    gif_name = '-'.join(text.replace('/', '').split()[:10]) if text else f'{global_step}-{idx}'
-                    save_videos_grid(pv, f"{args.output_dir}/sanity_check/win_{gif_name[:10]}.gif", rescale=True)
-
             with accelerator.accumulate(transformer3d):
-                # Encode win and lose videos to latent space
-                win_pixel_values = batch["win_pixel_values"].to(weight_dtype)
-                lose_pixel_values = batch["lose_pixel_values"].to(weight_dtype)
-
-                if args.low_vram:
-                    torch.cuda.empty_cache()
-                    vae.to(accelerator.device)
-                    if not args.enable_text_encoder_in_dataloader:
-                        text_encoder.to("cpu")
-
-                with torch.no_grad():
-                    def _batch_encode_vae(pixel_values):
-                        pixel_values = rearrange(pixel_values, "b f c h w -> b c f h w")
-                        bs = args.vae_mini_batch
-                        new_pixel_values = []
-                        for i in range(0, pixel_values.shape[0], bs):
-                            pixel_values_bs = pixel_values[i: i + bs]
-                            pixel_values_bs = vae.encode(pixel_values_bs)[0]
-                            pixel_values_bs = pixel_values_bs.sample()
-                            new_pixel_values.append(pixel_values_bs)
-                        return torch.cat(new_pixel_values, dim=0)
-
-                    win_latents = _batch_encode_vae(win_pixel_values)
-                    lose_latents = _batch_encode_vae(lose_pixel_values)
-
-                if args.low_vram:
-                    vae.to('cpu')
-                    torch.cuda.empty_cache()
-                    if not args.enable_text_encoder_in_dataloader:
-                        text_encoder.to(accelerator.device)
-
-                if args.enable_text_encoder_in_dataloader:
-                    prompt_embeds = batch['encoder_hidden_states'].to(device=win_latents.device)
-                else:
-                    with torch.no_grad():
-                        prompt_ids = tokenizer(
-                            batch['text'],
-                            padding="max_length",
-                            max_length=args.tokenizer_max_length,
-                            truncation=True,
-                            add_special_tokens=True,
-                            return_tensors="pt"
-                        )
-                        text_input_ids = prompt_ids.input_ids
-                        prompt_attention_mask = prompt_ids.attention_mask
-
-                        seq_lens = prompt_attention_mask.gt(0).sum(dim=1).long()
-                        prompt_embeds = text_encoder(text_input_ids.to(win_latents.device),
-                                                     attention_mask=prompt_attention_mask.to(win_latents.device))[0]
-                        prompt_embeds = [u[:v] for u, v in zip(prompt_embeds, seq_lens)]
-
-                if args.low_vram and not args.enable_text_encoder_in_dataloader:
-                    text_encoder.to('cpu')
-                    torch.cuda.empty_cache()
-
-                bsz, channel, num_frames, height, width = win_latents.size()
-
-                # Same noise and timestep for win and lose
-                noise = torch.randn(win_latents.size(), device=win_latents.device, generator=torch_rng, dtype=weight_dtype)
-
-                if not args.uniform_sampling:
-                    u = compute_density_for_timestep_sampling(
-                        weighting_scheme=args.weighting_scheme,
-                        batch_size=bsz,
-                        logit_mean=args.logit_mean,
-                        logit_std=args.logit_std,
-                        mode_scale=args.mode_scale,
-                    )
-                    indices = (u * noise_scheduler.config.num_train_timesteps).long()
-                else:
-                    indices = idx_sampling(bsz, generator=torch_rng, device=win_latents.device)
-                    indices = indices.long().cpu()
-                timesteps = noise_scheduler.timesteps[indices].to(device=win_latents.device)
-
-                def get_sigmas(timesteps, n_dim=4, dtype=torch.float32):
-                    sigmas = noise_scheduler.sigmas.to(device=accelerator.device, dtype=dtype)
-                    schedule_timesteps = noise_scheduler.timesteps.to(accelerator.device)
-                    timesteps = timesteps.to(accelerator.device)
-                    step_indices = [(schedule_timesteps == t).nonzero().item() for t in timesteps]
-
-                    sigma = sigmas[step_indices].flatten()
-                    while len(sigma.shape) < n_dim:
-                        sigma = sigma.unsqueeze(-1)
-                    return sigma
-
-                # Add noise according to flow matching
-                sigmas = get_sigmas(timesteps, n_dim=win_latents.ndim, dtype=win_latents.dtype)
-                noisy_win = (1.0 - sigmas) * win_latents + sigmas * noise
-                noisy_lose = (1.0 - sigmas) * lose_latents + sigmas * noise
-
-                target_win = noise - win_latents
-                target_lose = noise - lose_latents
-
-                target_shape = (vae.latent_channels, num_frames, width, height)
-                seq_len = math.ceil(
-                    (target_shape[2] * target_shape[3]) /
-                    (accelerator.unwrap_model(transformer3d).config.patch_size[1] *
-                     accelerator.unwrap_model(transformer3d).config.patch_size[2]) *
-                    target_shape[1]
+                clean_latent = batch["clean_latent"].to(
+                    device=accelerator.device, dtype=weight_dtype
                 )
-
-                # --- θ predictions (with LoRA, has grad) ---
-                with torch.cuda.amp.autocast(dtype=weight_dtype), torch.cuda.device(device=accelerator.device):
-                    pred_theta_win = transformer3d(
-                        x=noisy_win, context=prompt_embeds, t=timesteps,
-                        seq_len=seq_len, y=None, clip_fea=None)
-                    pred_theta_lose = transformer3d(
-                        x=noisy_lose, context=prompt_embeds, t=timesteps,
-                        seq_len=seq_len, y=None, clip_fea=None)
-
-                # --- θ_ref predictions (frozen) ---
-                with torch.no_grad(), torch.cuda.amp.autocast(dtype=weight_dtype):
-                    pred_ref_win = transformer_ref(
-                        x=noisy_win, context=prompt_embeds, t=timesteps,
-                        seq_len=seq_len, y=None, clip_fea=None)
-                    pred_ref_lose = transformer_ref(
-                        x=noisy_lose, context=prompt_embeds, t=timesteps,
-                        seq_len=seq_len, y=None, clip_fea=None)
-
-                # --- DPO Loss ---
-                win_theta_loss = (pred_theta_win.float() - target_win.float()).pow(2).flatten(1).mean(1)
-                win_ref_loss = (pred_ref_win.float() - target_win.float()).pow(2).flatten(1).mean(1)
-                lose_theta_loss = (pred_theta_lose.float() - target_lose.float()).pow(2).flatten(1).mean(1)
-                lose_ref_loss = (pred_ref_lose.float() - target_lose.float()).pow(2).flatten(1).mean(1)
-
-                logits = -args.cpo_beta * ((win_theta_loss - win_ref_loss) - (lose_theta_loss - lose_ref_loss))
-                loss = -F.logsigmoid(logits).mean()
+                viewmats = batch["viewmats"].to(
+                    device=accelerator.device, dtype=weight_dtype
+                )
+                Ks = batch["Ks"].to(
+                    device=accelerator.device, dtype=weight_dtype
+                )
+                if args.low_vram:
+                    torch.cuda.empty_cache()
+                    text_encoder.to(accelerator.device)
+                with torch.no_grad():
+                    conditional_dict = text_encoder(text_prompts=batch["prompts"])
+                if args.low_vram:
+                    text_encoder.to("cpu")
+                    torch.cuda.empty_cache()
+                image_or_video_shape = list(clean_latent.shape)
+                image_latent = clean_latent[:, 0:1]
+                with accelerator.autocast():
+                    loss, _ = world_model.generator_loss(
+                        image_or_video_shape=image_or_video_shape,
+                        conditional_dict=conditional_dict,
+                        unconditional_dict={},
+                        clean_latent=clean_latent,
+                        initial_latent=image_latent,
+                        viewmats=viewmats,
+                        Ks=Ks,
+                    )
 
                 # Gather the losses across all processes for logging (if we use distributed training).
                 avg_loss = accelerator.gather(loss.repeat(args.train_batch_size)).mean()
@@ -1675,7 +1197,7 @@ def main():
                 # Backpropagate
                 accelerator.backward(loss)
                 if accelerator.sync_gradients:
-                    accelerator.clip_grad_norm_(trainable_params, args.max_grad_norm)
+                    accelerator.clip_grad_norm_(transformer3d.parameters(), args.max_grad_norm)
 
                 optimizer.step()
                 lr_scheduler.step()
@@ -1689,8 +1211,9 @@ def main():
                 train_loss = 0.0
 
                 if global_step % args.checkpointing_steps == 0:
-                    if args.use_deepspeed or args.use_fsdp or accelerator.is_main_process:
-                        # _before_ saving state, check if this save would set us over the `checkpoints_total_limit`
+                    accelerator.wait_for_everyone()
+                    if accelerator.is_main_process:
+                        # Before saving state, check if this save would set us over the checkpoint limit.
                         if args.checkpoints_total_limit is not None:
                             checkpoints = os.listdir(args.output_dir)
                             checkpoints = [d for d in checkpoints if d.startswith("checkpoint")]
@@ -1709,30 +1232,15 @@ def main():
                                 for removing_checkpoint in removing_checkpoints:
                                     removing_checkpoint = os.path.join(args.output_dir, removing_checkpoint)
                                     shutil.rmtree(removing_checkpoint)
-                        gc.collect()
-                        torch.cuda.empty_cache()
-                        torch.cuda.ipc_collect()
-                        if not args.save_state:
-                            if args.use_peft_lora:
-                                safetensor_save_path = os.path.join(args.output_dir,
-                                                                    f"checkpoint-{global_step}.safetensors")
-                                network_state_dict = get_peft_model_state_dict(accelerator.unwrap_model(transformer3d))
-                                save_model(safetensor_save_path, network_state_dict)
-
-                                safetensor_kohya_format_save_path = os.path.join(args.output_dir,
-                                                                                 f"checkpoint-{global_step}-compatible_with_comfyui.safetensors")
-                                network_state_dict_kohya = convert_peft_lora_to_kohya_lora(network_state_dict)
-                                save_model(safetensor_kohya_format_save_path, network_state_dict_kohya)
-                                logger.info(f"Saved safetensor to {safetensor_save_path}")
-                            else:
-                                safetensor_save_path = os.path.join(args.output_dir,
-                                                                    f"checkpoint-{global_step}.safetensors")
-                                save_model(safetensor_save_path, accelerator.unwrap_model(network))
-                                logger.info(f"Saved safetensor to {safetensor_save_path}")
-                        else:
-                            accelerator_save_path = os.path.join(args.output_dir, f"checkpoint-{global_step}")
-                            accelerator.save_state(accelerator_save_path)
-                            logger.info(f"Saved state to {accelerator_save_path}")
+                    accelerator.wait_for_everyone()
+                    gc.collect()
+                    torch.cuda.empty_cache()
+                    torch.cuda.ipc_collect()
+                    accelerator_save_path = os.path.join(args.output_dir, f"checkpoint-{global_step}")
+                    accelerator.save_state(accelerator_save_path)
+                    accelerator.wait_for_everyone()
+                    if accelerator.is_main_process:
+                        logger.info(f"Saved minWM world-model state to {accelerator_save_path}")
 
                     ## lyz:save checkpoints
                     #score_state_dict = {}
@@ -1767,6 +1275,9 @@ def main():
             if global_step >= args.max_train_steps:
                 break
 
+        if global_step >= args.max_train_steps:
+            break
+
         if args.validation_prompts is not None and epoch % args.validation_epochs == 0:
             log_validation(
                 vae,
@@ -1784,29 +1295,14 @@ def main():
 
     # Create the pipeline using the trained modules and save it.
     accelerator.wait_for_everyone()
-    if args.use_deepspeed or args.use_fsdp or accelerator.is_main_process:
-        gc.collect()
-        torch.cuda.empty_cache()
-        torch.cuda.ipc_collect()
-        if not args.save_state:
-            if args.use_peft_lora:
-                safetensor_save_path = os.path.join(args.output_dir, f"checkpoint-{global_step}.safetensors")
-                network_state_dict = get_peft_model_state_dict(accelerator.unwrap_model(transformer3d))
-                save_model(safetensor_save_path, network_state_dict)
-
-                safetensor_kohya_format_save_path = os.path.join(args.output_dir,
-                                                                 f"checkpoint-{global_step}-compatible_with_comfyui.safetensors")
-                network_state_dict_kohya = convert_peft_lora_to_kohya_lora(network_state_dict)
-                save_model(safetensor_kohya_format_save_path, network_state_dict_kohya)
-                logger.info(f"Saved safetensor to {safetensor_save_path}")
-            else:
-                safetensor_save_path = os.path.join(args.output_dir, f"checkpoint-{global_step}.safetensors")
-                save_model(safetensor_save_path, accelerator.unwrap_model(network))
-                logger.info(f"Saved safetensor to {safetensor_save_path}")
-        else:
-            accelerator_save_path = os.path.join(args.output_dir, f"checkpoint-{global_step}")
-            accelerator.save_state(accelerator_save_path)
-            logger.info(f"Saved state to {accelerator_save_path}")
+    gc.collect()
+    torch.cuda.empty_cache()
+    torch.cuda.ipc_collect()
+    accelerator_save_path = os.path.join(args.output_dir, f"checkpoint-{global_step}")
+    accelerator.save_state(accelerator_save_path)
+    accelerator.wait_for_everyone()
+    if accelerator.is_main_process:
+        logger.info(f"Saved final minWM world-model state to {accelerator_save_path}")
 
         ## lyz:save checkpoints
         #score_state_dict = {}
