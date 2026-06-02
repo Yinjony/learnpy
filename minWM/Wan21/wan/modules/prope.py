@@ -258,7 +258,7 @@ def _invert_K(Ks: torch.Tensor) -> torch.Tensor:
     out = out.to(dtype=Ks.dtype)
     return out
 
-
+# 在模型里添加prope参数
 def add_prope_parameters(model, zero_init: bool = True):
     """Add learnable PRoPE parameters to each self-attention block.
 

@@ -1,16 +1,13 @@
 #!/usr/bin/env python3
 """
-Build camera-aware LMDB from WorldPlayGen data for Wan + PRoPE training.
+从WorldPlayGen数据集生成LMDB文件，键值对映射，供Wan + PRoPE训练使用。
 
-Input:
+输入：
     - input_json:  preencode_input.json with [image_path, caption, pose_json_path, pose_str]
     - video_dir:   {index}_{pose_str}/gen.mp4 (77 frames, 480x832)
 
-Output LMDB keys (same format as build_dl3dv_lmdb.py):
-    latents    -- (N, 20, 16, 60, 104) float16   Wan VAE latent
-    prompts    -- (N,) str                        caption text
-    intrinsics -- (N, 4) float32                  [fx/W, fy/H, cx/W, cy/H]
-    poses      -- (N, 20, 7) float32              [tx,ty,tz, qx,qy,qz,qw]
+输出LMDB keys(same format as build_dl3dv_lmdb.py)：
+    - latents    -- (N, 20, 16, 60, 104) float16   Wan VAE latent
 
 Each 77-frame video -> 1 segment -> 20 latent frames.
 Memory-safe: each rank streams to its own LMDB shard, rank 0 merges at end.
@@ -41,20 +38,24 @@ N_LATENT = (MAX_FRAMES - 1) // 4 + 1  # 20
 # bytes per sample for LMDB map_size estimation
 PER_SAMPLE_BYTES = 20 * 16 * 60 * 104 * 2 + 4 * 4 + 20 * 7 * 4 + 2000
 
+# 使用decord读取视频帧
 try:
     import decord; decord.bridge.set_bridge("torch"); USE_DECORD = True
 except ImportError:
     USE_DECORD = False; import cv2
 
 def load_video_frames(video_path, target_h=480, target_w=832):
+    """把[F, H, W, C] 转变为[C, F, H, W]张量"""
     """Load all 77 frames from video, resize, return [C, F, H, W] in [-1, 1]."""
     if USE_DECORD:
         vr = decord.VideoReader(video_path)
         if len(vr) < MAX_FRAMES:
             return None
+        # 把帧分成批次，每批次77帧
         frames = vr.get_batch(list(range(MAX_FRAMES)))
         if isinstance(frames, torch.Tensor):
             frames = frames.numpy()
+        # 转换成张量
         tensor = torch.from_numpy(frames).float().permute(3, 0, 1, 2)
     else:
         cap = cv2.VideoCapture(video_path)
@@ -67,36 +68,42 @@ def load_video_frames(video_path, target_h=480, target_w=832):
             buf.append(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
         cap.release()
         tensor = torch.from_numpy(np.stack(buf)).float().permute(3, 0, 1, 2)
+    # 检查帧张量的高度和宽度是否是目标尺寸，不一样需要进行插值 
     if tensor.shape[2] != target_h or tensor.shape[3] != target_w:
         tensor = F.interpolate(
             tensor.unsqueeze(0),
             size=(tensor.shape[1], target_h, target_w),
             mode="trilinear", align_corners=False,
         ).squeeze(0)
+    # 归一化到[-1, 1]
     tensor = (tensor / 255.0 - 0.5) * 2.0
     return tensor
 
-
+# 绕x轴旋转
 def _rot_x(theta):
     c, s = np.cos(theta), np.sin(theta)
     return np.array([[1, 0, 0], [0, c, -s], [0, s, c]])
 
-
+# 绕y轴旋转
 def _rot_y(theta):
     c, s = np.cos(theta), np.sin(theta)
     return np.array([[c, 0, s], [0, 1, 0], [-s, 0, c]])
 
-
+# 生成相机轨迹
 def _generate_camera_trajectory_local(motions):
-    """Generate c2w 4x4 matrices from a list of motion dicts.
+    """Generate c2w(camera-to-world) 4x4 matrices from a list of motion dicts.
 
     Exact copy of HY-WorldPlay/hyvideo/generate_custom_trajectory.py to ensure
     poses match the .pt pipeline (preencode_generated_wdplay.py).
     """
+    # 存储相机位姿
     poses = []
+    # 定义初始位置，单位矩阵
     T = np.eye(4)
     poses.append(T.copy())
+    # 根据motions生成相机位姿，然后添加到poses中
     for move in motions:
+        # 虽然不太懂，但是左上角3x3矩阵表示相机的旋转，右上角3x1矩阵表示相机的平移
         if "yaw" in move:
             T[:3, :3] = T[:3, :3] @ _rot_y(move["yaw"])
         if "pitch" in move:
@@ -108,6 +115,7 @@ def _generate_camera_trajectory_local(motions):
         if right != 0:
             T[:3, 3] += T[:3, :3] @ np.array([right, 0, 0])
         third_yaw = move.get("third_yaw", 0.0)
+        # 第三人称视角绕Y轴旋转的变换，绕着某个点进行旋转
         if third_yaw != 0:
             theta = -third_yaw
             C = np.array([[1, 0, 0, 0], [0, 1, 0, 0],
@@ -122,7 +130,7 @@ def _generate_camera_trajectory_local(motions):
         poses.append(T.copy())
     return poses
 
-
+# 解析pose字符串，生成motions列表
 def _parse_pose_string(pose_string):
     """Parse pose string like 'down-4, up-4, w-4, a-7' into motions list.
 
@@ -171,11 +179,12 @@ def poses_from_pose_str(pose_str):
         intrinsics: (4,) float32 — [fx_norm, fy_norm, cx_norm, cy_norm]
         poses:      (N_LATENT, 7) float32 — [tx,ty,tz, qx,qy,qz,qw] w2c
     """
+    # 获取位姿信息
     motions = _parse_pose_string(pose_str)
     c2w_list = _generate_camera_trajectory_local(motions)
     assert len(c2w_list) >= N_LATENT, (
         f"pose_str '{pose_str}' produces {len(c2w_list)} frames, need {N_LATENT}")
-
+    # 获取相机内参，取默认的值
     # Intrinsics: WorldPlayGen default (1920x1080, f~969.7)
     fx_norm = 969.6969696969696 / 1920.0
     fy_norm = 969.6969696969696 / 1080.0
@@ -186,7 +195,9 @@ def poses_from_pose_str(pose_str):
     for i in range(N_LATENT):
         c2w = np.array(c2w_list[i])
         w2c = np.linalg.inv(c2w)
+        # 存平移向量
         poses[i, :3] = w2c[:3, 3]
+        # 存旋转四元数，注意scipy的Rotation默认是(x,y,z,w)顺序
         poses[i, 3:] = Rotation.from_matrix(w2c[:3, :3]).as_quat()
 
     return intrinsics, poses
@@ -195,6 +206,7 @@ def poses_from_pose_str(pose_str):
 def pose_str_to_dir_suffix(pose_str):
     return re.sub(r'[^a-z0-9]', '', pose_str.lower().replace(' ', ''))
 
+# 把视频编码成wan模型的潜变量
 class WanVAE:
     def __init__(self, vae_path, device):
         self.device = device
@@ -287,9 +299,10 @@ def main():
     errors = 0
     first_shape = None
     t0 = time.time()
-
+    # 显示进度条
     pbar = tqdm(shard, desc=f"GPU{local_rank}", disable=(global_rank != 0),
                 dynamic_ncols=True)
+    # 遍历样本分片
     for idx, item in enumerate(pbar):
         video_tensor = None
         pixel = None
@@ -312,6 +325,7 @@ def main():
 
         # Stream write to per-rank LMDB
         with rank_env.begin(write=True) as txn:
+            # 写入LMDB
             txn.put(f"latents_{count}_data".encode(), latent_np.tobytes())
             txn.put(f"prompts_{count}_data".encode(),
                     item["caption"].encode())
@@ -333,6 +347,7 @@ def main():
         pbar.set_postfix(ok=count, err=errors, speed=f"{speed:.1f}it/s")
 
     # Write rank metadata
+    # 之后的部分主要是分布式相关的
     with rank_env.begin(write=True) as txn:
         txn.put(b"__count__", str(count).encode())
         if first_shape:

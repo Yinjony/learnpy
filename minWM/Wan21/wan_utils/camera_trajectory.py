@@ -23,6 +23,7 @@ import re
 import numpy as np
 import torch
 
+# 通用相机轨迹模块
 _STEP = 0.08
 _ROT_STEP = np.radians(3.0)  # 3.0 degrees per latent frame
 

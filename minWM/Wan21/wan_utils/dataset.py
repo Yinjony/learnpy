@@ -10,7 +10,7 @@ import os
 from scipy.spatial.transform import Rotation
 from scipy.spatial.transform import Rotation
 
-
+# 文本数据集
 class TextDataset(Dataset):
     def __init__(self, prompt_path, extended_prompt_path=None):
         with open(prompt_path, encoding="utf-8") as f:
@@ -35,7 +35,7 @@ class TextDataset(Dataset):
             batch["extended_prompts"] = self.extended_prompt_list[idx]
         return batch
 
-
+# 从LMDB读取latents和prompts
 class ODERegressionLMDBDataset(Dataset):
     def __init__(self, data_path: str, max_pair: int = int(1e8)):
         self.env = lmdb.open(data_path, readonly=True,
@@ -69,11 +69,7 @@ class ODERegressionLMDBDataset(Dataset):
             "prompts": prompts,
             "ode_latent": torch.tensor(latents, dtype=torch.float32)
         }
-
-
-
-
-
+# 返回的是clean_latent
 class LatentLMDBDataset(Dataset):
     def __init__(self, data_path: str, max_pair: int = int(1e8)):
         self.env = lmdb.open(data_path, readonly=True,
@@ -108,7 +104,7 @@ class LatentLMDBDataset(Dataset):
             "clean_latent": torch.tensor(latents, dtype=torch.float32)[-1]
         }
 
-
+# 组合多个shard，成为一个数据集
 class ShardingLMDBDataset(Dataset):
     def __init__(self, data_path: str, max_pair: int = int(1e8)):
         self.envs = []
@@ -164,7 +160,7 @@ class ShardingLMDBDataset(Dataset):
         }
 
 
-
+# 读取图文对数据集
 class TextImagePairDataset(Dataset):
     def __init__(
         self,
@@ -255,7 +251,7 @@ class TextImagePairDataset(Dataset):
         }
 
 
-
+# 在ODERegressionLMDBDataset数据集基础上添加camera
 class CameraODERegressionLMDBDataset(ODERegressionLMDBDataset):
     """ODERegressionLMDBDataset extended with per-frame camera data for PRoPE.
 
@@ -301,7 +297,7 @@ class CameraODERegressionLMDBDataset(ODERegressionLMDBDataset):
             "Ks": torch.tensor(Ks, dtype=torch.float32),
         }
 
-
+# 从LMDB中读取内参和poses，然后转换成viements和ks
 class CameraLatentLMDBDataset(LatentLMDBDataset):
     """LatentLMDBDataset extended with per-frame camera data for PRoPE.
 
@@ -397,7 +393,7 @@ class CameraLatentLMDBDataset(LatentLMDBDataset):
             "Ks": torch.tensor(Ks, dtype=torch.float32),
         }
 
-
+# 转换数据格式
 def build_viewmats_and_Ks(intrinsics, poses):
     """Build 4x4 w2c view matrices and 3x3 intrinsics from raw poses.
 
@@ -409,11 +405,11 @@ def build_viewmats_and_Ks(intrinsics, poses):
 
     Returns:
         viewmats: (T, 4, 4) float32 — w2c SE3, normalized to first frame
-        Ks:       (T, 3, 3) float32 — intrinsics
+        Ks:       (T, 3, 3) float32 — intrinsics 内参矩阵
     """
     T = len(poses)
     fx, fy, cx, cy = intrinsics
-
+    # 把原始相机位姿转换为直接可以使用的相机变换矩阵
     viewmats = np.zeros((T, 4, 4), dtype=np.float32)
     for i in range(T):
         tx, ty, tz, qx, qy, qz, qw = poses[i]
@@ -428,6 +424,7 @@ def build_viewmats_and_Ks(intrinsics, poses):
     c2w_aligned = np.array([C0_inv @ C for C in c2w])
     viewmats = np.linalg.inv(c2w_aligned).astype(np.float32)
 
+    # 内参转换为标准3x3矩阵，并复制T份
     K = np.array([[fx, 0, cx],
                   [0, fy, cy],
                   [0,  0,  1]], dtype=np.float32)

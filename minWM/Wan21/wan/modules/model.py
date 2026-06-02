@@ -801,7 +801,7 @@ class WanModel(ModelMixin, ConfigMixin):
             chunk_start = sp_rank * chunk_size
             chunk_end = chunk_start + chunk_size
             x = x[:, chunk_start:chunk_end]
-
+        # PRoPE:进行扩展
         # PRoPE: expand viewmats/Ks from (B, F, *, *) to (B, seq_len, *, *)
         if viewmats is not None:
             expanded_vm = []

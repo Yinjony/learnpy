@@ -10,7 +10,7 @@ from wan.modules.vae import _video_vae
 from wan.modules.t5 import umt5_xxl
 from wan.modules.causal_model import CausalWanModel
 
-
+# 使用text encoder
 class WanTextEncoder(torch.nn.Module):
     def __init__(self) -> None:
         super().__init__()
@@ -49,7 +49,7 @@ class WanTextEncoder(torch.nn.Module):
             "prompt_embeds": context
         }
 
-
+# vae
 class WanVAEWrapper(torch.nn.Module):
     def __init__(self):
         super().__init__()
@@ -336,4 +336,5 @@ class WanDiffusionWrapper(torch.nn.Module):
         # Add PRoPE parameters if camera control is enabled
         if self.use_camera:
             from wan.modules.prope import add_prope_parameters
+            # 如果使用camera控制，则添加PRoPE参数
             add_prope_parameters(self.model)
