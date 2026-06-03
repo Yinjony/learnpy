@@ -52,55 +52,49 @@ project_roots = [os.path.dirname(current_file_path), os.path.dirname(os.path.dir
 for project_root in project_roots:
     sys.path.insert(0, project_root) if project_root not in sys.path else None
 
-# minWM keeps its Wan2.1 implementation and shared flow-matching algorithms in
-# sibling directories.  Reuse that complete dependency graph while retaining
-# this script's Accelerate training shell.
+# The camera world-model implementation is vendored under VideoX-Fun so this
+# trainer can run without any external world-model source checkout.
 VIDEOX_FUN_ROOT = Path(__file__).resolve().parents[2]
-MINWM_ROOT = Path(
-    os.environ.get("MINWM_ROOT", VIDEOX_FUN_ROOT.parent / "minWM")
-).expanduser().resolve()
-MINWM_WAN21_ROOT = MINWM_ROOT / "Wan21"
-for dependency_root in [MINWM_WAN21_ROOT, MINWM_ROOT / "shared"]:
-    dependency_root = str(dependency_root)
-    sys.path.insert(0, dependency_root) if dependency_root not in sys.path else None
+WORLD_MODEL_ROOT = VIDEOX_FUN_ROOT / "videox_fun" / "world_model"
+sys.path.insert(0, str(WORLD_MODEL_ROOT)) if str(WORLD_MODEL_ROOT) not in sys.path else None
 
 from model.camera_bidirectional_diffusion import CameraBidirectionalDiffusion
 from wan_utils.dataset import CameraLatentLMDBDataset
 
 
-WAN_MODEL_DIR = MINWM_WAN21_ROOT / "wan_models" / "Wan2.1-T2V-1.3B"
+DEFAULT_WAN_MODEL_DIR = VIDEOX_FUN_ROOT / "models" / "Wan2.1-T2V-1.3B"
 
 
 @contextmanager
-def minwm_working_directory():
-    """Resolve minWM's model paths without changing the outer training shell."""
+def world_model_working_directory():
+    """Keep any relative world-model paths anchored below VideoX-Fun."""
     original_cwd = os.getcwd()
-    os.chdir(MINWM_ROOT)
+    os.chdir(VIDEOX_FUN_ROOT)
     try:
         yield
     finally:
         os.chdir(original_cwd)
 
 
-def validate_world_model_paths(data_path):
-    """Fail early with the concrete minWM files required by this trainer."""
+def validate_world_model_paths(data_path, model_dir):
+    """Fail early with the concrete world-model files required by this trainer."""
     required_paths = [
-        MINWM_WAN21_ROOT / "wan_utils",
-        MINWM_ROOT / "shared" / "algorithms" / "flow_matching.py",
-        WAN_MODEL_DIR / "config.json",
-        WAN_MODEL_DIR / "diffusion_pytorch_model.safetensors",
-        WAN_MODEL_DIR / "Wan2.1_VAE.pth",
-        WAN_MODEL_DIR / "models_t5_umt5-xxl-enc-bf16.pth",
-        WAN_MODEL_DIR / "google" / "umt5-xxl",
+        WORLD_MODEL_ROOT / "wan_utils",
+        WORLD_MODEL_ROOT / "algorithms" / "flow_matching.py",
+        model_dir / "config.json",
+        model_dir / "diffusion_pytorch_model.safetensors",
+        model_dir / "Wan2.1_VAE.pth",
+        model_dir / "models_t5_umt5-xxl-enc-bf16.pth",
+        model_dir / "google" / "umt5-xxl",
     ]
     missing_paths = [path for path in required_paths if not path.exists()]
     if missing_paths:
         missing_list = "\n".join(f"  - {path}" for path in missing_paths)
         raise FileNotFoundError(
-            "Missing minWM Wan2.1 files:\n"
+            "Missing VideoX-Fun world-model files:\n"
             f"{missing_list}\n"
-            "Download Wan-AI/Wan2.1-T2V-1.3B under MINWM_ROOT/ckpts and "
-            "create the Wan21/wan_models/Wan2.1-T2V-1.3B symlink."
+            "Download Wan-AI/Wan2.1-T2V-1.3B under VideoX-Fun/models or pass "
+            "--pretrained_model_name_or_path."
         )
 
     data_path = Path(data_path).expanduser().resolve()
@@ -115,7 +109,7 @@ def validate_world_model_paths(data_path):
         )
     if importlib.util.find_spec("flash_attn") is None:
         raise ModuleNotFoundError(
-            "flash-attn is required by minWM Wan attention. Install it in the "
+            "flash-attn is required by the world-model Wan attention. Install it in the "
             "CUDA training environment with: pip install flash-attn --no-build-isolation"
         )
 
@@ -234,7 +228,7 @@ def log_validation(vae, text_encoder, tokenizer, clip_image_encoder, transformer
                    weight_dtype, global_step):
     raise RuntimeError(
         "The VideoX-Fun validation pipeline is not camera-aware. "
-        "Use minWM camera inference for world-model validation."
+        "Use a camera-aware world-model inference entry for validation."
     )
 
 
@@ -263,7 +257,7 @@ def parse_args():
         type=str,
         default=None,
         required=False,
-        help="Kept for CLI compatibility. minWM resolves Wan2.1 weights below MINWM_ROOT/Wan21/wan_models.",
+        help="Wan2.1 model directory. Defaults to VideoX-Fun/models/Wan2.1-T2V-1.3B.",
     )
     parser.add_argument(
         "--revision",
@@ -373,7 +367,7 @@ def parse_args():
         "--learning_rate",
         type=float,
         default=None,
-        help="Initial learning rate. Defaults to the minWM Stage0 config value.",
+        help="Initial learning rate. Defaults to the vendored Stage0 config value.",
     )
     parser.add_argument(
         "--scale_lr",
@@ -423,9 +417,9 @@ def parse_args():
             "Number of subprocesses to use for data loading. 0 means that the data will be loaded in the main process."
         ),
     )
-    parser.add_argument("--adam_beta1", type=float, default=None, help="Adam beta1. Defaults to the minWM config.")
-    parser.add_argument("--adam_beta2", type=float, default=None, help="Adam beta2. Defaults to the minWM config.")
-    parser.add_argument("--adam_weight_decay", type=float, default=None, help="Weight decay. Defaults to the minWM config.")
+    parser.add_argument("--adam_beta1", type=float, default=None, help="Adam beta1. Defaults to the vendored Stage0 config.")
+    parser.add_argument("--adam_beta2", type=float, default=None, help="Adam beta2. Defaults to the vendored Stage0 config.")
+    parser.add_argument("--adam_weight_decay", type=float, default=None, help="Weight decay. Defaults to the vendored Stage0 config.")
     parser.add_argument("--adam_epsilon", type=float, default=1e-08, help="Epsilon value for the Adam optimizer")
     parser.add_argument("--max_grad_norm", default=10.0, type=float, help="Max gradient norm.")
     parser.add_argument("--push_to_hub", action="store_true", help="Whether or not to push the model to the Hub.")
@@ -636,7 +630,7 @@ def parse_args():
         type=str,
         default=str(VIDEOX_FUN_ROOT / "config" / "wan2.1" / "bidirectional_camera.yaml"),
         help=(
-            "The minWM camera bidirectional training config."
+            "The camera bidirectional world-model training config."
         ),
     )
     parser.add_argument(
@@ -669,7 +663,7 @@ def parse_args():
         "--shard_text_encoder",
         action=argparse.BooleanOptionalAction,
         default=True,
-        help="FSDP-shard the frozen minWM UMT5 encoder when running multiple processes.",
+        help="FSDP-shard the frozen UMT5 encoder when running multiple processes.",
     )
     parser.add_argument(
         "--low_vram", action="store_true", help="Whether enable low_vram mode."
@@ -755,12 +749,12 @@ def main():
     logging_dir = os.path.join(args.output_dir, args.logging_dir)
 
     config = OmegaConf.merge(
-        OmegaConf.load(MINWM_WAN21_ROOT / "configs" / "default_config.yaml"),
+        OmegaConf.load(VIDEOX_FUN_ROOT / "config" / "wan2.1" / "world_model_default.yaml"),
         OmegaConf.load(args.config_path),
     )
     config.data_path = args.train_data_dir or config.data_path
     if not os.path.isabs(config.data_path):
-        config.data_path = str((MINWM_ROOT / config.data_path).resolve())
+        config.data_path = str((VIDEOX_FUN_ROOT / config.data_path).resolve())
     config.batch_size = args.train_batch_size
     config.gradient_checkpointing = args.gradient_checkpointing or bool(config.gradient_checkpointing)
     args.gradient_checkpointing = config.gradient_checkpointing
@@ -776,16 +770,18 @@ def main():
         args.adam_beta2 = float(config.beta2)
     if args.adam_weight_decay is None:
         args.adam_weight_decay = float(config.weight_decay)
-    validate_world_model_paths(config.data_path)
+    model_dir = Path(args.pretrained_model_name_or_path or DEFAULT_WAN_MODEL_DIR).expanduser().resolve()
+    os.environ["WAN_MODEL_DIR"] = str(model_dir)
+    validate_world_model_paths(config.data_path, model_dir)
 
     if args.validation_prompts is not None:
         raise ValueError(
-            "The integrated minWM world-model trainer does not use the VideoX-Fun "
-            "validation pipeline. Run camera-aware minWM inference separately."
+            "The camera world-model trainer does not use the standard VideoX-Fun "
+            "validation pipeline. Run camera-aware inference separately."
         )
     if args.use_peft_lora:
         raise ValueError(
-            "minWM Stage0 trains the PRoPE camera path together with the Wan generator. "
+            "Camera Stage0 trains the PRoPE camera path together with the Wan generator. "
             "Do not pass --use_peft_lora for this integrated trainer."
         )
     accelerator_project_config = ProjectConfiguration(project_dir=args.output_dir, logging_dir=logging_dir)
@@ -797,7 +793,7 @@ def main():
         project_config=accelerator_project_config,
     )
     if not torch.cuda.is_available():
-        raise RuntimeError("minWM Wan2.1 world-model training requires a CUDA environment.")
+        raise RuntimeError("Wan2.1 camera world-model training requires a CUDA environment.")
     deepspeed_plugin = accelerator.state.deepspeed_plugin if hasattr(accelerator.state, "deepspeed_plugin") else None
     fsdp_plugin = accelerator.state.fsdp_plugin if hasattr(accelerator.state, "fsdp_plugin") else None
     if deepspeed_plugin is not None:
@@ -880,16 +876,16 @@ def main():
         args.mixed_precision = accelerator.mixed_precision
     if weight_dtype == torch.float32:
         raise ValueError(
-            "minWM Wan2.1 training requires --mixed_precision fp16 or bf16 "
+            "Wan2.1 camera world-model training requires --mixed_precision fp16 or bf16 "
             "because its FlashAttention path does not support fp32 training."
         )
 
-    # minWM Stage0 model. CameraBidirectionalDiffusion creates the PRoPE-enabled
+    # Camera Stage0 model. CameraBidirectionalDiffusion creates the PRoPE-enabled
     # WanDiffusionWrapper(use_camera=True), its text encoder and its VAE. The
     # surrounding precision/device/optimizer lifecycle stays owned by this
     # Accelerate script.
     config.mixed_precision = weight_dtype != torch.float32
-    with minwm_working_directory():
+    with world_model_working_directory():
         world_model = CameraBidirectionalDiffusion(config, device=accelerator.device)
 
     transformer3d = world_model.generator.to(dtype=weight_dtype)
@@ -900,7 +896,7 @@ def main():
     network = None
 
     # Freeze the encoders while keeping the full PRoPE Wan generator trainable,
-    # matching minWM Stage0.
+    # matching camera Stage0.
     vae.requires_grad_(False)
     text_encoder.requires_grad_(False)
     transformer3d.requires_grad_(True)
@@ -972,7 +968,7 @@ def main():
     else:
         optimizer_cls = torch.optim.AdamW
 
-    logging.info("Add minWM PRoPE Wan generator parameters")
+    logging.info("Add PRoPE Wan generator parameters")
     trainable_params = list(filter(lambda p: p.requires_grad, transformer3d.parameters()))
     trainable_params_optim = trainable_params
 
@@ -993,7 +989,7 @@ def main():
             eps=args.adam_epsilon,
         )
 
-    # minWM camera dataset: pre-encoded Wan latents plus camera intrinsics and
+    # Camera dataset: pre-encoded Wan latents plus camera intrinsics and
     # poses. It builds normalized viewmats/Ks for PRoPE in __getitem__.
     train_dataset = CameraLatentLMDBDataset(config.data_path, max_pair=int(1e8))
     if args.max_train_samples is not None:
@@ -1135,7 +1131,7 @@ def main():
             print(f"Load pkl from {pkl_path}. Get first_epoch = {first_epoch}.")
 
             accelerator.load_state(checkpoint_folder_path)
-            accelerator.print("accelerator.load_state() completed for minWM world model.")
+            accelerator.print("accelerator.load_state() completed for camera world model.")
 
     else:
         initial_global_step = 0
@@ -1240,7 +1236,7 @@ def main():
                     accelerator.save_state(accelerator_save_path)
                     accelerator.wait_for_everyone()
                     if accelerator.is_main_process:
-                        logger.info(f"Saved minWM world-model state to {accelerator_save_path}")
+                        logger.info(f"Saved camera world-model state to {accelerator_save_path}")
 
                     ## lyz:save checkpoints
                     #score_state_dict = {}
@@ -1302,7 +1298,7 @@ def main():
     accelerator.save_state(accelerator_save_path)
     accelerator.wait_for_everyone()
     if accelerator.is_main_process:
-        logger.info(f"Saved final minWM world-model state to {accelerator_save_path}")
+        logger.info(f"Saved final camera world-model state to {accelerator_save_path}")
 
         ## lyz:save checkpoints
         #score_state_dict = {}

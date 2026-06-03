@@ -1,4 +1,4 @@
-"""Preflight checks for the integrated minWM Wan2.1 world-model trainer."""
+"""Preflight checks for the vendored Wan2.1 camera world-model trainer."""
 
 import argparse
 import importlib.util
@@ -7,14 +7,12 @@ from pathlib import Path
 
 
 VIDEOX_FUN_ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_MINWM_ROOT = VIDEOX_FUN_ROOT.parent / "minWM"
 MODEL_NAME = "Wan2.1-T2V-1.3B"
 
 REQUIRED_MODULES = {
     "accelerate": "accelerate",
     "datasets": "datasets",
     "diffusers": "diffusers",
-    "easydict": "easydict",
     "einops": "einops",
     "flash-attn": "flash_attn",
     "ftfy": "ftfy",
@@ -27,7 +25,6 @@ REQUIRED_MODULES = {
     "sentencepiece": "sentencepiece",
     "tensorboard": "tensorboard",
     "torch": "torch",
-    "torchvision": "torchvision",
     "tqdm": "tqdm",
     "transformers": "transformers",
 }
@@ -36,16 +33,16 @@ REQUIRED_MODULES = {
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--minwm-root",
+        "--model-dir",
         type=Path,
-        default=Path(os.environ.get("MINWM_ROOT", DEFAULT_MINWM_ROOT)),
-        help="Path to the minWM repository. Defaults to the sibling minWM folder.",
+        default=Path(os.environ.get("WAN_MODEL_DIR", VIDEOX_FUN_ROOT / "models" / MODEL_NAME)),
+        help="Wan2.1 model directory. Defaults to VideoX-Fun/models/Wan2.1-T2V-1.3B.",
     )
     parser.add_argument(
         "--data-path",
         type=Path,
         default=None,
-        help="Camera latent LMDB directory. Defaults to minWM/dataset/Wan21/Action2V/data.",
+        help="Camera latent LMDB directory. Defaults to VideoX-Fun/dataset/Wan21/Action2V/data.",
     )
     return parser.parse_args()
 
@@ -66,13 +63,12 @@ def report(label, ok, detail):
 
 def main():
     args = parse_args()
-    minwm_root = args.minwm_root.expanduser().resolve()
+    model_dir = args.model_dir.expanduser().resolve()
     data_path = (
         args.data_path.expanduser().resolve()
         if args.data_path is not None
-        else minwm_root / "dataset" / "Wan21" / "Action2V" / "data"
+        else VIDEOX_FUN_ROOT / "dataset" / "Wan21" / "Action2V" / "data"
     )
-    model_dir = minwm_root / "Wan21" / "wan_models" / MODEL_NAME
 
     ok = True
     print("Python dependencies")
@@ -80,11 +76,14 @@ def main():
         found = importlib.util.find_spec(module) is not None
         ok = report(package, found, module) and ok
 
-    print("\nminWM source and model files")
+    print("\nVideoX-Fun world-model source and model files")
     required_paths = [
-        minwm_root / "Wan21" / "configs" / "default_config.yaml",
-        minwm_root / "Wan21" / "wan_utils",
-        minwm_root / "shared" / "algorithms" / "flow_matching.py",
+        VIDEOX_FUN_ROOT / "config" / "wan2.1" / "world_model_default.yaml",
+        VIDEOX_FUN_ROOT / "videox_fun" / "world_model" / "model" / "camera_bidirectional_diffusion.py",
+        VIDEOX_FUN_ROOT / "videox_fun" / "world_model" / "wan" / "modules" / "model.py",
+        VIDEOX_FUN_ROOT / "videox_fun" / "world_model" / "wan" / "modules" / "prope.py",
+        VIDEOX_FUN_ROOT / "videox_fun" / "world_model" / "wan_utils",
+        VIDEOX_FUN_ROOT / "videox_fun" / "world_model" / "algorithms" / "flow_matching.py",
         model_dir / "config.json",
         model_dir / "diffusion_pytorch_model.safetensors",
         model_dir / "Wan2.1_VAE.pth",
@@ -106,8 +105,8 @@ def main():
         )
         ok = report(
             "torch version",
-            torch_version >= (2, 5),
-            f"torch={torch.__version__}, required>=2.5",
+            torch_version >= (2, 1),
+            f"torch={torch.__version__}, required>=2.1.2",
         ) and ok
         ok = report(
             "torch CUDA",
@@ -118,8 +117,8 @@ def main():
     if not ok:
         print(
             "\nPreflight failed. Install requirements_world_model.txt, install "
-            "flash-attn separately, download the Wan2.1 weights, create the "
-            "wan_models link, and build the camera LMDB."
+            "flash-attn separately, download the Wan2.1 weights into VideoX-Fun/models, "
+            "and build the camera LMDB."
         )
         raise SystemExit(1)
 

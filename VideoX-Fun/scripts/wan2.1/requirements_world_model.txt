@@ -1,16 +1,11 @@
 -r ../../requirements.txt
 
-# Extra dependencies imported by the minWM Wan2.1 camera world-model path.
-easydict>=1.13
+# Extra dependencies imported by the vendored Wan2.1 camera world-model path.
 huggingface_hub[cli]>=0.25
 lmdb>=1.4
 regex>=2024.0
 scipy>=1.10
 
-# minWM imports torch.nn.attention.flex_attention while loading its Wan wrapper.
-torch>=2.5
-torchvision>=0.20
-
-# minWM Wan attention requires FlashAttention at runtime. Install it after the
+# Wan attention requires FlashAttention at runtime. Install it after the
 # CUDA PyTorch wheel so it builds against the active environment:
 #   pip install flash-attn --no-build-isolation
