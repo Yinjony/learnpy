@@ -155,6 +155,46 @@ def repeat_grpo_conditioning(conditional_dict, group_size):
     }
 
 
+def cast_floating_tensors(value, dtype):
+    if torch.is_tensor(value):
+        return value.to(dtype=dtype) if value.is_floating_point() else value
+    if isinstance(value, dict):
+        return {key: cast_floating_tensors(item, dtype) for key, item in value.items()}
+    if isinstance(value, list):
+        return [cast_floating_tensors(item, dtype) for item in value]
+    if isinstance(value, tuple):
+        return tuple(cast_floating_tensors(item, dtype) for item in value)
+    return value
+
+
+def resolve_text_encoder_dtype(precision, weight_dtype, device):
+    if precision == "auto":
+        dtype = weight_dtype
+    else:
+        dtype = {
+            "fp32": torch.float32,
+            "fp16": torch.float16,
+            "bf16": torch.bfloat16,
+        }[precision]
+
+    if dtype == torch.bfloat16 and torch.cuda.is_available() and not torch.cuda.is_bf16_supported():
+        device_name = torch.cuda.get_device_name(device)
+        raise ValueError(
+            f"--text_encoder_precision=bf16 was requested, but GPU {device_name!r} "
+            "does not support BF16 matmul. Use --text_encoder_precision fp32 or fp16."
+        )
+    return dtype
+
+
+@contextmanager
+def text_encoder_autocast_context(device, dtype):
+    if dtype == torch.float32 and device.type == "cuda":
+        with torch.autocast(device_type=device.type, enabled=False):
+            yield
+    else:
+        yield
+
+
 def compute_sft_world_model_loss(
     world_model,
     clean_latent,
@@ -592,6 +632,17 @@ def parse_args():
         ),
     )
     parser.add_argument(
+        "--text_encoder_precision",
+        type=str,
+        default="fp32",
+        choices=["auto", "fp32", "fp16", "bf16"],
+        help=(
+            "Precision for the frozen UMT5 text encoder. The generated prompt embeddings "
+            "are cast back to the Wan generator dtype. fp32 is the safest option when "
+            "FP16/BF16 CUBLAS fails inside the text encoder."
+        ),
+    )
+    parser.add_argument(
         "--report_to",
         type=str,
         default="tensorboard",
@@ -1009,6 +1060,13 @@ def main():
         weight_dtype = torch.float16
         args.mixed_precision = accelerator.mixed_precision
     elif accelerator.mixed_precision == "bf16":
+        if torch.cuda.is_available() and not torch.cuda.is_bf16_supported():
+            device_name = torch.cuda.get_device_name(accelerator.device)
+            raise ValueError(
+                f"--mixed_precision=bf16 was requested, but GPU {device_name!r} "
+                "does not support BF16 matmul. Use fp16 instead, for example: "
+                "MIXED_PRECISION=fp16 bash scripts/wan2.1/train_world_model_ours.sh"
+            )
         weight_dtype = torch.bfloat16
         args.mixed_precision = accelerator.mixed_precision
     if weight_dtype == torch.float32:
@@ -1016,6 +1074,9 @@ def main():
             "Wan2.1 camera world-model training requires --mixed_precision fp16 or bf16 "
             "because its FlashAttention path does not support fp32 training."
         )
+    text_encoder_dtype = resolve_text_encoder_dtype(
+        args.text_encoder_precision, weight_dtype, accelerator.device
+    )
 
     # Camera Stage0 model. CameraBidirectionalDiffusion creates the PRoPE-enabled
     # WanDiffusionWrapper(use_camera=True), its text encoder and its VAE. The
@@ -1191,14 +1252,14 @@ def main():
         if args.low_vram:
             raise ValueError("--low_vram cannot be combined with a sharded text encoder.")
         text_encoder = shard_minwm_text_encoder(
-            text_encoder, device=accelerator.device, dtype=weight_dtype
+            text_encoder, device=accelerator.device, dtype=text_encoder_dtype
         )
 
     # The LMDB already contains VAE latents. Only the text encoder and generator
     # need to be resident for the Stage0 training step.
     transformer3d.to(accelerator.device, dtype=weight_dtype)
     if not text_encoder_is_sharded:
-        text_encoder.to(accelerator.device if not args.low_vram else "cpu", dtype=weight_dtype)
+        text_encoder.to(accelerator.device if not args.low_vram else "cpu", dtype=text_encoder_dtype)
 
     # We need to recalculate our total training steps as the size of the training dataloader may have changed.
     num_update_steps_per_epoch = math.ceil(len(train_dataloader) / args.gradient_accumulation_steps)
@@ -1304,9 +1365,15 @@ def main():
                 )
                 if args.low_vram:
                     torch.cuda.empty_cache()
-                    text_encoder.to(accelerator.device)
+                    text_encoder.to(accelerator.device, dtype=text_encoder_dtype)
                 with torch.no_grad():
-                    conditional_dict = text_encoder(text_prompts=batch["prompts"])
+                    with text_encoder_autocast_context(
+                        accelerator.device, text_encoder_dtype
+                    ):
+                        conditional_dict = text_encoder(text_prompts=batch["prompts"])
+                    conditional_dict = cast_floating_tensors(
+                        conditional_dict, weight_dtype
+                    )
                 if args.low_vram:
                     text_encoder.to("cpu")
                     torch.cuda.empty_cache()

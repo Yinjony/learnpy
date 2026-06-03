@@ -44,7 +44,7 @@ torchrun \
     --nproc_per_node=$NUM_GPUS_PER_NODE \
     --nnodes=$NNODES \
     --node_rank=$NODE_RANK \
-    Wan21/scripts/data_preprocessing/build_worldplaygen_lmdb.py \
+    /ltl/VideoX-Fun/scripts/data_preprocessing/build_worldplaygen_lmdb.py \
     --input_json "$INPUT_JSON" \
     --video_dir "$VIDEO_DIR" \
     --output_dir "$OUTPUT_DIR" \

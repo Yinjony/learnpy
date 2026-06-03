@@ -45,7 +45,7 @@ From `VideoX-Fun`, build the camera-aware latent LMDB:
 bash scripts/wan2.1/world_model_data_preprocessing/run_build_worldplaygen_lmdb.sh
 ```
 
-The default training dataset path is `VideoX-Fun/dataset/Wan21/Action2V/data`.
+The default training dataset path is `VideoX-Fun/datasets/Wan21/Action2V/data`.
 
 ## Preflight And Launch
 
@@ -74,7 +74,7 @@ Enable the GRPO strategy:
 
 ```bash
 TRAINING_STRATEGY=grpo \
-GRPO_GROUP_SIZE=4 \
+GRPO_GROUP_SIZE=2 \
 GRPO_SFT_COEF=0.1 \
     bash scripts/wan2.1/train_world_model_ours.sh
 ```

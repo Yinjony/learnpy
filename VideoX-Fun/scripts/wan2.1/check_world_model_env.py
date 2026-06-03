@@ -42,7 +42,7 @@ def parse_args():
         "--data-path",
         type=Path,
         default=None,
-        help="Camera latent LMDB directory. Defaults to VideoX-Fun/dataset/Wan21/Action2V/data.",
+        help="Camera latent LMDB directory. Defaults to VideoX-Fun/datasets/Wan21/Action2V/data.",
     )
     return parser.parse_args()
 
@@ -67,7 +67,7 @@ def main():
     data_path = (
         args.data_path.expanduser().resolve()
         if args.data_path is not None
-        else VIDEOX_FUN_ROOT / "dataset" / "Wan21" / "Action2V" / "data"
+        else VIDEOX_FUN_ROOT / "datasets" / "Wan21" / "Action2V" / "data"
     )
 
     ok = True

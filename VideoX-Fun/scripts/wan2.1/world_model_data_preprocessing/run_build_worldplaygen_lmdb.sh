@@ -11,14 +11,14 @@ export TOKENIZERS_PARALLELISM=false
 # Wan2.1 VAE checkpoint
 VAE_PATH="${WAN_MODEL_DIR:-$PROJECT_ROOT/models/Wan2.1-T2V-1.3B}/Wan2.1_VAE.pth"
 # preencode_input.json (same format as HY15 camera: caption + pose_str per sample)
-INPUT_JSON="./dataset/preencode_input.json"
+INPUT_JSON="./datasets/preencode_input.json"
 # Directory containing generated videos: {idx:06d}_{pose_suffix}/gen.mp4
-VIDEO_DIR="./dataset/videos"
+VIDEO_DIR="./datasets/videos"
 
 # =============================================================================
 # Intermediate / Output Paths
 # =============================================================================
-OUTPUT_DIR="./dataset/Wan21/Action2V"
+OUTPUT_DIR="./datasets/Wan21/Action2V"
 
 # =============================================================================
 # Resources
