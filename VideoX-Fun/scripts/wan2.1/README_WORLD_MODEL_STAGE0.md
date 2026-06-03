@@ -1,6 +1,6 @@
 # Wan2.1 Camera World-Model Stage0
 
-`train_dpo_ours copy.py` keeps the VideoX-Fun Accelerate training shell, but its
+`train_world_model_ours.py` keeps the VideoX-Fun Accelerate training shell, but its
 training step is camera-aware bidirectional SFT:
 
 1. `CameraLatentLMDBDataset` loads pre-encoded Wan latents, prompts, camera
@@ -69,6 +69,20 @@ DATASET_NAME=/path/to/camera_lmdb \
 OUTPUT_DIR=/path/to/output \
     bash scripts/wan2.1/train_world_model_ours.sh
 ```
+
+Enable the GRPO strategy:
+
+```bash
+TRAINING_STRATEGY=grpo \
+GRPO_GROUP_SIZE=4 \
+GRPO_SFT_COEF=0.1 \
+    bash scripts/wan2.1/train_world_model_ours.sh
+```
+
+The current GRPO reward is `reconstruction`: each LMDB sample is repeated as a
+group with different diffusion noise/timesteps, reward is the negative
+per-sample flow-matching loss, and the group-normalized advantage reweights the
+diffusion loss with a small SFT anchor.
 
 This entry supports Accelerate DDP/FSDP-style execution. It does not initialize
 sequence parallelism. `--low_vram` is only valid when the text encoder is

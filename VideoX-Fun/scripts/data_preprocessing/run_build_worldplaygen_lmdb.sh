@@ -10,16 +10,16 @@ export TOKENIZERS_PARALLELISM=false
 # User Input (MUST set before running)
 # =============================================================================
 # Wan2.1 VAE checkpoint
-VAE_PATH="Wan21/wan_models/Wan2.1-T2V-1.3B/Wan2.1_VAE.pth"
+VAE_PATH="/ltl/VideoX-Fun/models/Wan2.1-T2V-1.3B/Wan2.1_VAE.pth"
 # preencode_input.json (same format as HY15 camera: caption + pose_str per sample)
-INPUT_JSON="./dataset/preencode_input.json"
+INPUT_JSON="/ltl/VideoX-Fun/dataset/preencode_input.json"
 # Directory containing generated videos: {idx:06d}_{pose_suffix}/gen.mp4
-VIDEO_DIR="./dataset/videos"
+VIDEO_DIR="/ltl/VideoX-Fun/dataset/videos"
 
 # =============================================================================
 # Intermediate / Output Paths
 # =============================================================================
-OUTPUT_DIR="./dataset/Wan21/Action2V"
+OUTPUT_DIR="/ltl/VideoX-Fun/dataset/Wan21/Action2V"
 
 # =============================================================================
 # Resources

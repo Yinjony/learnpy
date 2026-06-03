@@ -140,6 +140,103 @@ def shard_minwm_text_encoder(text_encoder, device, dtype):
     return text_encoder
 
 
+def repeat_grpo_value(value, group_size):
+    if torch.is_tensor(value) and value.ndim > 0:
+        return value.repeat_interleave(group_size, dim=0)
+    if isinstance(value, list):
+        return [item for item in value for _ in range(group_size)]
+    return value
+
+
+def repeat_grpo_conditioning(conditional_dict, group_size):
+    return {
+        key: repeat_grpo_value(value, group_size)
+        for key, value in conditional_dict.items()
+    }
+
+
+def compute_sft_world_model_loss(
+    world_model,
+    clean_latent,
+    image_latent,
+    conditional_dict,
+    viewmats,
+    Ks,
+):
+    loss, log_dict = world_model.generator_loss(
+        image_or_video_shape=list(clean_latent.shape),
+        conditional_dict=conditional_dict,
+        unconditional_dict={},
+        clean_latent=clean_latent,
+        initial_latent=image_latent,
+        viewmats=viewmats,
+        Ks=Ks,
+    )
+    return loss, {
+        "sft_loss": loss.detach(),
+        "reward": (-log_dict["per_sample_loss"].detach()).mean(),
+    }
+
+
+def compute_grpo_world_model_loss(
+    world_model,
+    clean_latent,
+    image_latent,
+    conditional_dict,
+    viewmats,
+    Ks,
+    group_size,
+    reward_type,
+    sft_coef,
+    advantage_eps,
+    advantage_clip,
+):
+    if reward_type != "reconstruction":
+        raise ValueError(f"Unsupported GRPO reward type: {reward_type}")
+
+    batch_size = clean_latent.shape[0]
+    grouped_clean_latent = clean_latent.repeat_interleave(group_size, dim=0)
+    grouped_image_latent = image_latent.repeat_interleave(group_size, dim=0)
+    grouped_viewmats = viewmats.repeat_interleave(group_size, dim=0)
+    grouped_Ks = Ks.repeat_interleave(group_size, dim=0)
+    grouped_conditional_dict = repeat_grpo_conditioning(
+        conditional_dict, group_size
+    )
+
+    per_sample_loss, _ = world_model.generator_losses(
+        image_or_video_shape=list(grouped_clean_latent.shape),
+        conditional_dict=grouped_conditional_dict,
+        unconditional_dict={},
+        clean_latent=grouped_clean_latent,
+        initial_latent=grouped_image_latent,
+        viewmats=grouped_viewmats,
+        Ks=grouped_Ks,
+    )
+    grouped_loss = per_sample_loss.view(batch_size, group_size)
+
+    # Reward is intentionally detached. For Stage0 LMDB training we do not have
+    # decoded online videos, so the default reward is the negative diffusion NLL
+    # proxy: lower reconstruction/flow loss means higher reward.
+    rewards = -grouped_loss.detach()
+    reward_mean = rewards.mean(dim=1, keepdim=True)
+    reward_std = rewards.std(dim=1, keepdim=True, unbiased=False)
+    advantages = (rewards - reward_mean) / (reward_std + advantage_eps)
+    if advantage_clip > 0:
+        advantages = advantages.clamp(-advantage_clip, advantage_clip)
+
+    policy_loss = (advantages.reshape(-1) * per_sample_loss).mean()
+    sft_loss = per_sample_loss.mean()
+    loss = policy_loss + sft_coef * sft_loss
+
+    return loss, {
+        "grpo_policy_loss": policy_loss.detach(),
+        "sft_loss": sft_loss.detach(),
+        "reward": rewards.mean(),
+        "reward_std": reward_std.mean(),
+        "advantage_abs": advantages.abs().mean(),
+    }
+
+
 def filter_kwargs(cls, kwargs):
     import inspect
     sig = inspect.signature(cls.__init__)
@@ -422,6 +519,44 @@ def parse_args():
     parser.add_argument("--adam_weight_decay", type=float, default=None, help="Weight decay. Defaults to the vendored Stage0 config.")
     parser.add_argument("--adam_epsilon", type=float, default=1e-08, help="Epsilon value for the Adam optimizer")
     parser.add_argument("--max_grad_norm", default=10.0, type=float, help="Max gradient norm.")
+    parser.add_argument(
+        "--training_strategy",
+        type=str,
+        default="sft",
+        choices=["sft", "grpo"],
+        help="Use normal flow-matching SFT or group-relative GRPO reweighting.",
+    )
+    parser.add_argument(
+        "--grpo_group_size",
+        type=int,
+        default=4,
+        help="Number of noisy/timestep rollouts per LMDB sample for GRPO.",
+    )
+    parser.add_argument(
+        "--grpo_reward_type",
+        type=str,
+        default="reconstruction",
+        choices=["reconstruction"],
+        help="Reward used by GRPO. reconstruction means reward=-per-sample flow loss.",
+    )
+    parser.add_argument(
+        "--grpo_sft_coef",
+        type=float,
+        default=0.1,
+        help="SFT anchor coefficient added to the GRPO policy loss.",
+    )
+    parser.add_argument(
+        "--grpo_advantage_eps",
+        type=float,
+        default=1e-6,
+        help="Numerical epsilon for group advantage normalization.",
+    )
+    parser.add_argument(
+        "--grpo_advantage_clip",
+        type=float,
+        default=5.0,
+        help="Clamp absolute normalized GRPO advantages. Set <=0 to disable.",
+    )
     parser.add_argument("--push_to_hub", action="store_true", help="Whether or not to push the model to the Hub.")
     parser.add_argument("--hub_token", type=str, default=None, help="The token to use to push to the Model Hub.")
     parser.add_argument(
@@ -770,6 +905,8 @@ def main():
         args.adam_beta2 = float(config.beta2)
     if args.adam_weight_decay is None:
         args.adam_weight_decay = float(config.weight_decay)
+    if args.training_strategy == "grpo" and args.grpo_group_size < 2:
+        raise ValueError("--grpo_group_size must be at least 2 when using GRPO.")
     model_dir = Path(args.pretrained_model_name_or_path or DEFAULT_WAN_MODEL_DIR).expanduser().resolve()
     os.environ["WAN_MODEL_DIR"] = str(model_dir)
     validate_world_model_paths(config.data_path, model_dir)
@@ -1173,18 +1310,31 @@ def main():
                 if args.low_vram:
                     text_encoder.to("cpu")
                     torch.cuda.empty_cache()
-                image_or_video_shape = list(clean_latent.shape)
                 image_latent = clean_latent[:, 0:1]
                 with accelerator.autocast():
-                    loss, _ = world_model.generator_loss(
-                        image_or_video_shape=image_or_video_shape,
-                        conditional_dict=conditional_dict,
-                        unconditional_dict={},
-                        clean_latent=clean_latent,
-                        initial_latent=image_latent,
-                        viewmats=viewmats,
-                        Ks=Ks,
-                    )
+                    if args.training_strategy == "grpo":
+                        loss, loss_stats = compute_grpo_world_model_loss(
+                            world_model=world_model,
+                            clean_latent=clean_latent,
+                            image_latent=image_latent,
+                            conditional_dict=conditional_dict,
+                            viewmats=viewmats,
+                            Ks=Ks,
+                            group_size=args.grpo_group_size,
+                            reward_type=args.grpo_reward_type,
+                            sft_coef=args.grpo_sft_coef,
+                            advantage_eps=args.grpo_advantage_eps,
+                            advantage_clip=args.grpo_advantage_clip,
+                        )
+                    else:
+                        loss, loss_stats = compute_sft_world_model_loss(
+                            world_model=world_model,
+                            clean_latent=clean_latent,
+                            image_latent=image_latent,
+                            conditional_dict=conditional_dict,
+                            viewmats=viewmats,
+                            Ks=Ks,
+                        )
 
                 # Gather the losses across all processes for logging (if we use distributed training).
                 avg_loss = accelerator.gather(loss.repeat(args.train_batch_size)).mean()
@@ -1203,7 +1353,14 @@ def main():
             if accelerator.sync_gradients:
                 progress_bar.update(1)
                 global_step += 1
-                accelerator.log({"train_loss": train_loss}, step=global_step)
+                log_payload = {"train_loss": train_loss}
+                for metric_name, metric_value in loss_stats.items():
+                    if torch.is_tensor(metric_value):
+                        gathered_metric = accelerator.gather(
+                            metric_value.detach().float().reshape(1)
+                        ).mean()
+                        log_payload[f"train_{metric_name}"] = gathered_metric.item()
+                accelerator.log(log_payload, step=global_step)
                 train_loss = 0.0
 
                 if global_step % args.checkpointing_steps == 0:
@@ -1266,6 +1423,10 @@ def main():
                     )
 
             logs = {"step_loss": loss.detach().item(), "lr": lr_scheduler.get_last_lr()[0]}
+            if "reward" in loss_stats:
+                logs["reward"] = loss_stats["reward"].detach().float().item()
+            if "advantage_abs" in loss_stats:
+                logs["adv_abs"] = loss_stats["advantage_abs"].detach().float().item()
             progress_bar.set_postfix(**logs)
 
             if global_step >= args.max_train_steps:

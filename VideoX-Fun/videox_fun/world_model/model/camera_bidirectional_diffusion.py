@@ -30,7 +30,7 @@ class CameraBidirectionalDiffusion(BidirectionalDiffusion):
         self.scheduler = self.generator.get_scheduler()
         self.scheduler.timesteps = self.scheduler.timesteps.to(device)
 
-    def generator_loss(
+    def generator_losses(
         self,
         image_or_video_shape,
         conditional_dict: dict,
@@ -77,6 +77,36 @@ class CameraBidirectionalDiffusion(BidirectionalDiffusion):
             0, (batch_size, num_frame)
         )
         weight = weight.unsqueeze(-1).unsqueeze(-1).unsqueeze(-1)
-        loss = flow_matching_loss(flow_pred, training_target, weight=weight)
+        element_loss = flow_matching_loss(
+            flow_pred, training_target, weight=weight, reduction="none"
+        )
+        per_sample_loss = element_loss.flatten(1).mean(dim=1)
 
-        return loss, {"x0": clean_latent.detach(), "x0_pred": x0_pred.detach()}
+        return per_sample_loss, {
+            "x0": clean_latent.detach(),
+            "x0_pred": x0_pred.detach(),
+            "per_sample_loss": per_sample_loss.detach(),
+        }
+
+    def generator_loss(
+        self,
+        image_or_video_shape,
+        conditional_dict: dict,
+        unconditional_dict: dict,
+        clean_latent: torch.Tensor,
+        initial_latent: torch.Tensor = None,
+        viewmats: Optional[torch.Tensor] = None,
+        Ks: Optional[torch.Tensor] = None,
+    ) -> Tuple[torch.Tensor, dict]:
+        per_sample_loss, log_dict = self.generator_losses(
+            image_or_video_shape=image_or_video_shape,
+            conditional_dict=conditional_dict,
+            unconditional_dict=unconditional_dict,
+            clean_latent=clean_latent,
+            initial_latent=initial_latent,
+            viewmats=viewmats,
+            Ks=Ks,
+        )
+        loss = per_sample_loss.mean()
+
+        return loss, log_dict
